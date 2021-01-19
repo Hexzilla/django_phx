@@ -31,7 +31,7 @@ SECRET_KEY = 'x8=ujz!3ioo_hzuj@#tx%3jg_$5c=%(!5jao#@4h+@1o)x^5$i'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1',]
+ALLOWED_HOSTS = ['127.0.0.1','bluedjango.herokuapp.com']
 
 
 # Application definition
