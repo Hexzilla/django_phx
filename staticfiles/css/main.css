@@ -1,0 +1,25 @@
+#logo {}
+
+body {
+    background-color: #ebeff5;
+}
+
+#total-orders {
+    background-color: #4cb4c7;
+}
+
+#orders-approved {
+    background-color: #7abecc;
+}
+
+#orders-pending {
+    background-color: #7CD1C0;
+}
+
+#phone-search {
+    background-color: #0c470d;
+}
+
+#bg-gray {
+    background-color: #6c757d;
+}
