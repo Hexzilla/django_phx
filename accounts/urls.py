@@ -62,6 +62,7 @@ urlpatterns = [
 
     #SMS
     path('sms_not_include', views.sms_not_include, name='sms_not_include'),
+    path('sms', views.sms, name='sms'),
     
     #functions
     path('refresh_dashboard', views.refresh_dashboard, name='refresh_dashboard'),

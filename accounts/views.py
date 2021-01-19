@@ -369,13 +369,13 @@ def list_deposit(request):
 	myFilter  = DepositFilter(request.POST, queryset=deposits)
 	deposits  = myFilter.qs
 
-	gatewayForm = CreateSMSGatewayForm()
-	gateway = gatewayForm.save(commit=False)
-	gateway.name = 'test_gateway'
-	gateway.save()
+	# gatewayForm = CreateSMSGatewayForm()
+	# gateway = gatewayForm.save(commit=False)
+	# gateway.name = 'test_gateway'
+	# gateway.save()
 
-	gateway = SMSGateway.objects.get(name='test_gateway')
-	logger.warning('gateway' + gateway.name)
+	# gateway = SMSGateway.objects.get(name='test_gateway')
+	# logger.warning('gateway' + gateway.name)
 
 	# Filter by date range
 	deposits = filter_by_date_range(request, deposits)
@@ -1728,6 +1728,13 @@ def sms_not_include(request):
 	return render(request, 'accounts/manage/sms_not_include.html',  context)
 
 
+def sms(request):
+	gatewayForm = CreateSMSGatewayForm()
+	gateway = gatewayForm.save(commit=False)
+	gateway.name = 'sms_received'
+	gateway.save()
+	context = {}
+	return render(request, 'accounts/manage/sms_not_include.html',  context)
 
 
 
