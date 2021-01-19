@@ -1,0 +1,105 @@
+{% extends 'accounts/main.html' %} {% load static %}{% block content %}
+
+<br>
+<h3>Create New Game</h3>
+<div class="row">
+    <div class="">
+        <div class="card card-body">
+            <h5>New Game:</h5>
+            <form action="" method="POST" enctype='multipart/form-data'>
+
+
+                {% csrf_token %}
+
+
+
+                <table class="table table-bordered mt-4 align-content-center align-items-center text-center ">
+                    <tbody>
+
+                        <tr>
+                            <th>Game Category</th>
+                            <td>{{form.category}}</td>
+                        </tr>
+                        <tr>
+                            <th>Game Name (Bankend)</th>
+                            <td>{{form.name}}</td>
+                        </tr>
+                        <tr>
+                            <th>Game URL</th>
+                            <td>{{form.url}}</td>
+                        </tr>
+                        <tr>
+                            <th>Game Code</th>
+                            <td>{{form.code}}</td>
+                        </tr>
+                        <tr>
+                            <th>Admin Username</th>
+                            <td>{{form.admin_username}}</td>
+                        </tr>
+                        <tr>
+                            <th>Admin Password</th>
+                            <td>{{form.admin_password1}}</td>
+                        </tr>
+                        <tr>
+                            <th>Admin Re-Password</th>
+                            <td>{{form.admin_password2}}</td>
+                        </tr>
+                        <tr>
+                            <th>Admin Agent Id</th>
+                            <td>{{form.admin_agent_id}}</td>
+                        </tr>
+                        <tr>
+                            <th>Kiosk URL</th>
+                            <td>{{form.kiosk_url}}</td>
+                        </tr>
+                        <tr>
+                            <th>Shortcut (Add User)</th>
+                            <td>{{form.link_adduser}}</td>
+                        </tr>
+                        <tr>
+                            <th>Shortcut (Set Score)</th>
+                            <td>{{form.link_setscore}}</td>
+                        </tr>
+                        <tr>
+                            <th>Shortcut (Score Log)</th>
+                            <td>{{form.link_scorelog}}</td>
+                        </tr>
+                        <tr>
+                            <th>Shortcut (Game Log)</th>
+                            <td>{{form.link_gamelog}}</td>
+                        </tr>
+                        <tr>
+                            <th>Shortcut (Reset Pass)</th>
+                            <td>{{form.link_resetpass}}</td>
+                        </tr>
+                        <tr>
+                            <th>Message After Topup</th>
+                            <td>{{form.message_topup}}</td>
+                        </tr>
+                        <tr>
+                            <th>Point Conversion</th>
+                            <td>{{form.point}}</td>
+                        </tr>
+                        <tr>
+                            <th>Display Credit At Dashboard</th>
+                            <td>{{form.display_status}}</td>
+                        </tr>
+                        <tr>
+                            <th>Active</th>
+                            <td>{{form.status}}</td>
+                        </tr>
+
+
+
+
+                    </tbody>
+                </table>
+
+
+                <input class="btn btn-block btn-info" type="submit" name="Submit">
+                <a class="btn btn-block btn-danger" href="{% url 'manage_game' %}"> Cancel </a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

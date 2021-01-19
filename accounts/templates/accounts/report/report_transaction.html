@@ -1,0 +1,153 @@
+{% extends 'accounts/main.html' %} {% block content %}{% load static %}
+<br>
+<h3>Transaction Reports test</h3>
+
+{% include 'accounts/content/search_bar.html' %}
+
+<table class="table table-bordered mt-4 align-content-center align-items-center text-center">
+    <thead>
+        <tr>
+            <td>
+                {% for bank in banks %} {% if forloop.first %}
+                <div class="row">{% endif %}
+                    <div class="ml-5" style="background:rgb(184, 253, 184);">
+                        <div class="row">
+                            <div>
+                                <img src="{% static 'images/' %}{{bank.image}}" style="width: 80px; height: 30px;">
+                            </div>
+                            <div class="text-right ml-4">
+                                RM{% for deposits_amount in deposits_amounts %}{% if forloop.first %}{% elif forloop.counter0 == bank.id %}{{deposits_amount}}{% endif %}{% endfor %}
+                                <br>
+                                <script>
+                                    var number_one = 0;
+                                </script>
+                                {% for transaction_bank in transaction_d %} {% if transaction_bank.bank == bank %}
+                                <script>
+                                    number_one++;
+                                </script>
+                                <!--  -->
+                                {% endif %} {% endfor %}
+                                <script>
+                                    document.write(number_one);
+                                </script> Deposits
+                            </div>
+                        </div>
+
+                        {% comment %} {{bank.bank_name}} {% endcomment %}
+                        <textarea cols="20" rows="5" style="font-size: 10px;" readonly>{% for transaction_bank in transaction_d %}{% if transaction_bank.bank == bank %}{{transaction_bank}}      {{transaction_bank.amount}}&#13;&#10;{% endif %}{% endfor %}</textarea>
+                        <br>
+                        <!-- style="pointer-events: none;" -->
+                        <div class="card mt-1" style="display:none;" id="table_d{{forloop.counter}}">
+                            <table class="" style="font-size: 8px;">
+                                {% for transaction_bank in transaction_d %}{% if transaction_bank.bank == bank %}
+                                <tr>
+                                    <td>
+                                        {{transaction_bank.customer}}
+                                    </td>
+                                    <td>
+                                        {{transaction_bank}}
+                                    </td>
+                                    <td>
+                                        {{transaction_bank.amount}}
+                                    </td>
+                                    <td>
+                                        {{transaction_bank.date_created}}
+                                    </td>
+                                </tr>
+                                {% endif %}{% endfor %}
+                            </table>
+                        </div>
+                        <a class="btn btn-sm bg-info btn-into " onClick="opentable1('{{forloop.counter}}')">Details</a>
+                    </div>
+                    {% if forloop.counter|divisibleby:4 %}</div>
+                <div class="row">{% endif %} {% if forloop.last %}</div>{% endif %} {% endfor %}
+            </td>
+        </tr>
+    </thead>
+</table>
+
+
+
+
+<table class="table table-bordered mt-4 align-content-center align-items-center text-center">
+    <thead>
+        <tr>
+            <td>
+                {% for bank in banks %} {% if forloop.first %}
+                <div class="row">{% endif %}
+                    <div class="ml-5" style="background:rgb(250, 146, 146);">
+                        <div class="row">
+                            <div>
+                                <img src="{% static 'images/' %}{{bank.image}}" style="width: 80px; height: 30px;">
+                            </div>
+                            <div class="text-right ml-4">
+                                RM{% for withdrawals_amount in withdrawals_amounts %}{% if forloop.counter0 == bank.id %}{{withdrawals_amount}}{% endif %}{% endfor %}
+                                <br>
+                                <script>
+                                    var number_two = 0;
+                                </script>
+                                {% for transaction_bank in transaction_w %} {% if transaction_bank.bank == bank %}
+                                <script>
+                                    number_two++;
+                                </script>
+                                <!--  -->
+                                {% endif %} {% endfor %}
+                                <script>
+                                    document.write(number_two);
+                                </script>
+                                Withdrawal
+                            </div>
+                        </div>
+
+                        {% comment %} {{bank.bank_name}} {% endcomment %}
+                        <textarea cols="20" rows="5" style="font-size: 10px;" readonly>{% for transaction_bank in transaction_w %}{% if transaction_bank.bank == bank %}{{transaction_bank}}      {{transaction_bank.amount}}&#13;&#10;{% endif %}{% endfor %}</textarea>
+                        <br>
+                        <!-- style="pointer-events: none;" -->
+                        <div class="card mt-1" style="display:none;" id="table_w{{forloop.counter}}">
+                            <table class="" style="font-size: 8px;">
+                                {% for transaction_bank in transaction_w %}{% if transaction_bank.bank == bank %}
+                                <tr>
+                                    <td>
+                                        {{transaction_bank.customer}}
+                                    </td>
+                                    <td>
+                                        {{transaction_bank}}
+                                    </td>
+                                    <td>
+                                        {{transaction_bank.amount}}
+                                    </td>
+                                    <td>
+                                        {{transaction_bank.date_created}}
+                                    </td>
+                                </tr>
+                                {% endif %}{% endfor %}
+                            </table>
+                        </div>
+                        <a class="btn btn-sm bg-info btn-into " onClick="opentable2('{{forloop.counter}}')">Details</a>
+                    </div>
+                    {% if forloop.counter|divisibleby:4 %}</div>
+                <div class="row">{% endif %} {% if forloop.last %}</div>{% endif %} {% endfor %}
+            </td>
+        </tr>
+    </thead>
+</table>
+
+<script>
+    function opentable1(id) {
+        if (document.getElementById('table_d' + id).style.display == "block") {
+            document.getElementById('table_d' + id).style.display = "none";
+        } else {
+            document.getElementById('table_d' + id).style.display = "block";
+        }
+    }
+
+    function opentable2(id) {
+        if (document.getElementById('table_w' + id).style.display == "block") {
+            document.getElementById('table_w' + id).style.display = "none";
+        } else {
+            document.getElementById('table_w' + id).style.display = "block";
+        }
+    }
+</script>
+
+{% endblock content %}

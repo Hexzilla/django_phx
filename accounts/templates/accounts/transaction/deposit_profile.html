@@ -1,0 +1,167 @@
+{% extends 'accounts/main.html' %} {% block content %} {% load static %}
+
+
+<br>
+<h3>Deposits Details</h3>
+<br>
+
+<div class="row">
+    <div class="col">
+        <table class="table">
+            <thead class="thead-dark">
+                <th scope="col">Details Status</th>
+                <th scope="col"></th>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Status :</th>
+                    <td>
+                        <div class="row">{{deposit.status}}
+                            <div class="ml-auto">
+                                <a class="btn btn-sm btn-info" href="{% url 'transaction_status' deposit.id 'Pending' %}">Pending</a>
+                                <a class="btn btn-sm btn-success" href="{% url 'transaction_status' deposit.id 'Approved' %}">Approved</a>
+                                <a class="btn btn-sm btn-danger" href="{% url 'transaction_status' deposit.id 'Rejected' %}">Rejected</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Completed :</th>
+                    <td>
+                        <div class="row">
+                            {{deposit.completed}}
+                            <div class="ml-auto">
+                                <a class="btn btn-sm btn-info" href="{% url 'deposit_confirm_after' deposit.id 'Yes' %}">Yes</a>
+                                <a class="btn btn-sm btn-danger" href="{% url 'deposit_confirm_after' deposit.id 'No' %}">No</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <thead class="thead-dark">
+                        <th scope="col">Deposit Details</th>
+                        <th scope="col"></th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>Deposit ID :</th>
+                            <td>{{deposit}}</td>
+                        </tr>
+                        <tr>
+                            <th>Deposit User :</th>
+                            <td>
+                                <a href="{% url 'user_details' deposit.customer.id %}"> {{deposit.customer}}</a>
+                                <br>{{deposit.customer}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Deposit Promotion :</th>
+                            <td>{{deposit.promotion}}</td>
+                        </tr>
+                        <tr>
+                            <th>Deposit Amount :</th>
+                            <td>RM: {{deposit.amount}}</td>
+                        </tr>
+                        <tr>
+                            <th>Deposit Games :</th>
+                            <td>{{deposit.game.game_name}}</td>
+                        </tr>
+                        <tr>
+                            <th>Deposit Games Username :</th>
+                            <td>{{deposit.game.username}}</td>
+                        </tr>
+                        <tr>
+                            <th>Deposit Message :</th>
+                            <td><textarea name="" id="" cols="40" rows="5"></textarea></td>
+                        </tr>
+                        <tr>
+                            <th>Deposit Bank :</th>
+                            <td>{{deposit.bank}}</td>
+                        </tr>
+                        <tr>
+                            <th>Deposit Date :</th>
+                            <td>{{deposit.date_created}}</td>
+                        </tr>
+                    </tbody>
+
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Action Details</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>Created Date :</th>
+                            <td>{{deposit.date_created}}</td>
+                        </tr>
+                        <tr>
+                            <th>Approved Date :</th>
+                            <td>{{deposit.action_approve}}</td>
+                        </tr>
+                        <tr>
+                            <th>Rejected Date :</th>
+                            <td>{{deposit.action_reject}}</td>
+                        </tr>
+                        <tr>
+                            <th>Completed Date :</th>
+                            <td>{{deposit.action_complete}}</td>
+                        </tr>
+                    </tbody>
+        </table>
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="col">
+        <table class="table">
+            <thead class="thead-dark">
+                <th scope="col">User Profile</th>
+                <th scope="col"></th>
+
+            </thead>
+            <tbody>
+                <tr>
+                    <!-- Customer Profile -->
+                    <th>Username :</th>
+                    <td>
+                        <a href="{% url 'user_details' deposit.customer.id %}"> {{customer.name}}</a>
+                        <br>{{customer.name}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Customer Phone :</th>
+                    <td>{{customer.phone}}</td>
+                </tr>
+                <tr>
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Game Info</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>Game</th>
+                            <th>Username</th>
+                        </tr>
+                        {% for game in customergame %}
+                        <tr>
+                            <th>{{game.game_name}}</th>
+                            <th>{{game.username}}</th>
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,74 @@
+<form action="" method="POST">
+    {% csrf_token %}
+    <div class="form-row">
+        <div class="form-group col-md-2">
+          <label for="inputGame">Game:</label>
+          <select class="form-control" name="game">
+            <option></option>
+            {% for item in data.games %}
+              <option value="{{ item.name }}"
+                {% if search.game == item.name %} selected="selected" {% endif %}>
+                {{ item.name }}
+              </option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="inputBank">Bank:</label>
+          <select class="form-control" name="bank">
+            <option></option>
+            {% for item in data.banks %}
+              <option value="{{ item.bank_name }}"
+                {% if search.bank == item.bank_name %} selected="selected" {% endif %}>
+                {{ item.bank_name }}
+              </option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="inputAdmin">Admin:</label>
+          <select class="form-control" name="admin">
+            <option></option>
+            {% for item in data.admins %}
+              <option value="{{ item.admin }}"
+                {% if search.admin == item.admin %} selected="selected" {% endif %}>
+                {{ item.admin }}
+              </option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="inputPromotion">Promotion:</label>
+          <select class="form-control" name="promotion">
+            <option></option>
+            {% for item in data.promotions %}
+              <option value="{{ item.name }}"
+                {% if search.promotion == item.name %} selected="selected" {% endif %}>
+                {{ item.name }}
+              </option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="inputRemark">Remark:</label>
+          <input type="text" class="form-control" id="inputRemark" placeholder="Remark" name="remark" value="{{ search.remark|default_if_none:'' }}">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-2">
+          <label for="inputStartDate">Start Date:</label>
+          <input type="date" class="form-control" id="inputStartDate" name="start_date" value="{{ search.start_date|default_if_none:'' }}">
+        </div>
+        <div class="form-group col-md-2">
+          <label for="inputEndDate">End Date:</label>
+          <input type="date" class="form-control" id="inputEndDate" name="end_date" value="{{ search.end_date|default_if_none:'' }}">
+        </div>
+        <div class="form-group col-md-2">
+          <label for="inputDate">Date:</label>
+          <input type="date" class="form-control" id="inputDate" name="date_value" value="{{ search.date_value|default_if_none:'' }}">
+        </div>
+        <div class="form-group col-md-6" style="padding: 20px;">
+            <input class="btn btn-primary" type="submit" name="Submit" value="Search">
+        </div>
+    </div>
+</form>

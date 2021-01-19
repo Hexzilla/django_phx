@@ -1,0 +1,192 @@
+{% load humanize %} {% load static %}{% load mytags %} {% for deposit in withdrawals %}
+<tr>
+    <th><a href="{% url 'withdrawal_profile' deposit.id %}">{{deposit}}</a><br>{{deposit.tag}}</th>
+    {% comment %}
+
+    <!-- <td>{{deposit.date_created|date:"d-M-y h:i A" }}</td> -->
+    {% endcomment %}
+
+    <td>{{deposit.date}}</td>
+    <td>
+        <a href="{% url 'user_details' deposit.customer.id %}">{{deposit.customer}}</a>
+        <br>{{deposit.customer.phone}}
+        <br><a class="btn btn-sm btn-info" href="{% url 'create_transaction' deposit.customer.id 'Transfer' %}">+T</a>
+
+
+        <td>
+
+            {% if deposit.bank %}
+            <img class="" src="{% static 'images/' %}{{deposit.bank.image}}" style="width: 80px; height: 30px;"> {% else %}
+            <form action="{% url 'withdrawal_bank' deposit.id %}" method="POST" enctype='multipart/form-data'>
+                {% csrf_token %} {{form.bank}}
+                <br>
+                <input class="btn btn-info mt-1" type="submit" name="Submit">
+            </form>{% endif %}
+        </td>
+
+
+        <td><b><u>RM:{{deposit.amount|intcomma}}</u></b>
+        </td>
+        <td>{{deposit.game}}<br>ID:{{deposit.game.username}}<br>
+            <textarea cols="30" rows="10" readonly>Today {{deposit.max_withdrawal}} Withdrawal&#13;&#10;Last Topup:{{deposit.last_topup}}&#13;&#10;{{deposit.promotion}}</textarea>
+
+            <br>{% if not deposit.bank %}
+            <a href="{{deposit.game.game_name.kiosk_url}}{{deposit.game.id | btn_setscore}}" target="_blank">
+                <textarea name=type id=ww2{{forloop.counter}} rows="2 cols="30" onClick="select_all2ww(this.id);" readonly>-{{deposit.amount}}</textarea></a>
+            <!--  -->
+            {% endif %}
+            <!--  -->
+            {% if deposit.bank %}
+            <textarea id="successMessageW{{forloop.counter}}" cols="30" rows="5" onClick="select_allw9(this.id);" id=ww1{{forloop.counter}} readonly>{% if deposit.customer.language == 'Malay' %}{{deposit.id | re_m_withdrawal}}
+{% elif deposit.customer.language == 'Chinese' %}{{deposit.id | re_c_withdrawal}}
+{% elif deposit.customer.language == 'English' %}{{deposit.id | re_e_withdrawal}}
+{% endif %}</textarea>
+            <!--  -->
+            {% endif %}
+            <br>
+            <textarea name=type id=w1{{forloop.counter}} rows=3 cols=25 onClick="select_allw(this.id);" readonly>{{deposit}}	-{{deposit.amount|intcomma}}	{{deposit.date_created|date:'H:i a'}}</textarea>
+            <br> {% include "accounts/content/game_btn.html" %}
+        </td>
+        <td>
+            {% if deposit.customer.bank_name %} {% if deposit.status != 'Pending' %}
+            <div class="card"><a class="btn btn-sm bg-info btn-into " style="display: block;" href="{% url 'deposit_confirm' deposit.id %}" style="pointer-events: none;" id='cc1{{forloop.counter}}'>C</a></div>
+            {% else %}
+            <div class="row">
+                <div class="card">
+                    <a class="btn btn-sm bg-info btn-into " href="{% url 'transaction_status' deposit.id 'Approved' %}" style="pointer-events: none;" id='ss1{{forloop.counter}}'><i class="fa fa-check "></i></a>
+                </div>
+                <div class="card">
+                    <a class="btn btn-sm bg-danger btn-danger " href="{% url 'transaction_status' deposit.id 'Rejected' %}" style="pointer-events: none;" id='ss2{{forloop.counter}}'><i class="fa fa-times "></i></a>
+                </div>
+                <!-- <div class="card"><a class="btn btn-sm btn-warning btn-info" onClick="opentableww('mm1{{forloop.counter}}');" style="pointer-events: none;" id='ss3{{forloop.counter}}'>E</a></div> -->
+                <div class="card"><a class="btn btn-sm btn-warning btn-info" onClick="opentableww('mm1{{forloop.counter}}');">E</a></div>
+            </div>
+
+            {% endif %} {% endif %}
+            <div class="card " style="background-color: darkgray;">{{deposit.status}}</div>
+
+            {% if deposit.status == 'Pending' %}
+
+            <div class="card mt-1" style="font-size: 12px; display:none;" id="mm1{{forloop.counter}}">
+                <table class="table table-bordered">
+                    <tr>
+                        <td>Game</td>
+                        <td>{{ deposit.game.game_name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Amount</td>
+                        <td>{{ deposit.amount }}</td>
+                    </tr>
+                    <tr>
+                        <td>Tip Amount</td>
+                        <td>{{ deposit.amount_tip }}</td>
+                    </tr>
+                    <tr>
+                        <td>Void Amount</td>
+                        <td>{{ deposit.amount_void }}</td>
+                    </tr>
+                    <tr>
+                        <td>Payback</td>
+                        <td>{{ deposit.payback }}</td>
+                    </tr>
+                    <tr>
+                        <td>Promo</td>
+                        <td>{{ deposit.promotion.name }}</td>
+                    </tr>
+                </table>
+                <div class="card"><a class="btn btn-sm btn-warning " href="{% url 'edit_transaction' deposit.id 'Withdrawal' %}">Edit Deposit</a></div>
+            </div>
+            {% endif %}
+            <div>
+                <div style="font-size: 20px;"><b><u>RM:{{deposit.amount|intcomma}}</u></b></div>
+                Confirm With Customer First
+                <br> {% if not deposit.customer.bank_name %}
+                <br> {% include "accounts/content/add_bank_withdrawal.html" %}{% else %}
+                <textarea cols="20" rows="3" onClick="select_all3ww(this.id);" id=ww3{{forloop.counter}} readonly>{% if deposit.customer.language == 'Malay' %}{{deposit.id | re_m_withdrawal_verify_bank}}
+{% elif deposit.customer.language == 'Chinese' %}{{deposit.id | re_c_withdrawal_verify_bank}}
+{% elif deposit.customer.language == 'English' %}{{deposit.id | re_e_withdrawal_verify_bank}}
+{% endif %}</textarea>
+                <br>{{deposit.customer.bank_name}}<br>{{deposit.customer.account_name}}<br>{{deposit.customer.account_number}}<br>{% endif %}
+            </div>
+        </td>
+</tr>
+{% endfor %}
+
+
+
+<script>
+    check2 = []
+
+    function select_allw(id) {
+        var text_val = document.getElementById(id);
+        text_val.style.backgroundColor = "#129284 ";
+        var idd = id.slice(-1)
+        check.push("D" + idd);
+        submit_deposit(idd);
+        text_val.focus(); // Focus on textarea 
+        text_val.select(); // Select all text  
+        document.execCommand("Copy");
+        document.execCommand('copy', false, document.getElementById(text_val).select());
+    }
+
+    function select_allw9(id) {
+        var text_val = document.getElementById(id);
+        var idd = id.slice(-1)
+        text_val.style.backgroundColor = "#129284 ";
+        check2.push("D" + idd);
+        submit_depositww(idd);
+        text_val.focus(); // Focus on textarea 
+        text_val.select(); // Select all text  
+        document.execCommand("Copy");
+        document.execCommand('copy', false, document.getElementById(text_val).select());
+    }
+
+    function select_allw99(id) {
+        var text_val = document.getElementById(id);
+        var idd = id.slice(-1)
+        text_val.style.backgroundColor = "#129284 ";
+        check2.push("D" + idd);
+        submit_depositww(idd);
+        text_val.focus(); // Focus on textarea 
+        text_val.select(); // Select all text  
+        document.execCommand("Copy");
+        document.execCommand('copy', false, document.getElementById(text_val).select());
+    }
+
+    function select_all2ww(id) {
+        var text_val = document.getElementById(id);
+        document.getElementById(id).style.backgroundColor = "#129284 ";
+        var idd = id.slice(-1)
+        check2.push("D" + idd);
+        submit_depositww(idd);
+        text_val.focus(); // Focus on textarea 
+        text_val.select(); // Select all text  
+        document.execCommand("Copy");
+        document.execCommand('copy', false, document.getElementById(text_val).select());
+    }
+
+    function select_all3ww(id) {
+        var text_val = document.getElementById(id);
+        text_val.focus(); // Focus on textarea 
+        text_val.select(); // Select all text  
+        text_val.style.backgroundColor = "#129284 ";
+        document.execCommand("Copy");
+        document.execCommand('copy', false, document.getElementById(text_val).select());
+    }
+
+    function submit_depositww(id) {
+        if (check2.includes("D" + id)) {
+            document.getElementById('ss1' + id).style.pointerEvents = "auto";
+            document.getElementById('ss2' + id).style.pointerEvents = "auto";
+            document.getElementById('ss3' + id).style.pointerEvents = "auto";
+        }
+    }
+
+    function opentableww(id) {
+        if (document.getElementById(id).style.display == "block") {
+            document.getElementById(id).style.display = "none";
+        } else {
+            document.getElementById(id).style.display = "block";
+        }
+    }
+</script>

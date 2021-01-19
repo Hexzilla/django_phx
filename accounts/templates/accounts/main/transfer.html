@@ -1,0 +1,135 @@
+{% load humanize %} {% load static %}{% load mytags %} {% for deposit in transfers %}
+<tr>
+    <th><a href="{% url 'transfer_profile' deposit.id %}">{{deposit}}</a><br>{{deposit.tag}}</th>
+    {% comment %}
+    <!-- <td>{{deposit.date_created|date:"d-M-y h:i A" }}</td> -->
+    {% endcomment %}
+    <td>{{deposit.date}}</td>
+    <td>
+        <a href="{% url 'user_details' deposit.customer.id %}">{{deposit.customer}}</a>
+        <br>{{deposit.customer.phone}}
+        <br><a class="btn btn-sm btn-info" href="{% url 'create_transaction' deposit.customer.id 'Transfer' %}">+T</a>
+
+        <td>
+            <b><u>RM:{{deposit.amount|intcomma}}</u></b>
+            <br>
+            <textarea id="transfer{{forloop.counter}}" onClick="select_allmess(this.id);" cols="20" rows="4" readonly>{% if deposit.customer.language == 'Malay' %}{{deposit.id | re_m_transfer}}
+{% elif deposit.customer.language == 'Chinese' %}{{deposit.id | re_c_transfer}}
+{% elif deposit.customer.language == 'English' %}{{deposit.id | re_e_transfer}}
+{% endif %}</textarea>
+        </td>
+        <td>
+            {{deposit.game.game_name}}<br> {{deposit.game.username}}
+            <br>
+            <a href="{{deposit.game.game_name.kiosk_url}}{{deposit.game.id | btn_setscore}}" target="_blank">
+                <textarea name=type id=ttt1{{forloop.counter}} onClick="select_allsss(this.id);" cols="20" rows="2" readonly>-{{deposit.amount}}</textarea></a>
+            <br> {% include "accounts/content/game_btn.html" %}
+        </td>
+
+        <td>{{deposit.game2.game_name}}<br>{{deposit.game2.username}}<br>
+            <a href="{{deposit.game2.game_name.kiosk_url}}{{deposit.game2.id | btn_setscore}}" target="_blank">
+                <textarea name=type id=ttt2{{forloop.counter}} rows=2 cols=20 onClick="select_all2sss(this.id);" readonly>{{deposit.amount}}</textarea></a>
+            <br> {% include "accounts/content/game_btn_transfer.html" %}
+        </td>
+        <td>
+
+            {% if deposit.status != 'Pending' %}
+            <div class="card"><a class="btn btn-sm bg-info btn-into " style="display: block;" href="{% url 'deposit_confirm' deposit.id %}" style="pointer-events: none;" id='ccc1{{forloop.counter}}'>C</a></div>
+            {% else %}
+
+            <div class="row row-cols-3 row-sm-3">
+                <div class="card">
+                    <a class="btn btn-sm bg-info btn-into " href="{% url 'transaction_status' deposit.id 'Approved' %}" style="pointer-events: none;" id='sss1{{forloop.counter}}'><i class="fa fa-check "></i></a>
+                </div>
+                <div class="card">
+                    <a class="btn btn-sm bg-danger btn-danger " href="{% url 'transaction_status' deposit.id 'Rejected' %}" style="pointer-events: none;" id='sss2{{forloop.counter}}'><i class="fa fa-times "></i></a>
+                </div>
+                <!-- <div class="card"><a class="btn btn-sm btn-warning btn-info" onClick="opentablesss('mmm1{{forloop.counter}}');" style="pointer-events: none;" id='sss3{{forloop.counter}}'>E</a></div> -->
+                <div class="card"><a class="btn btn-sm btn-warning btn-info" onClick="opentablesss('mmm1{{forloop.counter}}');">E</a></div>
+            </div>
+            {% endif %}
+            <div class="card " style="background-color: darkgray; ">{{deposit.status}}</div>
+            {% if deposit.status == 'Pending' %}
+
+            <div class="card mt-1" style="font-size: 12px; display:none;" id="mmm1{{forloop.counter}}">
+                <table class="table table-bordered">
+                    <tr>
+                        <td>Game (From)</td>
+                        <td>{{ deposit.game.game_name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Game (To)</td>
+                        <td>{{ deposit.game2.game_name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Amount</td>
+                        <td>{{ deposit.amount }}</td>
+                    </tr>
+                </table>
+                <div class="card"><a class="btn btn-sm btn-warning " href="{% url 'edit_transaction' deposit.id 'Transfer' %}">Edit Transfer</a></div>
+            </div>
+            {% endif %}
+        </td>
+</tr>
+{% endfor %}
+
+
+
+
+<script>
+    check3 = []
+
+    function select_allmess(id) {
+        var text_val = document.getElementById(id);
+        text_val.focus(); // Focus on textarea 
+        text_val.select(); // Select all text  
+        text_val.style.backgroundColor = "#129284 ";
+        document.execCommand("Copy");
+    }
+
+    function select_allsss(id) {
+        var text_val = document.getElementById(id);
+        text_val.style.backgroundColor = "#129284 ";
+        var idd = id.slice(-1)
+        check3.push("C" + idd);
+        submit_depositsss(idd);
+        text_val.focus(); // Focus on textarea 
+        text_val.select(); // Select all text  
+        document.execCommand("Copy");
+    }
+
+    function select_all2sss(id) {
+        var text_val = document.getElementById(id);
+        document.getElementById(id).style.backgroundColor = "#129284 ";
+        var idd = id.slice(-1)
+        check3.push("D" + idd);
+        submit_depositsss(idd);
+        text_val.focus(); // Focus on textarea 
+        text_val.select(); // Select all text  
+        document.execCommand("Copy");
+    }
+
+    function select_all3sss(id) {
+        var text_val = document.getElementById(id);
+        text_val.focus(); // Focus on textarea 
+        text_val.select(); // Select all text  
+        text_val.style.backgroundColor = "#129284 ";
+        document.execCommand("Copy");
+    }
+
+    function submit_depositsss(id) {
+        if (check3.includes("C" + id) && check3.includes("D" + id)) {
+            document.getElementById('sss1' + id).style.pointerEvents = "auto";
+            document.getElementById('sss2' + id).style.pointerEvents = "auto";
+            document.getElementById('sss3' + id).style.pointerEvents = "auto";
+        }
+    }
+
+    function opentablesss(id) {
+        if (document.getElementById(id).style.display == "block") {
+            document.getElementById(id).style.display = "none";
+        } else {
+            document.getElementById(id).style.display = "block";
+        }
+    }
+</script>

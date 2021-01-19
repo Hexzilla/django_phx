@@ -1,0 +1,23 @@
+{% if deposit.tag == "Deposit" %}
+<tr style="background:rgb(184, 253, 184);">
+    {% elif deposit.tag == "Free" %}
+    <tr style="background:rgb(178, 178, 248)">
+        {% elif deposit.tag == "Withdrawal" %}
+        <tr style="background:rgb(250, 146, 146);">
+            {% elif deposit.tag == "Transfer" %}
+            <tr style="background:rgb(236, 250, 144);">
+                {% else %}
+                <tr>
+                    {% endif %}
+                    <th scope="row">{{ transactions.start_index|add:forloop.counter0 }}</th>
+                    <td>{{deposit}}<br>{{deposit.date_created}}</td>
+                    <td>{{deposit.bank}}</td>
+                    <td>{{deposit.amount}}</td>
+                    <td>{{deposit.amount_promo}}</td>
+                    <td>{{deposit.amount_free}}</td>
+                    <td>{{deposit.amount_tip}}</td>
+                    <td>{{deposit.amount_void}}</td>
+                    <td>{{deposit.game.game_name}}<br>{{deposit.game}}<br>{{deposit.promotion}}</td>
+                    <td>{{deposit.status}}</td>
+                    <!-- <td><a class="btn btn-sm btn-info" href="">Details</a></td> -->
+                </tr>

@@ -1,0 +1,75 @@
+{% load humanize %} {% load static %}{% load mytags %}
+<!-- #none -->
+
+<div id="table1">
+    <h1>Pending Deposit ({{deposits.count}}) </h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Reference</th>
+                <th scope="col">Date</th>
+                <th scope="col">User</th>
+                <th scope="col">Bank</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Game</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% if successMessage %} {% include "accounts/main/deposit.html" %} {% else %}
+            <div style="font-size: 25px;">
+                You have to setup Success Message to receive deposit order.
+            </div> {% endif %}
+        </tbody>
+    </table>
+    <hr>
+    <h1>Pending Withdrawal ({{withdrawals.count}})</h1>
+    <table class="table table-bordered ">
+        <thead>
+            <tr>
+                <th scope="col ">Reference</th>
+                <th scope="col ">Date</th>
+                <th scope="col ">User</th>
+                <th scope="col ">Bank (From)</th>
+                <th scope="col ">Amount</th>
+                <th scope="col ">Game</th>
+                <th scope="col ">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if successMessage %} {% include "accounts/main/withdrawal.html" %} {% else %}
+            <div style="font-size: 25px;">
+                You have to setup Success Message to receive Withdrawal order.
+            </div> {% endif %}
+        </tbody>
+    </table>
+
+    <hr>
+    <h1>Pending Transfer ({{transfers.count}})</h1>
+    <table class="table table-bordered ">
+        <thead>
+            <tr>
+                <th scope="col ">Reference</th>
+                <th scope="col ">Date</th>
+                <th scope="col ">User</th>
+                <th scope="col ">Amount</th>
+                <th scope="col ">Game (From)</th>
+                <th scope="col ">Game (To)</th>
+                <th scope="col ">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if successMessage %} {% include "accounts/main/transfer.html" %} {% else %}
+            <div style="font-size: 25px;">
+                You have to setup Success Message to receive Transfer order.
+            </div> {% endif %}
+
+        </tbody>
+
+    </table>
+
+
+    <hr>
+    <h1>SMS (Not Include in this project)</h1>
+</div>

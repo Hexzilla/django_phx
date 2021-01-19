@@ -1,0 +1,63 @@
+{% load static %}
+
+
+<form action="{% url 'create_customer' %}" method="POST" name="create_customer">
+    {% csrf_token %}
+
+    <div class="row ml-4">
+        <select id="add_new_user" name="referral" size="1" onchange="myFunction()" required>
+            <option value="">Choose</option>
+            {% for referral in referrals %}
+                <option value="{{referral}}">{{referral}}</option>
+            {% endfor %}
+        </select> {% for referral in referrals %}
+        <div class="card row-col-2" style="display: none;" id="{{referral}}">
+            <img class="mt-1" src="{% static 'images/' %}{{referral.image}}" style="width: 30px; height: 30px;">
+        </div>
+        {% endfor %}
+
+        <input type="number" placeholder="Phone No" name="phone" required>
+        <button class="btn btn-primary " type="submit"><i class="fas fa-check"></i></button>
+    </div>
+
+</form>
+
+{% if messages %}
+<div class="mt-2 text-info text-center align-items-center align-content-center">
+    <ul>
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %} {% if form.errors %} {% for field in form %} {% for error in field.errors %}
+<div class="alert alert-danger">
+    <strong>{{ error|escape }}</strong>
+</div>
+{% endfor %} {% endfor %} {% for error in form.non_field_errors %}
+<div class="alert alert-danger">
+    <strong>{{ error|escape }}</strong>
+</div>
+{% endfor %} {% endif %}
+
+
+<script>
+    var xxxx = '';
+
+    function myFunction() {
+        if (xxxx != '') {
+            xxxx.style.display = "none";
+        }
+        if (document.getElementById("add_new_user").value != '') {
+
+            var xx = document.getElementById("add_new_user").value;
+            var xxx = document.getElementById(xx);
+            xxxx = xxx;
+            xxx.style.display = "block";
+
+        }
+
+
+
+    }
+</script>

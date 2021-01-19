@@ -1,0 +1,113 @@
+<div id="layoutSidenav" style="font-size: 12px;">
+    <div id="layoutSidenav_nav">
+        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+            <div class="sb-sidenav-menu">
+                <div class="nav">
+                    <div class="sb-sidenav-menu-heading">
+                        <h3>BTF Portal</h3><br>Admin : {{request.user}}
+                        <br> {{hostname}}
+                        <br> V1.0.1
+                        <br> Activated Date: {{active_date1.days}} Days
+                        <br> Today Date: {{timeNow_side}}
+                    </div>
+                    <a class="nav-link" href="{% url 'home' %}">
+                        Dashboard
+                    </a>
+
+
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                        Users
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="{% url 'list_user' %}">Users</a>
+                            <a class="nav-link" href="{% url 'follow_ups' %}">Follow Ups</a>
+                            <a class="nav-link" href="{% url 'blacklist_bank' %}">Blacklist Bank</a>
+                        </nav>
+                    </div>
+
+
+
+
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                        Transactions
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapsePages" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="{% url 'list_deposit' %}">Deposits</a>
+                            <a class="nav-link" href="{% url 'list_withdrawal' %}">Withdrawals</a>
+                            <a class="nav-link" href="{% url 'list_transfer' %}">Transfers</a>
+                        </nav>
+                    </div>
+
+
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages1" aria-expanded="false" aria-controls="collapsePages1">
+                        Reports
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapsePages1" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="{% url 'report_sale' %}">Sales Report</a>
+                            <a class="nav-link" href="{% url 'report_transaction' %}">Transaction Report</a>
+                        </nav>
+                    </div>
+
+
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages2" aria-expanded="false" aria-controls="collapsePages2">
+                        Settings
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapsePages2" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="{% url 'manage_game' %}">Manage Games</a>
+                            <a class="nav-link" href="{% url 'manage_bank' %}">Manage Banks</a>
+                            <a class="nav-link" href="{% url 'manage_promotion' %}">Manage Promotions</a>
+                            <a class="nav-link" href="{% url 'manage_referral' %}">Manage Referrals</a>
+                            <a class="nav-link" href="{% url 'manage_max_withdrawal' %}">Max Withdrawal Count</a>
+                            <a class="nav-link" href="{% url 'manage_success_messages' 'mal' %}">Manage Success Messages</a>
+                            <a class="nav-link" href="{% url 'sms_not_include' %}">SMS Gateway(not include)</a>
+                        </nav>
+                    </div>
+
+
+
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages3" aria-expanded="false" aria-controls="collapsePages3">
+                        Employees
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapsePages3" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="{% url 'manage_employee' %}">Employees List</a>
+                            <a class="nav-link" href="{% url 'manage_position' %}">Positions</a>
+                            <a class="nav-link" href="{% url 'action_logs' %}">Action Logs
+                        </nav>
+                    </div>
+                </div>
+
+
+                <hr>
+                <a class=" nav-link text-center" href="#">
+                        Kiosk Credits
+                    </a> Games Credits List: {% for game in games %}
+                            <div class="row" style="font-size: 16px;">
+                                <div class="col text-left ml-1 mt-1">
+                                    <a href="{{game.kiosk_url}}" target="_blank">
+                                        {{game.name}}
+                                    </a>
+                                </div>
+                                <div class="col text-right mr-2 mt-1">{{ game.credit|floatformat:2 }}</div>
+                            </div>
+
+
+                            {% endfor %}
+                    </div>
+
+
+
+                    <div class="sb-sidenav-footer">
+                        <div>Logged in as: {{request.user}}</div>
+                    </div>
+                    </nav>
+                </div>

@@ -1,0 +1,18 @@
+{% extends 'accounts/main.html' %} {% block content %} {% include "accounts/main/dashboard_action.html" %}
+
+
+
+</div>
+<script type="text/javascript">
+    setInterval(function() {
+        $.ajax({
+            type: "GET",
+            url: "{% url 'refresh_dashboard' %}",
+            dataType: 'json',
+            success: function(response) {
+                $('#table1').html(response.html_table);
+            }
+        });
+    }, 120000);
+</script>
+<hr> {% endblock %}

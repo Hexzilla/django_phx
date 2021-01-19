@@ -1,0 +1,133 @@
+{% extends 'accounts/main.html' %} {% load static %}{% block content %}
+
+<br>
+<h3>Create New Promotion</h3>
+<div class="row">
+    <div class="">
+        <div class="card card-body">
+            <h5>New Promotion:</h5>
+            <form action="" method="POST" enctype='multipart/form-data'>
+                {% csrf_token %}
+                <table class="table table-bordered mt-4 ">
+                    <tbody>
+
+                        <tr>
+                            <th>Promotion Name</th>
+                            <td>{{form.name}}</td>
+                        </tr>
+                        <tr>
+                            <th>Promotion Category</th>
+                            <td>{{form.category}}</td>
+                        </tr>
+                        <tr>
+                            <th>Promotion Type</th>
+                            <td>{{form.tag1}}</td>
+                        </tr>
+                        <tr>
+                            <th>Promotion Type2</th>
+                            <td>{{form.tag2}}</td>
+                        </tr>
+                        <tr>
+                            <th>Promotion Amount</th>
+                            <td>
+                                <input disabled type="text" placeholder="{{form.amount_percentage}}">
+                                <select name="amount_percentage">
+                                    <option value="0"> 0% </option>
+                                    {% for i in "x"|rjust:"200" %}
+                                     <option value="{{ forloop.counter }}">
+                                        {{ forloop.counter }}%
+                                     </option>
+                                      {% endfor %} 
+                                </select> Promotion amount will be taking into account if promotion percentage is 0%
+                                <br> {{form.amount}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Max Claim amount</th>
+                            <td>RM: {{form.max_claim_amount}}Note: Maximum claim for this promotion</td>
+                        </tr>
+                        <tr>
+                            <th>Min/Max Deposit</th>
+                            <td>
+                                Min. Deposit :{{form.min_deposit_amount}}
+                                <hr> Max. Deposit :{{form.max_deposit_amount}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Min/Max Withdrawal</th>
+                            <td>
+                                Min. Withdrawal : {{form.min_withdrawal_rollover}} Note: Set to -1 to disallow withdrawal. Set -2 to ignore checking when withdrawal (For void game, lock)
+                                <br><i>(Rollover Multiply)</i>
+                                <hr> Max. Withdrawal : {{form.max_withdrawal_rollover}} Note: Set to -1 to disallow withdrawal. Set -2 to ignore checking when withdrawal (For void game, lock)
+                                <br><i>(Rollover Multiply)</i>
+                                <hr> Min. Withdrawal : {{form.min_withdrawal_turnover}}
+                                <br><i>(Turnover Multiply)</i>
+                                <hr> Max. Withdrawal : {{form.max_withdrawal_turnover}}
+                                <br><i>(Turnover Multiply)</i>
+
+                                <hr> Min. Withdrawal : {{form.min_withdrawal_amount}} Note: Applicable when Min. Withdrawal (Rollover Multiply) is 0
+                                <br><i>(Amount)</i>
+                                <hr> Max. Withdrawal : {{form.max_withdrawal_amount}} Note: Applicable when Min. Withdrawal (Rollover Multiply) is 0
+                                <br><i>(Amount)</i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Override rollover/turnover</th>
+                            <td>{{form.override}} If calculated min. withdrawal amount using withdrawal rollover/turnover is less than min. withdrawal amount set, follow the min.withdrawal amount. (if wish to follow this, tick the checkbox)
+                                <br> (For eg, Last topup amount = RM50, rollover/turnover = 1 then the min. withdrawal is RM100 Min. withdrawal set = RM110, so the final min. withdrawal is RM110)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Min/Max Transaction</th>
+                            <td>
+                                Min. Transaction : {{form.min_transaction_amount}}
+                                <hr> Max. Transaction : {{form.max_transaction_amount}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Rebate Bonus</th>
+                            <td>
+                                Rebate Date Range From:{{form.rebate_date_from}} To:{{form.rebate_date_to}} (Not working)
+                                <hr> Rebate Weekly Range From:{{form.rebate_day}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Game Category</th>
+                            <td>{{form.game_category}}</td>
+                        </tr>
+                        <tr>
+                            <th>Game Restriction</th>
+                            <td>
+                                Game : {{form.restriction_game}}
+                                <hr> Restriction : {{form.restriction_category}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Usage</th>
+                            <td>{{form.usage}}</td>
+                        </tr>
+                        <tr>
+                            <th>Success Message</th>
+                            <td>{{form.message}}</td>
+                        </tr>
+                        <tr>
+                            <th>Active</th>
+                            <td>{{form.status}}</td>
+                        </tr>
+                        <tr>
+                            <th>Delete This Game</th>
+                            <td><a class="btn btn-block btn-danger" href="{% url 'delete_promotion' promotion.id %}"> Delete </a></td>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+
+
+                <input class="btn btn-block btn-info" type="submit" name="Submit" value="Update Promotion">
+                <a class="btn btn-block btn-danger" href="{% url 'manage_promotion' %}"> Cancel </a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

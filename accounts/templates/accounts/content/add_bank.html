@@ -1,0 +1,51 @@
+{% load static %}
+
+<div class="row col-10">
+    <div class="row col-5">Bank Name</div>
+    <div class="ml-1" id="bank_icon1"><img src="{% static 'images/'%}{{customer.bank_name.image}}" style="width: 80px; height: 30px;"></div>
+    <form action="{% url 'customer_add_bank' customer.id %}" method="POST" name="customer_add_bank">
+        {% csrf_token %}
+        <input name="customer" value="{{customer.id}}" hidden>
+        <div class="row ml-1">
+            <select id="bank_icon2" name="bank_name" size="1" onchange="myFunction2()" required>
+				<option value="">Choose Bank</option>
+				{% for bank in banks %}
+				<option value="{{bank.id}}">{{bank}}</option>
+				{% endfor %}
+			</select>
+        </div>
+        {% for bank in banks %}
+        <div class="card row-col-2" style="display: none;" id="{{bank}}">
+            <img src="{% static 'images/' %}{{bank.image}}">
+        </div>
+        {% endfor %}
+</div>
+</td>
+</tr>
+<tr>
+    <td>
+        <div class="row col-10">
+            <div class="row col-5">Account Name</div>
+            <div id="bank_name1">{{customer.account_name}}</div>
+            <div id="bank_name2"><input size="30" type="text" name="account_name" placeholder="Account Name" required></div>
+        </div>
+
+    </td>
+</tr>
+<tr>
+    <td>
+        <div class="row col-10">
+            <div class="row col-5">Account Number</div>
+            <div style="display: none;">Account Number</div>
+            <div id='bank_account1'>{{customer.account_number}}</div>
+            <div id='bank_account2'><input size="30" type="Number" name="account_number" placeholder="Account Number" required></div>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <div class="row col-10">
+            <div class="row col-5"></div>
+            <button class="btn btn-primary " id="bank_submit1" type="submit">Update Bank Account</button>
+            </form>
+        </div>

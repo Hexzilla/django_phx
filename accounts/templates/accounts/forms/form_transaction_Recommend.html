@@ -1,0 +1,88 @@
+{% extends 'accounts/main.html' %} {% load static %}{% block content %}
+<br>
+<h3>Recommend</h3>
+<div class="row">
+    <div class="card card-body">
+        <div class="row">
+            <h5>Deposit Form: </h5>
+            <a class="mr-1 btn btn-info" href="{% url 'create_transaction' customer.id 'Deposit' %}"> Deposit </a>
+            <a class="mr-1 btn btn-info" href="{% url 'create_transaction' customer.id 'Free' %}"> Free </a>
+            <a class="mr-1 btn btn-warning"> Recommend </a>
+            <a class="mr-1 btn btn-info" href="{% url 'create_transaction' customer.id 'Lock' %}"> Lock </a>
+            <a class="mr-1 btn btn-info" href="{% url 'create_transaction' customer.id 'Borrow' %}"> Borrow </a>
+        </div>
+
+        <form action="" method="POST" enctype='multipart/form-data'><br>
+            <h5>Customer: <u> {{customer}}</u></h5>
+            {% csrf_token %}
+            <input type="text" value="Recommend" name="tag" hidden>
+            <input type="text" value="{{request.user}}" name="admin" hidden>
+            <input type="text" value="{{customer.id}}" name="customer" hidden>
+            <input type="text" value="{{today_now}}" name="date" hidden>
+            <table class="table table-bordered mt-4 align-content-center align-items-center text-center ">
+                <tbody>
+
+                    <tr>
+                        <th>Game</th>
+                        <td>
+                            <select name="game">
+                            {% for customergame1 in customergames %}
+                                  <option value="{{customergame1.id}}">{{customergame1.game_name}} ({{customergame1.username}})</option>
+                                  {% endfor %}
+                                </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Promotion</th>
+                        <td>{{form.promotion}}</td>
+                    </tr>
+                    <tr>
+                        <th>Recommend User</th>
+                        <td>Phone:{{form.recommend_phone}}<br><input class="btn btn-info" type="submit" name="recommend" value="Check"></td>
+
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <input class="btn btn-block btn-info" type="submit" name="Submit">
+            <a class="btn btn-block btn-danger" href="{% url 'user_profile' customer.id %}"> Cancel </a>
+        </form>
+    </div>
+</div>
+
+
+<table class="table table-sm">
+    <tr>
+        <th>No#</th>
+        <th>Invoice No.</th>
+        <th>Bank Name</th>
+        <th>Amount</th>
+        <th>Amount (Promo)</th>
+        <th>Amount (Free)</th>
+        <th>Amount (Tip)</th>
+        <th>Amount (Void)</th>
+        <th>Game</th>
+        <th>Status</th>
+        <!-- <th>Details</th> -->
+    </tr>
+
+    {% for deposit in transactions %} {% include "accounts/content/form_transactions.html" %} {% endfor %}
+
+
+</table>
+<div class="pagination">
+    <span class="step-links">
+        {% if transactions.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ transactions.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ transactions.number }} of {{ transactions.paginator.num_pages }}.
+        </span> {% if transactions.has_next %}
+    <a href="?page={{ transactions.next_page_number }}">next</a>
+    <a href="?page={{ transactions.paginator.num_pages }}">last &raquo;</a> {% endif %}
+    </span>
+</div>
+{% endblock content %}

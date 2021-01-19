@@ -1,0 +1,428 @@
+{% extends 'accounts/main.html' %} {% block content %} {% load static %}{% load mytags %}
+
+<br>
+
+<div class="row">
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white  mb-3" id="total-orders">
+                <div class="card-header">
+                    <h5 class="card-title">Total Win Lose</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{total_win_lose|floatformat:2}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white  mb-3" id="orders-approved">
+                <div class="card-header">
+                    <h5 class="card-title">Total Deposit</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{total_deposits|floatformat:2}}</h3>
+                </div>
+                {{total_deposits_count}} Deposits
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white  mb-3" id="orders-pending">
+                <div class="card-header">
+                    <h5 class="card-title">Total Withdrawal</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{total_withdrawals|floatformat:2}}</h3>
+                </div>
+                {{total_withdrawals_count}} Withdrawals
+            </div>
+        </div>
+    </div>
+</div>
+
+<h2>
+    Transaction History:
+</h2>
+
+{% if promotion1 %}
+<!--  -->
+Last Week :({{promotion1_prv_start_week}}) {{promotion1.rebate_day}} - ({{promotion1_start_week}}) {{promotion1.rebate_day}} :
+<!--  -->
+RM{{weeklyTransactionPrev}} (Weekly Rebate Bonus 5% : RM{{weeklyRebateTransactionPrev}})
+<br> This Week : ({{promotion1_start_week}}) {{promotion1.rebate_day}} - ({{promotion1_end_week}}) {{promotion1.rebate_day}} :
+<!--  -->
+RM{{weeklyTransactionNow}} (Weekly Rebate Bonus 5% : RM{{weeklyRebateTransactionNow}})
+<!--  -->
+{% else %}
+<!--  -->
+Last Week : You have not setup rebate bonus
+<br> This Week : You have not setup rebate bonus
+<!--  -->
+{% endif %}
+<!--  -->
+
+
+{% if promotion2 %}
+<!--  -->
+<br> Last Week :(2020-08-12) {{promotion2.rebate_day}} - (2020-08-19) {{promotion2.rebate_day}} : 10,208 (4D Ticket 5% : 477.3)
+<br> This Week :(2020-08-12) {{promotion2.rebate_day}} - (2020-08-19) {{promotion2.rebate_day}} : 10,208 (4D Ticket 5% : 477.3)
+<!--  -->
+{% else %}
+<!--  -->
+<br> Last Week :(2020-08-12) Mon - (2020-08-19) Mon : 10,208 (4D Ticket 5% : 477.3)
+<br> This Week :(2020-08-12) Mon - (2020-08-19) Mon : 10,208 (4D Ticket 5% : 477.3)
+<!--  -->
+{% endif %}
+
+<table class="table table-bordered mt-4 align-content-center align-items-center text-center">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Reference</th>
+            <th scope="col">Type</th>
+            <th scope="col">Bank</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Amount<br>(Promo)</th>
+            <th scope="col">Amount<br>(Free)</th>
+            <th scope="col">Amount<br>(Tip)</th>
+            <th scope="col">Amount<br>(Void)</th>
+            <th scope="col">Game</th>
+            <th scope="col">Admin</th>
+            <th scope="col">Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for profile in profiles %}{% if profile.tag == "Deposit" %}
+        <tr style="background:rgb(184, 253, 184);">
+            {% elif profile.tag == "Free" %}
+            <tr style="background:rgb(178, 178, 248)">
+                {% elif profile.tag == "Withdrawal" %}
+                <tr style="background:rgb(250, 146, 146);">
+                    {% elif profile.tag == "Transfer" %}
+                    <tr style="background:rgb(236, 250, 144);">
+                        {% else %}
+                        <tr>
+                            {% endif %}
+                            <th scope="row">{{ profiles.start_index|add:forloop.counter0 }}</th>
+                            <td><a href="{% url 'deposit_profile' profile.id %}"> {{profile}}</a><br>{{profile.date_created}}</td>
+                            <td>{{profile.tag}}</td>
+                            <td>{{profile.bank}}</td>
+                            <td>{{profile.amount}}<br>{% include "accounts/content/game_btn.html" %}</td>
+                            <td>{{profile.amount_promo}}</td>
+                            <td>{{profile.amount_free}}</td>
+                            <td>{{profile.amount_tip}}</td>
+                            <td>{{profile.amount_void}}</td>
+                            <td>{{profile.game.game_name}}<br>{{profile.game.username}}<br>{{profile.promotion}}</td>
+                            <td>{{profile.admin}}</td>
+                            <td>{{profile.status}}</td>
+                        </tr>
+
+                        {% endfor %}
+    </tbody>
+</table>
+<div class="pagination">
+    <span class="step-links">
+        {% if profiles.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ profiles.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ profiles.number }} of {{ profiles.paginator.num_pages }}.
+        </span> {% if profiles.has_next %}
+    <a href="?page={{ profiles.next_page_number }}">next</a>
+    <a href="?page={{ profiles.paginator.num_pages }}">last &raquo;</a> {% endif %}
+    </span>
+</div>
+
+
+
+
+
+<br>
+<h3>User Profile Details</h3>
+<br><br>
+<div class="row">
+
+    <div class="col">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">User Info</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Joined Date</th>
+                    <td>{{customer.date_created}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Username</th>
+                    <td>{% include "accounts/content/username.html" %}</td>
+                </tr>
+                <tr>
+                    <form action="{% url 'user_update_phone' customer.id %}" method="POST" enctype='multipart/form-data'>{% csrf_token %}
+                        <th scope="row">Phone Number</th>
+                        <td><input type="number" name='phoneNo' value="{{customer.phone}}">
+                            <input class="btn btn-info" type="submit" name="Submit" value="Update Phone">
+                        </td>
+                    </form>
+                </tr>
+                <tr>
+                    <th scope="row">Wechat</th>
+                    <td>{{customer.wechat}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Telegram</th>
+                    <td>{{customer.telegram}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Referral</th>
+                    <td>{{customer.referral}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Language</th>
+                    <td>
+                        {{customer.language}}
+                        <a class="btn btn-sm btn-info" href="{% url 'language_change' customer.id 'Malay' %}">Malay</a>
+                        <a class="btn btn-sm btn-info" href="{% url 'language_change' customer.id 'Chinese' %}">Chinese</a>
+                        <a class="btn btn-sm btn-info" href="{% url 'language_change' customer.id 'English' %}">English</a>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Remark</th>
+                    <td><textarea name="" id="" cols="40" rows="5">{{customer.remark}}</textarea></td>
+                </tr>
+                <tr>
+                    <th scope="row">Remark Bank</th>
+                    <td><textarea name="" id="" cols="40" rows="5">{{customer.bank.remark}}</textarea></td>
+                </tr>
+                <tr>
+                    <th scope="row">BlankList</th>
+                    <td>{{customer.blacklist}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Status</th>
+                    <td>{{customer.status}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">User Link</th>
+                    <td>{{customer.user_link}}</td>
+                </tr>
+
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Bank Details</th>
+                        <th scope="col">{{customer.bank}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <table class="table table-sm">
+                        <tr>
+                            <th>Bank</th>
+                            <th>Account Name</th>
+                            <th>Account Number</th>
+                            <th>Status</th>
+                            <!-- <th>Delete</th> -->
+                        </tr>
+                        <tr>
+                            <td>{{customer.bank_name.bank_name}}</td>
+                            <td>{{customer.account_name}}</td>
+                            <td>{{customer.account_number}}</td>
+                            <td>{{customer.bank_name.status}}</td>
+                            {% comment %}
+                            <!-- <td><a class="btn btn-block btn-danger" href="{% url 'delete_customerbank' customer.id %}"> Delete </a></td> -->
+                            {% endcomment %}
+                        </tr>
+                    </table>
+                </tbody>
+        </table>
+
+
+
+        <form action="{% url 'customer_add_bank' customer.id %}" method="POST" name="customer_add_bank">{% csrf_token %}
+            <div class="row col-10">
+                <div class="row col-5">Bank Name</div>
+                <input name="customer" value="{{customer.id}}" hidden>
+                <div class="row ml-1">
+                    <select id="bank_icon2" name="bank_name" size="1" onchange="myFunction2()" required>
+                        <option value="">Choose Bank</option>
+                        {% for bank in banks %}
+                        <option value="{{bank.id}}">{{bank}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                {% for bank in banks %}
+                <div class="card row-col-2" style="display: none;" id="{{bank}}">
+                    <img class="mt-1" src="{% static 'images/' %}{{bank.image}}">
+                </div>
+                {% endfor %}
+            </div>
+            <div class="row col-10">
+                <div class="row col-5">Account Name</div>
+                <div id="bank_name2"><input size="30" type="text" name="account_name" placeholder="Account Name"></div>
+            </div>
+
+            <div class="row col-10">
+                <div class="row col-5">Account Number</div>
+                <div style="display: none;">Account Number</div>
+                <div id='bank_account2'><input size="30" type="Number" name="account_number" placeholder="Account Number"></div>
+            </div>
+            <div class="row col-10">
+                <div class="row col-5"></div>
+                <button class="btn btn-primary " id="bank_submit1" type="submit">Update Bank Account</button>
+            </div>
+    </div>
+    </form>
+    <div class="col">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Game Info</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Game</th>
+                    <th scope="row">Username</th>
+                    <th scope="row">Password</th>
+                    <th scope="row">Status</th>
+                </tr>
+                <tr>
+                    {% for profile2 in profiles2 %}
+                    <tr>
+                        <td>{{profile2.game_name}}<br> Add Time: {{ profile2.date_created|date:"d-M-y h:i A" }}
+                            <br> {% include "accounts/content/game_btn.html" %}
+                        </td>
+                        <td>{{profile2.username}}<br>
+                            <!-- Game: {{profile2.game_name}}&#13;&#10;User: {{profile2.username}}&#13;&#10;pass: {{profile2.password}} -->
+                            <textarea cols="20" rows="5" style="font-size: 10px;" id=p2{{forloop.counter}} onClick="select_all002(this.id);" readonly>{% if customer.language == 'Malay' %}{{profile2.id | re_m_newgameid}}
+{% elif customer.language == 'Chinese' %}{{profile2.id | re_c_newgameid}}
+{% elif customer.language == 'English' %}{{profile2.id | re_e_newgameid}}{% endif %}</textarea>
+                        </td>
+                        <td>{{profile2.password}}</td>
+                        <td>{{profile2.status}}</td>
+                        <td>
+                            <a class="btn btn-block btn-danger" href="{% url 'delete_customergame' profile2.id %}"> Delete </a>
+                        </td>
+                    </tr>
+
+                    {% endfor %}
+                    <div class="pagination">
+                        <span class="step-links">
+                                {% if profiles2.has_previous %}
+                                    <a href="?page2=1">&laquo; first</a>
+                                    <a href="?page2={{ profiles2.previous_page_number }}">previous</a>
+                                {% endif %}
+                        
+                                <span class="current">
+                                    Page {{ profiles2.number }} of {{ profiles2.paginator.num_pages }}.
+                                </span> {% if profiles2.has_next %}
+                        <a href="?page2={{ profiles2.next_page_number }}">next</a>
+                        <a href="?page2={{ profiles2.paginator.num_pages }}">last &raquo;</a> {% endif %}
+                        </span>
+                    </div>
+                </tr>
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Add Game</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <form action="{% url 'customer_add_game' customer.id %}" method="POST">
+                    {% csrf_token %}
+                    <tbody>
+                        <tr>
+                            <th>Game Name</th>
+                            <td>
+                                <select name="customerID" hidden>
+                                            <option selected value="{{customer.id}}"></option>
+                                        </select>
+                                <select name="game_name" required>
+                                    <option value="">Select Games</option>
+                                    {% for game in games %}
+                                    <option value="{{game.id}}">{{game.name}}</option>
+                                    {% endfor %}
+                                        </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Username</th>
+                            <td><input type="text" name="username" placeholder="username"></td>
+                        </tr>
+                        <tr>
+                            <th>Password</th>
+                            <td><input type="text" name="password" placeholder="password"></td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td>
+                                <div><button class="btn btn-primary " type="submit">Add Game</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </form>
+        </table>
+        <tr>
+            <div class="d-inline-flex text-center">
+                {% for customergame in customergames %}
+                <div class="card ml-1 bg-warning " style="min-width: 4rem; max-height: 3rem;">
+                    <a class="card" style="font-size: 10px;" href="{{customergame.game_name.kiosk_url}}{{customergame.game_name.link_adduser}}" target="_blank"> {{customergame.game_name}}</a>
+                </div>
+                {% endfor %}
+            </div>
+        </tr>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    <script>
+        function select_all002(id) {
+            var text_val = document.getElementById(id);
+            text_val.focus(); // Focus on textarea 
+            text_val.select(); // Select all text  
+            text_val.style.backgroundColor = "#129284 ";
+            document.execCommand("Copy");
+        }
+
+        function click_bank0() {
+            alert('test');
+        }
+
+        var yyyy = '';
+
+        function myFunction2() {
+            if (yyyy != '') {
+                yyyy.style.display = "none";
+            }
+            if (document.getElementById("bank_icon2").value != '') {
+
+                var yy = document.getElementById("bank_icon2").value;
+                var yyy = document.getElementById(yy);
+                yyyy = yyy;
+                yyy.style.display = "block";
+
+            }
+        }
+    </script>
+    {% endblock %}

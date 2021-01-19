@@ -1,0 +1,38 @@
+{% extends 'accounts/main.html' %} {% load static %}{% block content %}
+<br>
+<h3>Max Withdrawal</h3>
+<br>
+
+
+<div class="card">
+    <div class="card-body" style="font-size: 25px;">
+        <div class="">
+            <form action="{% url 'newWithdrawalLimit' %}" method="POST">
+                {% csrf_token %}
+                <div class="row">
+
+                    <div class="col">
+                        Current Maximum Daily Withdrawal :
+                    </div>
+                    <div class="col">
+                        {{limit.limit}}
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        New Maximum Daily Withdrawal :
+                    </div>
+                    <div class="col">
+                        {{form.limit}}
+                    </div>
+                </div>
+
+                <br>
+        </div>
+        <input class="btn btn-block btn-info" type="submit" name="Submit" value="Update">
+        </form>
+
+    </div>
+</div>
+{% endblock content %}

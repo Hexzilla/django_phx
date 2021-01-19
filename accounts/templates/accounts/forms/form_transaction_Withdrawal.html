@@ -1,0 +1,99 @@
+{% extends 'accounts/main.html' %} {% load static %}{% block content %}
+<br>
+<h3>Withdrawal</h3>
+<div class="row">
+    <div class="card card-body">
+        <div class="row">
+            <h5>Withdrawal Form:</h5>
+        </div>
+        <form action="" method="POST" enctype='multipart/form-data'><br>
+            <h5>Customer: <u> {{customer}}</u></h5>{% csrf_token %}
+            <input type="text" value="Withdrawal" name="tag" hidden> {% if this_transactions_max_withdrawal.max_withdrawal %}
+            <input type="text" value="{{this_transactions_max_withdrawal.max_withdrawal|add:'1'}}" name="max_withdrawal" hidden> {% else %}
+            <input type="text" value="1" name="max_withdrawal" hidden> {% endif %}
+            <input type="text" value="{{request.user}}" name="admin" hidden>
+            <input type="text" value="{{customer.id}}" name="customer" hidden>
+            <!-- <input type="text" value="{{this_transactions_min_withdrawal.promotion.id}}" name="promotion" hidden> -->
+            <input type="text" value="{{this_transactions_min_withdrawal.amount}}" name="last_topup" hidden>
+            <input type="text" value="{{today_now}}" name="date" hidden>
+            <table class="table table-bordered mt-4 align-content-center align-items-center text-center ">
+                <tbody>
+
+                    <tr>
+                        <th>Game</th>
+                        <td>
+                            <select name="game">
+                            {% for customergame1 in customergames %}
+                                <option value="{{customergame1.id}}">{{customergame1.game_name}} ({{customergame1.username}})</option>
+                            {% endfor %}
+                            </select>
+                        </td>
+                    </tr>
+                    <!-- <tr>
+                        <th>Bank</th>
+                        <td>{{form.bank}}</td>
+                    </tr> -->
+                    <tr>
+                        <th>Withdrawal Amount</th>
+                        <td>{{form.amount}}<br> Withdrawal Required : {{this_transactions_min_withdrawal.withdrawal_limit_min}}<br> Withdrawal Maximum : {{this_transactions_min_withdrawal.withdrawal_limit_max}}</td>
+                    </tr>
+                    <tr>
+                        <th>Tip Amount</th>
+                        <td>{{form.amount_tip}}<br>Note: if customer win 1000, give tip 200, key in withdrawal amount 1000, tip amount 200</td>
+                    </tr>
+                    <tr>
+                        <th>Void Amount</th>
+                        <td>{{form.amount_void}}
+                            <br> <textarea name="remark" cols="60" rows="5" placeholder="Void Game Remarks (Optional)"></textarea>
+                            <br> Note: if customer win 2012.50, key in withdrawal amount 2000, tip amount 12.50
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Paybank</th>
+                        <td>{{form.payback}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <input class="btn btn-block btn-info" type="submit" name="Submit">
+            <a class="btn btn-block btn-danger" href="{% url 'user_profile' customer.id %}"> Cancel </a>
+        </form>
+    </div>
+</div>
+
+
+<table class="table table-sm">
+    <tr>
+        <th>No#</th>
+        <th>Invoice No.</th>
+        <th>Bank Name</th>
+        <th>Amount</th>
+        <th>Amount (Promo)</th>
+        <th>Amount (Free)</th>
+        <th>Amount (Tip)</th>
+        <th>Amount (Void)</th>
+        <th>Game</th>
+        <th>Status</th>
+        <!-- <th>Details</th> -->
+    </tr>
+
+    {% for deposit in transactions %} {% include "accounts/content/form_transactions.html" %} {% endfor %}
+
+
+</table>
+<div class="pagination">
+    <span class="step-links">
+        {% if transactions.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ transactions.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ transactions.number }} of {{ transactions.paginator.num_pages }}.
+        </span> {% if transactions.has_next %}
+    <a href="?page={{ transactions.next_page_number }}">next</a>
+    <a href="?page={{ transactions.paginator.num_pages }}">last &raquo;</a> {% endif %}
+    </span>
+</div>
+{% endblock content %}

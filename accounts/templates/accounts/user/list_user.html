@@ -1,0 +1,36 @@
+{% extends 'accounts/main.html' %} {% block content %}{% load static %}
+<br>
+<h3>User Lists</h3>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Username</th>
+            <th scope="col">Phone No.</th>
+            <th scope="col">Joined Date</th>
+            <th scope="col">Status</th>
+            <th scope="col">Games Count</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for customer in profiles %}
+        <tr>
+            <th scope="row">{{ profiles.start_index|add:forloop.counter0 }}</th>
+            <td>{% include "accounts/content/username.html" %}</td>
+            <td>{{customer.phone}}</td>
+            <td>{{customer.date_created}}</td>
+            <td>{{customer.status}}</td>
+            <td>{{customer.game_count}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Pagination Begin -->
+<div class="row flex justify-content-center">
+    {% include 'accounts/content/pagination.html' %}    
+</div> 
+<!-- Pagination End -->
+
+{% endblock content %}

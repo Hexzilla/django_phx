@@ -1,0 +1,464 @@
+{% extends 'accounts/main.html' %} {% block content %} {% load static %}
+
+
+<br>
+<h3>User Profile</h3>
+<br><br>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">User Profile</th>
+            <th scope="col">Game Accounts (Latest)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>
+                <div class="row">
+                    <div class="ml-2">Customer ID : {{customer.name}}
+                        <br> Phone No : {{customer.phone}}</div>
+                    <div class="ml-1">
+                        <img src="{% static ''%}{{customer.icon_pic}}"></div>
+                    <div class="ml-3">
+                        <a class="btn btn-sm btn-info" href="{% url 'create_transaction' customer.id 'Deposit' %}">+D</a>
+                        <a class="btn btn-sm btn-info" href="">+W</a>
+                        <a class="btn btn-sm btn-info" href="">+T</a>
+                    </div>
+                </div>
+                <br>
+                <div class="ml-auto">
+                    <div class="d-inline-flex text-center">
+                        <div class="card ml-1 bg-warning " style="min-width: 4rem; max-height: 3rem;">
+                            Game1<br>XXX
+                        </div>
+                        <div class="card ml-1 bg-warning " style="min-width: 4rem; max-height: 3rem;">game2</div>
+                        <div class="card ml-1 bg-warning " style="min-width: 4rem; max-height: 3rem;">
+                            game3<br>XXX
+                        </div>
+                        <div class="card ml-1 bg-warning " style="min-width: 4rem; max-height: 3rem;">game4</div>
+                    </div>
+                </div>
+                <br>
+                <div class="ml-auto">
+                    <div class="d-inline-flex text-center">
+                        <div class="card ml-1 bg-warning " style="min-width: 4rem; max-height: 3rem;">
+                            game1
+                        </div>
+                        <div class="card ml-1 bg-warning " style="min-width: 4rem; max-height: 3rem;">game2</div>
+                        <div class="card ml-1 bg-warning " style="min-width: 4rem; max-height: 3rem;">
+                            game3
+                        </div>
+                        <div class="card ml-1 bg-warning " style="min-width: 4rem; max-height: 3rem;">game4</div>
+                    </div>
+                </div>
+            </td>
+            <td>many Games here</td>
+        </tr>
+        <tr>
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Bank Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th></th>
+                    <td>
+                        <div class="row col-10">
+                            <div class="row col-5">Bank Name</div>
+                            <div class="ml-1" id="bank_icon1"><img src="{% static ''%}{{customer.bank_icon}}"></div>
+
+                            <form action="{% url 'add_bank' customer.id %}" method="POST">
+                                {% csrf_token %}
+
+                                <div class="row ml-1">
+                                    <select id="bank_icon2" name="bank_icon" size="1" onchange="myFunction2()" required>
+                                           <option value="">Choose Bank</option>
+                                           <option value="images/bank/affin.png">Affin Bank</option>
+                                           <option value="images/bank/alliance.png">Alliance Bank </option>
+                                           <option value="images/bank/ambank.png">AmBank</option>
+                                           <option value="images/bank/cimb.png">CIMB Bank</option>
+                                           <option value="images/bank/citibank.png">Citibank</option>
+                                           <option value="images/bank/hsbc.png">HSBC Bank</option>
+                                           <option value="images/bank/hongleong.png">Hong Leong Bank</option>
+                                           <option value="images/bank/maybank.png">Maybank</option>
+                                           <option value="images/bank/ocbc.png">OCBC Bank</option>
+                                           <option value="images/bank/public.png">Public Bank</option>
+                                           <option value="images/bank/rhb.png">RHB Bank</option>
+                                           <option value="images/bank/standard.png">Standard Chartered</option>
+                                           <option value="images/bank/uob.png">United Overseas Bank</option>
+                                   </select>
+
+                                </div>
+                                <div class="card row-col-2" style="display: none;" id="aaa">
+                                    <img class="mt-1" src="{% static 'images/bank/affin.png' %}">
+                                </div>
+                                <div class="card row-col-2" style="display: none;" id="bbb">
+                                    <img class="mt-1" src="{% static 'images/bank/alliance.png' %}">
+                                </div>
+                                <div class="card row-col-2" style="display: none;" id="ccc">
+                                    <img class="mt-1" src="{% static 'images/bank/ambank.png' %}">
+                                </div>
+                                <div class="card row-col-2" style="display: none;" id="ddd">
+                                    <img class="mt-1" src="{% static 'images/bank/cimb.png' %}">
+                                </div>
+                                <div class="card row-col-2" style="display: none;" id="eee">
+                                    <img class="mt-1" src="{% static 'images/bank/citibank.png' %}">
+                                </div>
+                                <div class="card row-col-2" style="display: none;" id="fff">
+                                    <img class="mt-1" src="{% static 'images/bank/hsbc.png' %}">
+                                </div>
+                                <div class="card row-col-2" style="display: none;" id="ggg">
+                                    <img class="mt-1" src="{% static 'images/bank/hongleong.png' %}">
+                                </div>
+                                <div class="card row-col-2" style="display: none;" id="hhh">
+                                    <img class="mt-1" src="{% static 'images/bank/maybank.png' %}">
+                                </div>
+                                <div class="card row-col-2" style="display: none;" id="iii">
+                                    <img class="mt-1" src="{% static 'images/bank/ocbc.png' %}">
+                                </div>
+                                <div class="card row-col-2" style="display: none;" id="jjj">
+                                    <img class="mt-1" src="{% static 'images/bank/public.png' %}">
+                                </div>
+                                <div class="card row-col-2" style="display: none;" id="kkk">
+                                    <img class="mt-1" src="{% static 'images/bank/rhb.png' %}">
+                                </div>
+                                <div class="card row-col-2" style="display: none;" id="lll">
+                                    <img class="mt-1" src="{% static 'images/bank/standard.png' %}">
+                                </div>
+                                <div class="card row-col-2" style="display: none;" id="mmm">
+                                    <img class="mt-1" src="{% static 'images/bank/uob.png' %}">
+                                </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td>
+                        <div class="row col-10">
+                            <div class="row col-5">Account Name</div>
+                            <div id="bank_name1">{{customer.bank_name}}</div>
+                            <div id="bank_name2"><input size="30" type="text" name="bank_name" id="bank_name" placeholder="Account Name" required></div>
+                        </div>
+
+                    </td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td>
+                        <div class="row col-10">
+                            <div class="row col-5">Account Number</div>
+                            <div style="display: none;">Account Number</div>
+                            <div id='bank_account1'>{{customer.bank_account}}</div>
+                            <div id='bank_account2'><input size="30" type="Number" name="bank_account" id="bank_account" placeholder="Account Number" required></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td>
+                        <div class="row col-10">
+                            <div class="row col-5"></div>
+                            <button class="btn btn-primary " id="bank_submit" type="submit">Save Bank Account</i></button>
+                        </div>
+                    </td>
+                </tr>
+                </form>
+            </tbody>
+
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Add Game</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th></th>
+                    <td>
+                        <div class="row col-10">
+                            <div class="row col-5">Game Name</div>
+                            <div><select name="gamename" id=""><option value=""">Select Games</option></select></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td>
+                        <div class="row col-10">
+                            <div class="row col-5">Username</div>
+                            <div><input type="text" id="game_username" placeholder="username"></div>
+                        </div>
+
+                    </td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td>
+                        <div class="row col-10">
+                            <div class="row col-5">Password</div>
+                            <div><input type="password" id="game_password" placeholder="password"></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td>
+                        <div class="row col-10">
+                            <div class="row col-5"></div>
+                            <div><button id="singlebutton" name="singlebutton" class="btn btn-primary">Add Game</button></div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+</table>
+
+
+
+<br>
+
+<div class="row">
+    <div class="col-md">
+        <div class="card card-body">
+            <h5>Customer: {{customer}}</h5>
+            <hr>
+            <a class="btn btn-outline-info  btn-sm btn-block" href="">Update Customer</a>
+            <a class="btn btn-outline-success  btn-sm btn-block" href="{% url 'create_order' customer.id %}">Place Order</a>
+
+        </div>
+    </div>
+
+    <div class="col-md">
+        <div class="card card-body">
+            <h5>Contact Information</h5>
+            <hr>
+            <p>Email: {{customer.email}}</p>
+            <p>Phone: {{customer.phone}}</p>
+        </div>
+    </div>
+
+    <div class="col-md">
+        <div class="card card-body">
+            <h5>Total Orders</h5>
+            <hr>
+            <h1 style="text-align: center;padding: 10px">{{order_count}}</h1>
+        </div>
+    </div>
+</div>
+
+
+<br>
+<div class="row">
+    <div class="col">
+        <div class="card card-body">
+            <form method="get">
+                {{myFilter.form}}
+
+                <button class="btn btn-primary" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+<br>
+
+<div class="row">
+    <div class="col-md">
+        <div class="card card-body">
+            <table class="table table-sm">
+                <tr>
+                    <th>No</th>
+                    <th>Product</th>
+                    <th>Note</th>
+                    <th>Date Ordered</th>
+                    <th>Status</th>
+                    <th>Update</th>
+                    <th>Remove</th>
+                </tr>
+
+                {% for order in orders %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{order.product}}</td>
+                    <td>{{order.note}}</td>
+                    <td>{{order.date_created}}</td>
+                    <td>{{order.status}}</td>
+                    <td><a class="btn btn-sm btn-info" href="{% url 'update_order' order.id %}">Update</a></td>
+                    <td><a class="btn btn-sm btn-danger" href="{% url 'delete_order' order.id %}">Delete</td>
+                </tr>
+                {% endfor %}
+
+            </table>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+
+    function myFunction2() {
+        var xxx1 = document.getElementById("aaa");
+        var xxx2 = document.getElementById("bbb");
+        var xxx3 = document.getElementById("ccc");
+        var xxx4 = document.getElementById("ddd");
+        var xxx5 = document.getElementById("eee");
+        var xxx6 = document.getElementById("fff");
+        var xxx7 = document.getElementById("ggg");
+        var xxx8 = document.getElementById("hhh");
+        var xxx9 = document.getElementById("iii");
+        var xxx10 = document.getElementById("jjj");
+        var xxx11 = document.getElementById("kkk");
+        var xxx12 = document.getElementById("lll");
+        var xxx13 = document.getElementById("mmm");
+        xxx1.style.display = "none";
+        xxx2.style.display = "none";
+        xxx3.style.display = "none";
+        xxx4.style.display = "none";
+        xxx5.style.display = "none";
+        xxx6.style.display = "none";
+        xxx7.style.display = "none";
+        xxx8.style.display = "none";
+        xxx9.style.display = "none";
+        xxx10.style.display = "none";
+        xxx11.style.display = "none";
+        xxx12.style.display = "none";
+        xxx13.style.display = "none";
+        var yyy = document.getElementById("bank_icon2").value;
+        if (yyy == "images/bank/affin.png") {
+            var y = document.getElementById("aaa");
+            if (y.style.display === "none") {
+                y.style.display = "block";
+            } else {
+                y.style.display = "none";
+            }
+        } else if (yyy == "images/bank/alliance.png") {
+            var y = document.getElementById("bbb");
+            if (y.style.display === "none") {
+                y.style.display = "block";
+            } else {
+                y.style.display = "none";
+            }
+        } else if (yyy == "images/bank/ambank.png") {
+            var y = document.getElementById("ccc");
+            if (y.style.display === "none") {
+                y.style.display = "block";
+            } else {
+                y.style.display = "none";
+            }
+        } else if (yyy == "images/bank/cimb.png") {
+            var y = document.getElementById("ddd");
+            if (y.style.display === "none") {
+                y.style.display = "block";
+            } else {
+                y.style.display = "none";
+            }
+        } else if (yyy == "images/bank/citibank.png") {
+            var y = document.getElementById("eee");
+            if (y.style.display === "none") {
+                y.style.display = "block";
+            } else {
+                y.style.display = "none";
+            }
+        } else if (yyy == "images/bank/hsbc.png") {
+            var y = document.getElementById("fff");
+            if (y.style.display ===
+                "none") {
+                y.style.display = "block";
+            } else {
+                y.style.display = "none";
+            }
+        }else if (yyy == "images/bank/hongleong.png") {
+            var y = document.getElementById("ggg");
+            if (y.style.display ===
+                "none") {
+                y.style.display = "block";
+            } else {
+                y.style.display = "none";
+            }
+        }else if (yyy == "images/bank/maybank.png") {
+            var y = document.getElementById("hhh");
+            if (y.style.display ===
+                "none") {
+                y.style.display = "block";
+            } else {
+                y.style.display = "none";
+            }
+        }else if (yyy == "images/bank/ocbc.png") {
+            var y = document.getElementById("iii");
+            if (y.style.display ===
+                "none") {
+                y.style.display = "block";
+            } else {
+                y.style.display = "none";
+            }
+        }else if (yyy == "images/bank/public.png") {
+            var y = document.getElementById("jjj");
+            if (y.style.display ===
+                "none") {
+                y.style.display = "block";
+            } else {
+                y.style.display = "none";
+            }
+        }else if (yyy == "images/bank/rhb.png") {
+            var y = document.getElementById("kkk");
+            if (y.style.display ===
+                "none") {
+                y.style.display = "block";
+            } else {
+                y.style.display = "none";
+            }
+        }else if (yyy == "images/bank/standard.png") {
+            var y = document.getElementById("lll");
+            if (y.style.display ===
+                "none") {
+                y.style.display = "block";
+            } else {
+                y.style.display = "none";
+            }
+        }else if (yyy == "images/bank/uob.png") {
+            var y = document.getElementById("mmm");
+            if (y.style.display ===
+                "none") {
+                y.style.display = "block";
+            } else {
+                y.style.display = "none";
+            }
+        }
+    }
+
+
+    function check_bank1(){
+         var bbb1 = document.getElementById("bank_icon1");
+         var bbb2 = document.getElementById("bank_name1");
+         var bbb3 = document.getElementById("bank_account1");
+             bbb1.style.display = "none";
+             bbb2.style.display = "none";
+             bbb3.style.display = "none";
+    }
+    function check_bank2(){ 
+         var bbb1 = document.getElementById("bank_icon2");
+         var bbb2 = document.getElementById("bank_name2");
+         var bbb3 = document.getElementById("bank_account2");
+         var bbb4 = document.getElementById("bank_submit");
+             bbb1.style.display = "none";
+             bbb2.style.display = "none";
+             bbb3.style.display = "none";
+             bbb4.style.display = "none";
+    }
+
+
+    {% if customer.bank_account %}
+    check_bank2();
+    {% else %}
+    check_bank1();
+    {% endif%}
+    
+
+    
+</script>
+
+{% endblock %}

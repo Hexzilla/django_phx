@@ -1,0 +1,30 @@
+{% extends 'accounts/main.html' %} {% load static %}{% block content %}
+<br>
+<h3>Customer Follow Ups</h3>
+<br>
+
+
+<div class="card">
+    <div class="card-body">
+        <div class="row align-content-center text-center align-items-center ml-1">
+            <h3>4D Ticket</h3>
+            <a class="btn btn-sm btn-warning ml-3"><b>This Week</b></a>
+            <a class="btn btn-sm btn-warning ml-3"><b>Last Week</b></a>
+            <a class="btn btn-sm btn-warning ml-3" href="{% url 'list_4d' %}"><b>All Transactions</b></a>
+        </div>
+        <br> Date Range:
+    </div>
+</div>
+<br>
+<div class="card">
+    <div class="card-body">
+        <div class="row align-content-center text-center align-items-center ml-1">
+            <h3>Weekly Rebate Bonus 5%</h3>
+            <a class="btn btn-sm btn-warning ml-3"><b>This Week</b></a>
+            <a class="btn btn-sm btn-warning ml-3"><b>Last Week</b></a>
+            <a class="btn btn-sm btn-warning ml-3" href="{% url 'list_weekly' %}"><b>All Transactions</b></a>
+        </div>
+        <br> Date Range:
+    </div>
+</div>
+{% endblock content %}

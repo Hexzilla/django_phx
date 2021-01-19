@@ -1,0 +1,288 @@
+{% extends 'accounts/main.html' %} {% block content %} {% load static %}{% load mytags %}
+<br>
+<h3>Sales Reports</h3>
+
+{% include 'accounts/content/search_bar.html' %}
+
+<div class="row">
+    <div class="col">
+        <table class="table table-bordered ">
+            <thead>
+                <tr>
+                    <th scope="col">Transactions</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>
+                        <div class="row">
+                            <div class="col">
+                                New Users
+                            </div>
+                            <div class="col">
+                                Today
+                            </div>
+                        </div>
+                    </th>
+                    <th>
+                        {{todays_customer_report}} | {{todays_deposit_report}}
+
+                    </th>
+                    <th>
+                        {% for referral in referrals %}
+                        <img class="mt-1" src="{% static 'images/' %}{{referral.image}}" style="width: 30px; height: 30px;">
+                        <script>
+                            var number_one = 0;
+                        </script>
+                        {% for customer_ref_count in customer_ref %}
+                        <!--  -->
+                        <!-- {% comment %} {% if customer_ref_count.referral == referral and forloop.first %}
+                        <img class="mt-1" src="{% static 'images/' %}{{referral.image}}" style="width: 30px; height: 30px;"> {% endif %} {% endcomment %} -->
+                        <!--  -->
+                        {% if customer_ref_count.referral == referral %}
+                        <script>
+                            number_one++;
+                        </script>
+                        <!--  -->
+                        {% endif %} {% endfor %}
+                        <script>
+                            //if (number_one > 0) {
+                            document.write(number_one);
+                            //}
+                        </script>
+                        {% endfor %}
+
+                        <hr>
+
+                        <!--  -->
+                        {% for referral in referrals %}
+                        <img class="mt-1" src="{% static 'images/' %}{{referral.image}}" style="width: 30px; height: 30px;">
+                        <script>
+                            var number_two = 0;
+                        </script>
+                        {% for transactions_ref_count in transactions_ref %}
+                        <!--  -->
+                        {% comment %} {% if transactions_ref_count.customer.referral == referral and forloop.first %}
+                        <img class="mt-1" src="{% static 'images/' %}{{referral.image}}" style="width: 30px; height: 30px;"> {% endif %} {% endcomment %}
+                        <!--  -->
+                        {% if transactions_ref_count.customer.referral == referral %}
+                        <script>
+                            number_two++;
+                        </script>
+                        <!--  -->
+                        {% endif %} {% endfor %}
+                        <script>
+                            //if (number_two > 0) {
+                            document.write(number_two);
+                            //}
+                        </script>
+                        {% endfor %}
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        Deposit
+                    </th>
+                    <th>
+                        {{deposits.count}} | {{old_user_transactions.count}}
+                    </th>
+                    <th>
+                        {{deposits_amount|floatformat:2}}
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        Deposit (Promo)
+                    </th>
+                    <th>
+                        {{deposits.count}}
+                    </th>
+                    <th>
+                        {{deposits_amount_promo|floatformat:2}}
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        Free Credit
+                    </th>
+                    <th>
+                        {{deposit_free.count}}
+                    </th>
+                    <th>
+                        {{deposit_free_amount|floatformat:2}}
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        Void Credit
+                    </th>
+                    <th>
+                        0
+                    </th>
+                    <th>
+                        0
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        Withdrawal
+                    </th>
+                    <th>
+                        {{withdrawals.count}}
+                    </th>
+                    <th>
+                        {{withdrawals_amount|floatformat:2}}
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        Withdrawal (Promo)
+                    </th>
+                    <th>
+                        0
+                    </th>
+                    <th>
+                        0
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        Withdrawal (Tip)
+                    </th>
+                    <th>
+                        0
+                    </th>
+                    <th>
+                        0
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        Payback
+                    </th>
+                    <th>
+                        0
+                    </th>
+                    <th>
+                        0
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        Borrow
+                    </th>
+                    <th>
+                        0
+                    </th>
+                    <th>
+                        0
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        Total
+                    </th>
+                    <th>
+                        Gross Profit
+                    </th>
+                    <th>
+                        {{gross_total|floatformat:2}}
+                    </th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col">
+        <table class="table table-bordered ">
+            <thead>
+                <tr>
+                    <th scope="col">Transactions (Games)</th>
+                    <th scope="col">Deposit</th>
+                    <th scope="col">Withdrawal</th>
+                    <th scope="col">Transfer</th>
+                    <th scope="col">Amount</th>
+                </tr>
+            </thead>
+            <tbody>{% for key, value in game_list.items %}
+                <tr>
+                    <td> {{ value.0}} </td>
+                    <td> {{ value.1|floatformat:2 }} </td>
+                    <td> {{ value.2|floatformat:2 }} </td>
+                    <td> {{ value.3|floatformat:2 }} </td>
+                    <td> {{ value.4|floatformat:2 }} </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<table class="table table-bordered mt-4 align-content-center align-items-center text-center">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Reference</th>
+            <th scope="col">User</th>
+            <th scope="col">Type</th>
+            <th scope="col">Bank</th>
+            <th scope="col">Bank<br>(Customer)</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Amount<br>(Promo)</th>
+            <th scope="col">Amount<br>(Avoid)</th>
+            <th scope="col">Remark</th>
+            <th scope="col">Game</th>
+            <th scope="col">Admin</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for profile in profiles %}{% if profile.tag == "Deposit" %}
+        <tr style="background:rgb(184, 253, 184);">
+            {% elif profile.tag == "Free" %}
+            <tr style="background:rgb(178, 178, 248)">
+                {% elif profile.tag == "Withdrawal" %}
+                <tr style="background:rgb(250, 146, 146);">
+                    {% elif profile.tag == "Transfer" %}
+                    <tr style="background:rgb(236, 250, 144);">
+                        {% else %}
+                        <tr>
+                            {% endif %}
+                            <th scope="row">{{ profiles.start_index|add:forloop.counter0}}</th>
+                            {% if profile.tag == "Deposit" or profile.tag == "Free" or profile.tag == "Lock" or profile.tag == "Borrow" or profile.tag == "Recommend" %}
+                            <td><a href="{% url 'deposit_profile' profile.id %}">{{profile}}</a></td>
+                            {% elif profile.tag == "Withdrawal" %}
+                            <td><a href="{% url 'withdrawal_profile' profile.id %}">{{profile}}</a></td>
+                            {% elif profile.tag == "Transfer" %}
+                            <td><a href="{% url 'transfer_profile' profile.id %}">{{profile}}</a></td>
+                            {% else %}
+                            <td></td>
+                            {% endif %} {% if profile.tag == "Deposit" or profile.tag == "Free" or profile.tag == "Lock" or profile.tag == "Borrow" or profile.tag == "Recommend" or profile.tag == "Withdrawal" or profile.tag == "Transfer" %}
+                            <td><a href="{% url 'user_details' profile.customer.id %}">{{profile.customer}}</a><br>{{profile.customer.phone}}</td>
+
+                            {% else %}
+                            <td></td>
+                            {% endif %}
+                            <td>{{profile.tag}}</td>
+                            <td>{{profile.bank}}</td>
+                            <td>{{profile.customer_bank}}</td>
+                            <td>{{profile.amount|floatformat:2}} {% include "accounts/content/game_btn.html" %}
+                            </td>
+                            <td>{{profile.amount_promo}}</td>
+                            <td>{{profile.amount_void}}</td>
+                            <td>Created Date : {{profile.date_created}}<br>Approve Date: {{profile.action_approve}}</td>
+                            <td>{{profile.game.game_name}}<br>{{profile.game.username}}<br>{{profile.promotion}}</td>
+                            <td>{{profile.admin}}<br>{{profile.status}}</td>
+                        </tr>
+                        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Pagination Begin -->
+<div class="row flex justify-content-center">
+    {% include 'accounts/content/pagination.html' %}    
+</div> 
+<!-- Pagination End -->
+
+{% endblock content %}

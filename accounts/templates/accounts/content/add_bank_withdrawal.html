@@ -1,0 +1,29 @@
+{% load static %}
+
+<div class="row">
+    <div class="row col-5">Bank Name</div>
+    <form action="{% url 'customer_add_bank1' deposit.customer.id %}" method="POST" name="customer_add_bank1">
+        {% csrf_token %}
+        <input name="customer" value="{{deposit.customer.id}}" hidden>
+
+        <select id="bank_icon2" name="bank_name" size="1" onchange="myFunction2()" required>
+				<option value="">Choose Bank</option>
+				{% for bank in banks %}
+				<option value="{{bank.id}}">{{bank}}</option>
+				{% endfor %}
+			</select> {% for bank in banks %} {% endfor %}
+</div>
+<div class="row">
+    <div class="row col-5">Account Name</div>
+    <div id="bank_name2"><input size="30" type="text" name="account_name" placeholder="Account Name" required></div>
+</div>
+
+<div class="row">
+    <div class="row col-5">Account Number</div>
+    <div id='bank_account2'><input size="30" type="Number" name="account_number" placeholder="Account Number" required></div>
+</div>
+<div class="row">
+    <div class="row col-5"></div>
+    <button class="btn btn-primary " id="bank_submit1" type="submit">Update Bank Account</button>
+    </form>
+</div>

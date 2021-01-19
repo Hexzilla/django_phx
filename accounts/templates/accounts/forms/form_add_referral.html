@@ -1,0 +1,21 @@
+{% extends 'accounts/main.html' %} {% load static %}{% block content %}
+
+<br>
+<h3>Create New Referral Icon</h3>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card card-body">
+            <h5>New referral:</h5>
+            <form action="" method="POST" enctype='multipart/form-data'>
+
+
+                {% csrf_token %} {{form}}
+
+                <input class="btn btn-block btn-info" type="submit" name="Submit">
+                <a class="btn btn-block btn-danger" href="{% url 'manage_referral' %}"> Cancel </a>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

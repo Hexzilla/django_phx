@@ -1,0 +1,61 @@
+{% extends 'accounts/main.html' %} {% block content %}
+<br>
+<h3>Transfer Transactions</h3>
+
+
+<div class="row" style="font-size: 12px;">
+    <div class="col">
+        <div class="card card-body">
+            {% include 'accounts/content/search_bar.html' %}
+        </div>
+    </div>
+
+</div>
+
+<!-- <div class="row mt-2">
+    <a class="btn btn-sm btn-secondary ml-1" href="">Today</a>
+    <a class="btn btn-sm btn-secondary ml-1" href="">Yesterday</a>
+    <a class="btn btn-sm btn-secondary ml-1" href="">This Month</a>
+    <a class="btn btn-sm btn-secondary ml-1" href="">Last Month</a>
+    <a class="btn btn-sm btn-secondary ml-1" href="">
+        <-</a>
+            <a class="btn btn-sm btn-secondary ml-1" href="">-></a>
+</div> -->
+
+<table class="table table-bordered mt-4 align-content-center align-items-center text-center">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Reference</th>
+            <th scope="col">Customer</th>
+            <th scope="col">Game (From)</th>
+            <th scope="col">Game (To)</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Admin</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for profile3 in profiles %}{% if profile3.tag == "Transfer" %}
+        <tr style="background:rgb(236, 250, 144);">
+            {% else %}
+            <tr>
+                {% endif %}
+                <th scope="row">{{ profiles.start_index|add:forloop.counter0 }}</th>
+                <td><a href="{% url 'transfer_profile' profile3.id %}">{{profile3}}</a><br>{{profile3.date_created}}</td>
+                <td><a href="{% url 'user_details' profile3.customer.id %}">{{profile3.customer}}</a><br>{{profile3.customer.phone}}</td>
+                <td>{{profile3.game.game_name}}<br>{{profile3.game.username}}{% include "accounts/content/game_btn.html" %}</td>
+                <td>{{profile3.game2.game_name}}<br>{{profile3.game2.username}}{% include "accounts/content/game_btn_transfer.html" %}</td>
+                <td>{{profile3.amount}}</td>
+                <td>{{profile3.admin}}<br>{{profile3.status}}</td>
+            </tr>
+            {% endfor %}
+    </tbody>
+</table>
+
+<!-- Pagination Begin -->
+<div class="row flex justify-content-center">
+    {% include 'accounts/content/pagination.html' %}    
+</div> 
+<!-- Pagination End -->
+
+{% endblock content %}

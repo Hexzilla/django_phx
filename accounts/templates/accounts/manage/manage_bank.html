@@ -1,0 +1,43 @@
+{% extends 'accounts/main.html' %} {% block content %}{% load static %}
+<br>
+<div class="row">
+    <h3>Manage Bank</h3>
+    <div class="ml-auto">
+        <a class="btn btn-sm btn-primary " href="{% url 'add_bank' %}">Add New</a>
+    </div>
+
+</div>
+<br>
+
+
+
+
+<table class="table table-bordered mt-4 align-content-center align-items-center text-center ">
+    <thead>
+        <tr>
+            <th scope="col ">#</th>
+            <th scope="col ">Bank Image</th>
+            <th scope="col ">Bank Name</th>
+            <th scope="col ">Bank Code</th>
+            <th scope="col ">Status</th>
+            <th scope="col ">Status Deposit</th>
+            <th scope="col ">Status Withdrawal</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for bank in banks %}
+        <tr>
+            <th scope="row ">{{forloop.counter}}</th>
+            <td><img src="{% static 'images/' %}{{bank.image}}" style="width: 80px; height: 30px;"></td>
+            <td><a href="{% url 'edit_bank' bank.id %}">{{bank}}</a></td>
+            <td>{{bank.bank_code}}</td>
+            <td>{{bank.status}}</td>
+            <td>{{bank.status_deposit}}</td>
+            <td>{{bank.status_withdrawal}}</td>
+
+
+            {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}

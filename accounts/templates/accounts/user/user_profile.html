@@ -1,0 +1,232 @@
+{% extends 'accounts/main.html' %} {% block content %} {% load static %} {% load mytags %}
+
+
+<br>
+<h3>User Profile</h3>
+<br><br>
+<!-- {{promotion1}} -->
+<div class="row">
+    <div class="col">
+
+
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">User Profile</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{% include "accounts/content/username.html" %}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="ml-auto">
+                            <div class="d-inline-flex text-center">
+                                <div class="card ml-1 bg-warning " style="min-width: 4rem; max-height: 3rem;">
+                                    Game1<br>XXX
+                                </div>
+                                <div class="card ml-1 bg-warning " style="min-width: 4rem; max-height: 3rem;">game2</div>
+                                <div class="card ml-1 bg-warning " style="min-width: 4rem; max-height: 3rem;">
+                                    game3<br>XXX
+                                </div>
+                                <div class="card ml-1 bg-warning " style="min-width: 4rem; max-height: 3rem;">game4</div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="ml-auto">
+                            <div class="d-inline-flex text-center">
+                                {% for customergame in games %} {% if forloop.first %}
+                                <div class="row">{% endif %}
+                                    <div class class="card ml-1 bg-warning " style="min-width: 4rem; max-height: 3rem;">
+                                        <a class="card" style="font-size: 10px;" href="{{customergame.kiosk_url}}{{customergame.link_adduser}}" target="_blank"> {{customergame.name}}</a>
+                                    </div>
+                                    <!--  -->
+                                    {% if forloop.counter|divisibleby:6 %}</div>
+                                <div class="row">{% endif %} {% if forloop.last %}</div>{% endif %} {% endfor %}
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Bank Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                {% include "accounts/content/add_bank.html" %}
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Add Game</th>
+                        </tr>
+                    </thead>
+                    <form action="{% url 'customer_add_game' customer.id %}" method="POST">
+                        {% csrf_token %}
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="row col-10">
+                                        <div class="row col-5">Game Name</div>
+                                        <div><select name="game_name" required>
+                                            <option value="">Select Games</option>
+                                            {% for game in games %}
+                                            <option value="{{game.id}}">{{game.name}}</option>
+                                            {% endfor %}
+                                        </select></div>
+                                        <select name="customerID" size="0" hidden>
+                                            <option selected value="{{customer.id}}"></option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="row col-10">
+                                        <div class="row col-5">Username</div>
+                                        <div><input type="text" name="username" placeholder="username" required></div>
+                                    </div>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="row col-10">
+                                        <div class="row col-5">Password</div>
+                                        <div><input type="text" name="password" placeholder="password" required></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="row col-10">
+                                        <div class="row col-5"></div>
+                                        <div><button class="btn btn-primary " type="submit">Add Game</button></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </form>
+        </table>
+    </div>
+
+
+    <div class="col">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Game Accounts (Latest){% comment %} {{weeklyTransactionNow}}
+
+                        <!-- here {{promotion1_prv_start_week}} to {{promotion1_start_week}} -->
+                        {% endcomment %}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        {% for profile2 in customergames %} {% if forloop.first %}
+                        <div class="row">{% endif %}
+                            <div class="col-xs-4 ml-1">
+                                {{profile2.game_name}}
+                                <br> {{profile2.username}}
+                                <br>
+                                <!-- Game: {{profile2.game_name}}&#13;&#10;User: {{profile2.username}}&#13;&#10;pass: {{profile2.password}} -->
+                                <textarea cols="20" rows="3" style="font-size: 10px;" id=p1{{forloop.counter}} onClick="select_all001(this.id);" readonly>{% if customer.language == 'Malay' %}{{profile2.id | re_m_newgameid}}
+                                    {% elif customer.language == 'Chinese' %}{{profile2.id | re_c_newgameid}}
+                                    {% elif customer.language == 'English' %}{{profile2.id | re_e_newgameid}}
+                                    {% endif %}</textarea>
+
+
+                                <br> {% include "accounts/content/game_btn.html" %}
+                                <form action="{% url 'create_transaction' customer.id 'Weekly' %}" method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <!-- <input type="number" value="{{weeklyTransactionNow}}" name="amount" hidden> -->
+                                    <input type="number" name="amount_free" value="{{promotionPrecentage}}" hidden>
+                                    <input type="text" name="admin" value="{{request.user}}" hidden>
+                                    <!-- <input type="text" name="status" value="Approved" hidden>
+                                    <input type="text" name="completed" value="Yes" hidden> -->
+                                    <input type="text" name="status" value="Pending" hidden>
+                                    <input type="text" name="completed" value="No" hidden>
+                                    <input type="text" name="game_backend" value="{{profile2.game_name.id}}" hidden>
+                                    <input type="text" name="game" value="{{profile2.id}}" hidden>
+                                    <input type="text" name="tag" value="Free" hidden>
+                                    <input type="text" name="customer" value="{{customer.id}}" hidden>
+                                    <input type="text" name="promotion" value="{{promotion1.id}}" hidden>
+                                    <input type="text" name="withdrawal_limit_min" value="{{promo_min_withdrawal}}" hidden>
+                                    <input type="text" name="withdrawal_limit_max" value="{{promo_max_withdrawal}}" hidden>
+                                    <input class="card bg-warning" style="font-size: 10px; color:black;" type="submit" name="submit" value="Weekly Rebate Bonus 5%">
+                                </form>
+                                <form action="{% url 'credit_game_weekly' profile2.game_name.id promotionPrecentage %}" method="POST">
+                                    {% csrf_token %}
+                                    <input type="text" name="admin" value="{{request.user}}" hidden>
+                                    <input class="card bg-warning" style="font-size: 10px; color:black;" type="submit" name="submit" value="4D Ticket">
+                                </form>
+                            </div>
+                            {% if forloop.counter|divisibleby:4 %}</div>
+                        <div class="row">{% endif %} {% if forloop.last %}</div>{% endif %} {% endfor %}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<script>
+    function select_all001(id) {
+        var text_val = document.getElementById(id);
+        text_val.focus(); // Focus on textarea 
+        text_val.select(); // Select all text  
+        text_val.style.backgroundColor = "#129284 ";
+        document.execCommand("Copy");
+    }
+
+
+    function click_bank0() {
+        alert('test');
+    }
+
+    var yyyy = '';
+
+    function myFunction2() {
+        if (yyyy != '') {
+            yyyy.style.display = "none";
+        }
+        if (document.getElementById("bank_icon2").value != '') {
+
+            var yy = document.getElementById("bank_icon2").value;
+            var yyy = document.getElementById(yy);
+            yyyy = yyy;
+            yyy.style.display = "block";
+
+        }
+    }
+
+    function check_bank1() {
+        document.getElementById("bank_icon1").style.display = "none";
+        document.getElementById("bank_name1").style.display = "none";
+        document.getElementById("bank_account1").style.display = "none";
+    }
+
+    function check_bank2() {
+        document.getElementById("bank_icon2").style.display = "none";
+        document.getElementById("bank_name2").style.display = "none";
+        document.getElementById("bank_account2").style.display = "none";
+        document.getElementById("bank_submit1").style.display = "none";
+    }
+</script>
+{% if customer.account_name != null %}
+<script>
+    check_bank2();
+</script> {% else %}
+<script>
+    check_bank1();
+</script> {% endif %} {% endblock %}

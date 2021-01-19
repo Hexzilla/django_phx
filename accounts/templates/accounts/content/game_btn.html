@@ -1,0 +1,37 @@
+{% load mytags %} {% if deposit.game.game_name.kiosk_url %}
+
+<div class="row row-cols-10 row-sm-3">
+    <div class="ml-1"><a class="card" style="font-size: 10px;" href="{{deposit.game.game_name.kiosk_url}}{{deposit.game.id | btn_setscore}}" target="_blank">setscore</a></div>
+    <div class="ml-1"><a class="card" style="font-size: 10px;" href="{{deposit.game.game_name.kiosk_url}}{{deposit.game.id | btn_scorelog}}" target="_blank">scorelog</a></div>
+    <div class="ml-1"><a class="card" style="font-size: 10px;" href="{{deposit.game.game_name.kiosk_url}}{{deposit.game.id | btn_edit}}" target="_blank">edit</a></div>
+    <div class="ml-1"><a class="card" style="font-size: 10px;" href="{{deposit.game.game_name.kiosk_url}}{{deposit.game.id | btn_gamelog}}" target="_blank">gamelog</a></div>
+</div>
+{% elif profile2.game_name.kiosk_url %}
+<div class="col-xs-4 ml-1">
+    <div><a class="card" style="font-size: 10px;" href="{{profile2.game_name.kiosk_url}}{{profile2.id | btn_setscore}}" target="_blank">setscore</a></div>
+    <div><a class="card" style="font-size: 10px;" href="{{profile2.game_name.kiosk_url}}{{profile2.id | btn_scorelog}}" target="_blank">scorelog</a></div>
+    <div><a class="card" style="font-size: 10px;" href="{{profile2.game_name.kiosk_url}}{{profile2.id | btn_edit}}" target="_blank">edit</a></div>
+    <div><a class="card" style="font-size: 10px;" href="{{profile2.game_name.kiosk_url}}{{profile2.id | btn_gamelog}}" target="_blank">gamelog</a></div>
+</div>
+{% elif profile5.game.game_name.kiosk_url %}
+<div class="col-xs-4 ml-1">
+    <div><a class="card" style="font-size: 10px;" href="{{profile5.game.game_name.kiosk_url}}{{profile5.game.id | btn_setscore}}" target="_blank">setscore</a></div>
+    <div><a class="card" style="font-size: 10px;" href="{{profile5.game.game_name.kiosk_url}}{{profile5.game.id | btn_scorelog}}" target="_blank">scorelog</a></div>
+    <div><a class="card" style="font-size: 10px;" href="{{profile5.game.game_name.kiosk_url}}{{profile5.game.id | btn_edit}}" target="_blank">edit</a></div>
+    <div><a class="card" style="font-size: 10px;" href="{{profile5.game.game_name.kiosk_url}}{{profile5.game.id | btn_gamelog}}" target="_blank">gamelog</a></div>
+</div>
+{% elif profile.game.game_name.kiosk_url and profile.customer %}
+<div class="col-xs-4 ml-1">
+    <div><a class="card" style="font-size: 10px;" href="{{profile.game.game_name.kiosk_url}}{{profile.game.id | btn_scorelog}}" target="_blank">scorelog</a></div>
+    <div><a class="card" style="font-size: 10px;" href="{{profile.game.game_name.kiosk_url}}{{profile.game.id | btn_gamelog}}" target="_blank">gamelog</a></div>
+</div>
+{% elif profile3.game.game_name.kiosk_url and profile3.customer %}
+<div class="col-xs-4 ml-1">
+    <div><a class="card" style="font-size: 10px;" href="{{profile3.game.game_name.kiosk_url}}{{profile3.game.id | btn_scorelog}}" target="_blank">scorelog</a></div>
+    <div><a class="card" style="font-size: 10px;" href="{{profile3.game.game_name.kiosk_url}}{{profile3.game.id | btn_gamelog}}" target="_blank">gamelog</a></div>
+</div>
+{% else %}
+<div class="row row-cols-10 row-sm-3">
+    <div class="ml-1"><a class="card" style="font-size: 10px;" onclick="alert('You have not set Game URL');">Setup Game</a></div>
+</div>
+{% endif %}

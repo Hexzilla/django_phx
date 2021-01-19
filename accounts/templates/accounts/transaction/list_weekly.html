@@ -1,0 +1,76 @@
+{% extends 'accounts/main.html' %} {% block content %}
+<br>
+<h3>Weekly Promotion Bonus 5% Transactions</h3>
+
+
+<div class="row" style="font-size: 12px;">
+    <div class="col">
+        <div class="card card-body">
+            <form method="get">
+                {{myFilter.form}}
+                <button class="btn btn-primary" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<div class="row mt-2">
+    <a class="btn btn-sm btn-secondary ml-1" href="">Today</a>
+    <a class="btn btn-sm btn-secondary ml-1" href="">Yesterday</a>
+    <a class="btn btn-sm btn-secondary ml-1" href="">This Month</a>
+    <a class="btn btn-sm btn-secondary ml-1" href="">Last Month</a>
+    <a class="btn btn-sm btn-secondary ml-1" href="">
+        <-</a>
+            <a class="btn btn-sm btn-secondary ml-1" href="">-></a>
+</div>
+
+<table class="table table-bordered mt-4 align-content-center align-items-center text-center">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Reference</th>
+            <th scope="col">Customer</th>
+            <th scope="col">Bank</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Amount<br>(Promo)</th>
+            <th scope="col">Remarks</th>
+            <th scope="col">Game</th>
+            <th scope="col">Admin</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for profile in profiles %}
+        <tr>
+            <th scope="row">{{ profiles.start_index|add:forloop.counter0 }}</th>
+            <td><a href="{% url 'deposit_profile' profile.id %}">{{profile}}</a><br>{{profile.date_created}}</td>
+            <td><a href="{% url 'user_details' profile.customer.id %}">{{profile.customer}}</a><br>{{profile.customer.phone}}</td>
+            <td>{{profile.bank}}</td>
+            <td>{{profile.amount}}<br>
+                <a class="btn-info ml-1" href="" alt="Score Log">SL</a><a class="btn-info ml-1" href="" alt="Game Log">GL</a></td>
+            </td>
+            <td>{{profile.amount_promo}}</td>
+            <td>Approve Date :<br>{{profile.action_approve}}</td>
+            <td>{{profile.game.game_name}}<br>{{profile.game.username}}<br>{{profile.promotion}}</td>
+            <td>{{profile.admin}}<br>{{profile.status}}</td>
+        </tr>
+        {% endfor %}
+
+        <div class="pagination mt-4">
+            <span class="step-links">
+                {% if profiles.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ profiles.previous_page_number }}">previous</a>
+                {% endif %}
+        
+                <span class="current">
+                    Page {{ profiles.number }} of {{ profiles.paginator.num_pages }}.
+                </span> {% if profiles.has_next %}
+            <a href="?page={{ profiles.next_page_number }}">next</a>
+            <a href="?page={{ profiles.paginator.num_pages }}">last &raquo;</a> {% endif %}
+            </span>
+        </div>
+    </tbody>
+</table>
+
+{% endblock content %}

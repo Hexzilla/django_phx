@@ -1,0 +1,61 @@
+{% extends 'accounts/main.html' %} {% load static %}{% block content %}
+<br>
+<h3>Manage Success Messages</h3>
+<div class="row">
+    <div class="card card-body">
+        <form action="" method="POST" enctype='multipart/form-data'><br> {% csrf_token %}
+            <div class="row">
+                <h5>Chinese Messages: </h5>
+                <a class="mr-1 ml-2 btn btn-info" href="{% url 'manage_success_messages' 'mal' %}"> Malay </a>
+                <a class="mr-1 btn btn-warning"> Chinese </a>
+                <a class="mr-1 btn btn-info" href="{% url 'manage_success_messages' 'eng' %}"> English </a>
+                <input class="btn btn-danger" type="submit" name="Submit" value="Update Message">
+            </div>
+            Last Updated : {{successMessage.date_created}}
+
+            <input type="text" value="{{request.user}}" name="admin" hidden>
+            <table class="table table-bordered mt-4 align-content-center align-items-center text-center ">
+                <thead class="thead-dark">
+                    <th scope="col">Deposit</th>
+                    <th scope="col">Withdrawal</th>
+                    <th scope="col">Transfer</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th><textarea name="c_deposit" cols="50" rows="15">{{successMessage.c_deposit}}</textarea></th>
+                        <th><textarea name="c_withdrawal" cols="50" rows="15">{{successMessage.c_withdrawal}}</textarea></th>
+                        <th><textarea name="c_transfer" cols="50" rows="15">{{successMessage.c_transfer}}</textarea></th>
+                    </tr>
+                </tbody>
+                <thead class="thead-dark">
+                    <th scope="col">New Game ID</th>
+                    <th scope="col">Lock</th>
+                    <th scope="col">Unlock</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th><textarea name="c_newgameid" cols="50" rows="15">{{successMessage.c_newgameid}}</textarea></th>
+                        <th><textarea name="c_lock" cols="50" rows="15">{{successMessage.c_lock}}</textarea></th>
+                        <th><textarea name="c_unlock" cols="50" rows="15">{{successMessage.c_unlock}}</textarea></th>
+                    </tr>
+                </tbody>
+                <thead class="thead-dark">
+                    <th scope="col">Withdrawal Verify Bank Account</th>
+                    <th scope="col">Promote 4D</th>
+                    <th scope="col"></th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th><textarea name="c_withdrawal_verify_bank" cols="50" rows="15">{{successMessage.c_withdrawal_verify_bank}}</textarea></th>
+                        <th><textarea name="c_promotion_4d" cols="50" rows="15">{{successMessage.c_promotion_4d}}</textarea></th>
+                        <th></th>
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <input class="btn btn-block btn-info" type="submit" name="Submit" value="Update Message">
+        </form>
+    </div>
+</div>
+{% endblock content %}

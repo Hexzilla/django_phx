@@ -1,0 +1,37 @@
+{% extends 'accounts/main.html' %} {% block content %}
+<br>
+<div class="row">
+    <h3>Manage Promotion</h3>
+    <div class="ml-auto">
+        <a class="btn btn-sm btn-primary " href="{% url 'add_promotion' %}">Add New</a>
+    </div>
+
+</div>
+<br>
+
+
+
+
+<table class="table table-bordered mt-4 align-content-center align-items-center text-center ">
+    <thead>
+        <tr>
+            <th scope="col ">#</th>
+            <th scope="col ">Type</th>
+            <th scope="col ">Type2</th>
+            <th scope="col ">Promotion Name</th>
+            <th scope="col ">Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for promotion in promotions %}
+        <tr>
+            <th scope="row ">{{forloop.counter}}</th>
+            <td>{{promotion.tag1}}</td>
+            <td>{{promotion.tag2}}</td>
+            <td><a href="{% url 'edit_promotion' promotion.id %}">{{promotion.name}}</a></td>
+            <td>{{promotion.status}}</td>
+            {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}

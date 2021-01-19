@@ -1,0 +1,17 @@
+{% extends 'accounts/main.html' %} {% block content %}
+
+
+
+<h3>Kiosks Information</h3>
+
+
+<br> {% for profile2 in customergames %} {% if forloop.first %}
+<div class="row">{% endif %}
+    <div class="col-xs-4 ml-1">
+        {{profile2}}
+        <br> Download URL:
+        <br>
+        <textarea cols="20" rows="3" style="font-size: 10px;" readonly onclick="this.focus();this.select();document.execCommand('Copy');">{{profile2.url}}</textarea>
+    </div>
+    {% if forloop.counter|divisibleby:8 %}</div>
+<div class="row">{% endif %} {% if forloop.last %}</div>{% endif %} {% endfor %} {% endblock content %}

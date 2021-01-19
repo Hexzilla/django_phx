@@ -1,0 +1,74 @@
+{% extends 'accounts/main.html' %} {% block content %}{% load static %}
+<br>
+<h3>Withdrawal Transactions</h3>
+
+
+<div class="row" style="font-size: 12px;">
+    <div class="col">
+        <div class="card card-body">
+            {% include 'accounts/content/search_bar.html' %}
+        </div>
+    </div>
+
+</div>
+
+<!-- <div class="row mt-2">
+    <a class="btn btn-sm btn-secondary ml-1" href="">Today</a>
+    <a class="btn btn-sm btn-secondary ml-1" href="">Yesterday</a>
+    <a class="btn btn-sm btn-secondary ml-1" href="">This Month</a>
+    <a class="btn btn-sm btn-secondary ml-1" href="">Last Month</a>
+    <a class="btn btn-sm btn-secondary ml-1" href="">
+        <-</a>
+            <a class="btn btn-sm btn-secondary ml-1" href="">-></a>
+</div> -->
+
+<table class="table table-bordered mt-4 align-content-center align-items-center text-center">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Reference</th>
+            <th scope="col">Customer</th>
+            <th scope="col">Bank</th>
+            <th scope="col">Bank (Customer)</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Amount<br>(Promo)</th>
+            <th scope="col">Amount<br>(Void)</th>
+            <th scope="col">Remarks</th>
+            <th scope="col">Game</th>
+            <th scope="col">Admin</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for profile in profiles %}{% if profile.tag == "Withdrawal" %}
+        <tr style="background:rgb(250, 146, 146);">
+            {% else %}
+            <tr>
+                {% endif %}
+                <th scope="row">{{ profiles.start_index|add:forloop.counter0 }}</th>
+                <td><a href="{% url 'withdrawal_profile' profile.id %}">{{profile}}</a><br>{{profile.date_created}}</td>
+                <td><a href="{% url 'user_details' profile.customer.id %}">{{profile.customer}}</a><br>{{profile.customer.phone}}</td>
+                {% if profile.bank.image %}
+                <td><img src="{% static 'images/'%}{{profile.bank.image}}" style="width: 80px; height: 30px;"></td>
+                {% else %}
+                <td></td>
+                {% endif %}
+                <td>{{profile.customer.bank.bank_name}}<br>{{profile.customer.bank.account_number}}<br>{{profile.customer.bank.account_name}}</td>
+                <td>{{profile.amount}}<br>{% include "accounts/content/game_btn.html" %}</td>
+                </td>
+                <td>{{profile.amount_promo}}</td>
+                <td>{{profile.amount_void}}</td>
+                <td>Approve Date :<br>{{profile.action_approve}}</td>
+                <td>{{profile.game.game_name}}<br>{{profile.game.username}}<br>{{profile.promotion}}</td>
+                <td>{{profile.admin}}<br>{{profile.status}}</td>
+            </tr>
+            {% endfor %}
+    </tbody>
+</table>
+
+<!-- Pagination Begin -->
+<div class="row flex justify-content-center">
+    {% include 'accounts/content/pagination.html' %}    
+</div> 
+<!-- Pagination End -->
+
+{% endblock content %}

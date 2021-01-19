@@ -1,0 +1,91 @@
+{% load static %}{% block content %}
+
+<br>
+<h3>Game Credits Management</h3>
+<div class="row">
+    <div class="card card-body">
+        <h5>Add & Deduct Credit: {{game_this.name}}</h5>
+
+
+        <table class="table table-bordered mt-4 text-center">
+            <tbody>
+                <tr>
+                    <form action="{% url 'credit_game_add' game_this.id %}" method="POST">
+                        {% csrf_token %}
+                        <th>Add Credit</th>
+                        <td><input type="number" step="0.01" placeholder="0.00" name="amount" required></td>
+                        <th><input type="text" placeholder="Remark" value="" name="remark"></th>
+                        <input type="text" name="admin" value="{{request.user}}" hidden>
+                        <input type="text" name="game_backend" value="{{game_this.id}}" hidden>
+                        <input type="text" name="tag" value="Add_Credit" hidden>
+                        <td><input class="btn btn-block btn-success" type="submit" name="submit" value="Add Credit"></td>
+                    </form>
+                </tr>
+                <tr>
+                    <form action="{% url 'credit_game_deduct' game_this.id %}" method="POST">
+                        {% csrf_token %}
+                        <th>Deduct Credit</th>
+                        <td><input type="number" step="0.01" placeholder="0.00" name="amount" required></td>
+                        <th><input type="text" placeholder="Remark" value="" name="remark"></th>
+                        <input type="text" name="admin" value="{{request.user}}" hidden>
+                        <input type="text" name="game_backend" value="{{game_this.id}}" hidden>
+                        <input type="text" name="tag" value="Deduct_Credit" hidden>
+                        <td><input class="btn btn-block btn-danger" type="submit" name="submit" value="Deduct Credit"></td>
+                    </form>
+                </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+</div>
+<br>
+<table class="table table-bordered mt-2">
+    <thead>
+        <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Type</th>
+            <th scope="col">Reference No</th>
+            <th scope="col">Remark</th>
+            <th scope="col">Admin</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for profile in profiles %}
+        <tr>
+            <td>{{profile.date_created}}</td>
+
+            {% if profile.tag == "Deposit"%}
+            <td>-{{profile.amount}}</td>
+            {% else %}
+            <td>{{profile.amount}}</td>
+            {% endif %}
+
+            <td>{{profile.get_tag_display}}</td>
+            <td>{{profile}}</td>
+            <td>{{profile.remark}}</td>
+            <td>{{profile.admin}}</td>
+        </tr>
+        {% endfor %}
+
+        <div class="pagination">
+            <span class="step-links">
+                    {% if profiles.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ profiles.previous_page_number }}">previous</a>
+                    {% endif %}
+            
+                    <span class="current">
+                        Page {{ profiles.number }} of {{ profiles.paginator.num_pages }}.
+                    </span> {% if profiles.has_next %}
+            <a href="?page={{ profiles.next_page_number }}">next</a>
+            <a href="?page={{ profiles.paginator.num_pages }}">last &raquo;</a> {% endif %}
+            </span>
+        </div>
+    </tbody>
+</table>
+
+
+
+{% endblock content %}

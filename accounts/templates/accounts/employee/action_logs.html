@@ -1,0 +1,66 @@
+{% extends 'accounts/main.html' %} {% block content %}
+<br>
+<div class="row">
+    <h3>Action Logs</h3>
+    <div class="ml-auto">
+        <button class="btn btn-primary " type="submit ">Add New</button>
+    </div>
+
+</div>
+<br>
+
+
+
+
+<table class="table table-bordered mt-4 align-content-center align-items-center text-center ">
+    <thead>
+        <tr>
+            <th scope="col ">#</th>
+            <th scope="col ">Date & Time</th>
+            <th scope="col ">Action</th>
+            <th scope="col ">ID</th>
+            <th scope="col ">Description</th>
+            <th scope="col ">Remark</th>
+            <th scope="col ">Employee</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for profile in profiles %}
+        <tr>
+            <th scope="row ">{{ profiles.start_index|add:forloop.counter0 }}</th>
+            <td>{{profile}}</td>
+            <td><a href="{% url 'customer' profile.id%} ">{{profile.customer}}</a><br>{{profile.customer.phone}}</td>
+            <td>{{profile.deposit_bank}}</td>
+            <td>{{profile.deposit_amount}}<br>
+
+                <a class="btn btn-sm btn-info ml-1 " href=" " alt="Score Log ">
+        SL</a>
+                <a class="btn btn-sm btn-info ml-1 " href=" " alt="Game Log ">GL</a></td>
+        </tr>
+        {% endfor %}
+
+        <div class="pagination ">
+            <span class="step-links ">
+                {% if profiles.has_previous %}
+                    <a href="?page=1 ">&laquo; first</a>
+                    <a href="?page={{ profiles.previous_page_number }} ">previous</a>
+                {% endif %}
+        
+                <span class="current ">
+                    Page {{ profiles.number }} of {{ profiles.paginator.num_pages }}.
+                </span> {% if profiles.has_next %}
+            <a href="?page={{ profiles.next_page_number }} ">next</a>
+            <a href="?page={{ profiles.paginator.num_pages }} ">last &raquo;</a> {% endif %}
+            </span>
+
+            <div class="ml-auto text-right" style="font-size: 10px;">
+                <form method=" get ">
+                    Search:<br>
+                    <input type="text ">
+                </form>
+            </div>
+        </div>
+    </tbody>
+</table>
+
+{% endblock content %}

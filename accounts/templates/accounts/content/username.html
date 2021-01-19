@@ -1,0 +1,13 @@
+{% load static %}
+
+<div class="row">
+    <div class="ml-2">Username : <a href="{% url 'user_details' customer.id %}"> {{customer.name}}</a>
+        <br>{{customer.name}}<br>Phone No : {{customer.phone}}</div>
+    <div class="ml-1">
+        <img src="{% static 'images/'%}{{customer.referral.image}}" style="width: 30px; height: 30px;"></div>
+    <div class="ml-3">
+        <a class="btn btn-sm btn-info" href="{% url 'create_transaction' customer.id 'Deposit' %}">+D</a>
+        <a class="btn btn-sm btn-info" href="{% url 'create_transaction' customer.id 'Withdrawal' %}">+W</a>
+        <a class="btn btn-sm btn-info" href="{% url 'create_transaction' customer.id 'Transfer' %}">+T</a>
+    </div>
+</div>
