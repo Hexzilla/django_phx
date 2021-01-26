@@ -62,7 +62,7 @@ urlpatterns = [
     path('kiosk', views.kiosk, name='kiosks'),
 
     #SMS
-    path('sms_not_include', views.sms_not_include, name='sms_not_include'),
+    path('manage_sms', views.manage_sms, name='manage_sms'),
     path('sms', views.sms, name='sms'),
     
     #functions

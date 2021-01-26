@@ -238,7 +238,7 @@ class DateRangeForm(forms.Form):
 class CreateSMSGatewayForm(ModelForm):
 	class Meta:
 		model = SMSGateway
-		fields 	= ['name']
+		fields 	= ['deviceId']
 
 
 

@@ -1830,9 +1830,22 @@ def action_logs(request):
 
 
 @login_required(login_url='login')
-def sms_not_include(request):
-	context = {}
-	return render(request, 'accounts/manage/sms_not_include.html',  context)
+def manage_sms(request):
+	if request.method == "POST":
+		sms = SMSGateway()
+		sms.id = request.POST.get('id')
+		sms.token = request.POST.get('token')
+		sms.deviceId = request.POST.get('deviceId')
+		sms.active = request.POST.get('active') == 'on'
+		sms.save()
+
+	sms = None
+	ary_sms = SMSGateway.objects.all()
+	if ary_sms and len(ary_sms) > 0:
+		sms = ary_sms[0]
+		
+	context = {"sms": sms}
+	return render(request, 'accounts/manage/manage_sms.html',  context)
 
 
 def sms(request):
@@ -1841,7 +1854,7 @@ def sms(request):
 	gateway.name = 'sms_received'
 	gateway.save()
 	context = {}
-	return render(request, 'accounts/manage/sms_not_include.html',  context)
+	return render(request, 'accounts/manage/manage_sms.html',  context)
 
 
 

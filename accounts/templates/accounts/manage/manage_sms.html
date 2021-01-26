@@ -1,0 +1,41 @@
+{% extends 'accounts/main.html' %} {% block content %}
+
+<form action="" method="POST" class="m-5">
+    {% csrf_token %}
+    <input type="hidden" name="id" value="{{ sms.id|default_if_none:"0" }}">
+
+    <div class="form-group row">
+        <label for="token" class="col-sm-2 col-form-label">SMS Gateway Token</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="token" placeholder="Enter Token" name="token"
+                value="{{ sms.token|default_if_none:'' }}">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="deviceId" class="col-sm-2 col-form-label">SMS Gateway Device ID</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="deviceId" placeholder="Enter Device ID" name="deviceId"
+                value="{{ sms.deviceId|default_if_none:'' }}">
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-2">Active</div>
+        <div class="col-sm-10">
+            <div class="form-check">
+                {% if sms and sms.active %}
+                <input class="form-check-input" type="checkbox" id="active" name="active" checked>
+                {% else %}
+                <input class="form-check-input" type="checkbox" id="active" name="active">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-12 text-center">
+            <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+    </div>
+</form>
+
+{% endblock content %}

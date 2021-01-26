@@ -539,10 +539,12 @@ class Transaction(models.Model):
 
 
 class SMSGateway(models.Model):
-	name = models.CharField(max_length=254, null=False, blank=False, unique=True)
+	token = models.CharField(max_length=254, null=False, blank=False)
+	deviceId = models.CharField(max_length=254, null=False, blank=False, unique=True)
+	active = models.IntegerField(default=0)
 
 	def __str__(self):
-	 return self.name
+	 return self.deviceId
 
 
 class Positions(models.Model):
