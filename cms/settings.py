@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     'django_filters',
     # 'phone_field',
 
-    'livereload',
+    # 'livereload',
 ]
 
 MIDDLEWARE = [
@@ -202,9 +202,9 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'staticfiles'), ]
 # EMAIL_HOST_USER = 'youremail'
 # EMAIL_HOST_PASSWORD = 'yourpassword'
 
-MIDDLEWARE_CLASSES = (
-    'livereload.middleware.LiveReloadScript',
-)
+# MIDDLEWARE_CLASSES = (
+#     'livereload.middleware.LiveReloadScript',
+# )
 
 LOGGING = {
     'version': 1,
