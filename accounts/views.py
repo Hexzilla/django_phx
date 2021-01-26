@@ -24,6 +24,8 @@ from .filters import *	#all filters
 from .forms import * 	#all forms
 from .models import * 	#all models
 
+import requests
+import json
 import logging
 logger = logging.getLogger(__name__)
 
@@ -1840,6 +1842,7 @@ def manage_sms(request):
 		sms.deviceId = request.POST.get('deviceId')
 		sms.active = request.POST.get('active') == 'on'
 		sms.save()
+		return redirect('manage_sms')
 
 	sms = None
 	ary_sms = SMSGateway.objects.all()
@@ -1850,43 +1853,59 @@ def manage_sms(request):
 	return render(request, 'accounts/manage/manage_sms.html',  context)
 
 
-def sms(request):
-	gatewayForm = CreateSMSGatewayForm()
-	gateway = gatewayForm.save(commit=False)
-	gateway.name = 'sms_received'
-	gateway.save()
-	context = {}
-	return render(request, 'accounts/manage/manage_sms.html',  context)
+def list_sms(request):
+	offset = request.GET.get('offset')
+	if not offset: offset = 0
+	offset = int(offset)
 
+	gateway = SMSGateway.objects.all()
+	if gateway and len(gateway) > 0 and gateway[0].active == 1:
+		gateway = gateway[0]
+	else:	
+		return redirect('manage_sms')
 
+	url = 'https://smsgateway.me/api/v4/message/search'
+	payload = {
+		"filters": [
+			[
+				{
+					"field": "status", 
+					"operator": "=", 
+					"value": "received" 
+				}
+			]
+		], 
+		"order_by": [
+			{
+				"field": "status",
+				"direction": "DESC"
+			}
+		],
+		"limit": 10,
+		"offset": offset
+	}
+	headers = {
+		'Content-Type': 'application/json',
+		'Authorization': gateway.token
+		#'Authorization': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhZG1pbiIsImlhdCI6MTYxMTY0ODQxMywiZXhwIjo0MTAyNDQ0ODAwLCJ1aWQiOjgwNjE1LCJyb2xlcyI6WyJST0xFX1VTRVIiXX0.Fq-BKAA7NBlELhSKtoQmLQu31YubgujgFVRtimLCjy4'
+	}
 
+	count = 0
+	results = []
+	response = requests.post(url, data = json.dumps(payload), headers = headers)
+	if response.status_code == 200:
+		data = response.json()
+		results = data['results']
+		count = data['count']
 
+	prev = next = None
+	if offset >= 10:
+		prev = offset - 10
+	if offset + 10 < count:
+		next = offset + 10
 
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		
-
-
+	context = {'results': results, 'prev': prev, 'next': next}
+	return render(request, 'accounts/manage/list_sms.html',  context)
 
 
 

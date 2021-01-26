@@ -63,7 +63,7 @@ urlpatterns = [
 
     #SMS
     path('manage_sms', views.manage_sms, name='manage_sms'),
-    path('sms', views.sms, name='sms'),
+    path('list_sms', views.list_sms, name='list_sms'),
     
     #functions
     path('refresh_dashboard', views.refresh_dashboard, name='refresh_dashboard'),
