@@ -1,0 +1,28 @@
+<form action="" method="GET">
+  <div class="mt-4">
+    <input class="btn btn-secondary" type="submit" name="select_date" value="Today">
+    <input class="btn btn-secondary" type="submit" name="select_date" value="Yesterday">
+    <input class="btn btn-secondary" type="submit" name="select_date" value="This Week">
+    <input class="btn btn-secondary" type="submit" name="select_date" value="Last Week">
+    <input class="btn btn-secondary" type="submit" name="select_date" value="This Month">
+    <input class="btn btn-secondary" type="submit" name="select_date" value="Last Month">
+    <input class="btn btn-secondary" type="submit" name="select_date" value="<">
+    <input class="btn btn-secondary" type="submit" name="select_date" value=">">
+  </div>
+</form>
+<form action="{% url 'report_transaction' %}" method="POST">
+  {% csrf_token %}
+  <div class="mt-4">
+    <div class="form-group row">
+      <div class="col-sm-2">
+        <input type="date" class="form-control" name="start_date" value="{{ start_date|default_if_none:'' }}">
+      </div>
+      <div class="col-sm-2">
+        <input type="date" class="form-control" name="end_date" value="{{ end_date|default_if_none:'' }}">
+      </div>
+      <div class="col-sm-2 text-center">
+        <button type="submit" class="btn btn-primary">Search</button>
+      </div>
+    </div>
+  </div>
+</form>

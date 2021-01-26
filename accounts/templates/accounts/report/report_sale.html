@@ -4,18 +4,69 @@
 
 {% include 'accounts/content/search_bar.html' %}
 
+<style>
+span.green {
+  background: #32951A;
+  border-radius: 0.8em;
+  -moz-border-radius: 0.8em;
+  -webkit-border-radius: 0.8em;
+  color: #ffffff;
+  display: inline-block;
+  font-weight: bold;
+  line-height: 1.6em;
+  margin-right: 15px;
+  text-align: center;
+  width: 1.6em; 
+}
+span.black {
+  background: black;
+  border-radius: 0.8em;
+  -moz-border-radius: 0.8em;
+  -webkit-border-radius: 0.8em;
+  color: #ffffff;
+  display: inline-block;
+  font-weight: bold;
+  line-height: 1.6em;
+  margin-right: 15px;
+  text-align: center;
+  width: 1.6em; 
+}
+.image-container{
+    text-align:center
+}
+.vertical-center {
+  -ms-transform: translateY(25%);
+  transform: translateY(25%);
+}
+.today-accounts {
+    background-color: #32951A;
+}
+.transactions td:nth-child(2) {
+    background-color: #D4EDDA;
+}
+.transactions td:nth-child(3) {
+    background-color: #F8D7DA;
+}
+.transactions td:nth-child(4) {
+    background-color: #FFF3CD;
+}
+.transactions td:nth-child(5) {
+    background-color: #D1ECF1;
+}
+
+</style>
 <div class="row">
     <div class="col">
         <table class="table table-bordered ">
             <thead>
-                <tr>
+                <tr style="background-color: lightgrey;">
                     <th scope="col">Transactions</th>
                     <th scope="col">Quantity</th>
                     <th scope="col">Amount</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr style="background-color: #F7E4A8">
                     <th>
                         <div class="row">
                             <div class="col">
@@ -27,12 +78,14 @@
                         </div>
                     </th>
                     <th>
-                        {{todays_customer_report}} | {{todays_deposit_report}}
-
+                        <div>{{todays_customer_report}} &nbsp;&nbsp;&nbsp;&nbsp; <span class="green">{{todays_deposit_report}}</span></div>
                     </th>
                     <th>
+                        <div class="row">
                         {% for referral in referrals %}
-                        <img class="mt-1" src="{% static 'images/' %}{{referral.image}}" style="width: 30px; height: 30px;">
+                        <div class="ml-2 image-container">
+                            <img class="rounded-circle mt-1" src="{% static 'images/' %}{{referral.image}}" style="width: 20px; height: 20px;">
+                        </div>
                         <script>
                             var number_one = 0;
                         </script>
@@ -47,18 +100,24 @@
                         </script>
                         <!--  -->
                         {% endif %} {% endfor %}
-                        <script>
-                            //if (number_one > 0) {
-                            document.write(number_one);
-                            //}
-                        </script>
+                        <div class="ml-1 mr-2 vertical-center">
+                            <script>
+                                //if (number_one > 0) {
+                                document.write(number_one);
+                                //}
+                            </script>
+                        </div>
                         {% endfor %}
+                        </div>
 
                         <hr>
 
                         <!--  -->
+                        <div class="row today-accounts pb-1">
                         {% for referral in referrals %}
-                        <img class="mt-1" src="{% static 'images/' %}{{referral.image}}" style="width: 30px; height: 30px;">
+                        <div class="ml-2 image-container">
+                            <img class="rounded-circle mt-1" src="{% static 'images/' %}{{referral.image}}" style="width: 20px; height: 20px;">
+                        </div>
                         <script>
                             var number_two = 0;
                         </script>
@@ -73,26 +132,29 @@
                         </script>
                         <!--  -->
                         {% endif %} {% endfor %}
-                        <script>
-                            //if (number_two > 0) {
-                            document.write(number_two);
-                            //}
-                        </script>
+                        <div class="ml-1 mr-2 vertical-center">
+                            <script>
+                                //if (number_two > 0) {
+                                document.write(number_two);
+                                //}
+                            </script>
+                        </div>
                         {% endfor %}
+                        </div>
                     </th>
                 </tr>
-                <tr>
+                <tr style="background-color: #D4EDDA">
                     <th>
                         Deposit
                     </th>
                     <th>
-                        {{deposits.count}} | {{old_user_transactions.count}}
+                        <div>{{deposits.count}} &nbsp;&nbsp;&nbsp;&nbsp; <span class="black">{{old_user_transactions.count}}</span></div>
                     </th>
                     <th>
                         {{deposits_amount|floatformat:2}}
                     </th>
                 </tr>
-                <tr>
+                <tr style="background-color: #73BF73">
                     <th>
                         Deposit (Promo)
                     </th>
@@ -103,7 +165,7 @@
                         {{deposits_amount_promo|floatformat:2}}
                     </th>
                 </tr>
-                <tr>
+                <tr style="background-color: #D1ECF1">
                     <th>
                         Free Credit
                     </th>
@@ -114,7 +176,7 @@
                         {{deposit_free_amount|floatformat:2}}
                     </th>
                 </tr>
-                <tr>
+                <tr style="background-color: #D3AAD8">
                     <th>
                         Void Credit
                     </th>
@@ -125,7 +187,7 @@
                         0
                     </th>
                 </tr>
-                <tr>
+                <tr style="background-color: #F8D7DA">
                     <th>
                         Withdrawal
                     </th>
@@ -136,7 +198,7 @@
                         {{withdrawals_amount|floatformat:2}}
                     </th>
                 </tr>
-                <tr>
+                <tr style="background-color: #E87F8F">
                     <th>
                         Withdrawal (Promo)
                     </th>
@@ -147,7 +209,7 @@
                         0
                     </th>
                 </tr>
-                <tr>
+                <tr style="background-color: #03A9F4">
                     <th>
                         Withdrawal (Tip)
                     </th>
@@ -158,7 +220,7 @@
                         0
                     </th>
                 </tr>
-                <tr>
+                <tr style="background-color: #FFA500">
                     <th>
                         Payback
                     </th>
@@ -169,7 +231,7 @@
                         0
                     </th>
                 </tr>
-                <tr>
+                <tr style="background-color: #E87F8F">
                     <th>
                         Borrow
                     </th>
@@ -180,7 +242,7 @@
                         0
                     </th>
                 </tr>
-                <tr>
+                <tr style="background-color: #73BF73">
                     <th>
                         Total
                     </th>
@@ -195,9 +257,9 @@
         </table>
     </div>
     <div class="col">
-        <table class="table table-bordered ">
+        <table class="table table-bordered transactions">
             <thead>
-                <tr>
+                <tr style="background-color: lightgrey;">
                     <th scope="col">Transactions (Games)</th>
                     <th scope="col">Deposit</th>
                     <th scope="col">Withdrawal</th>

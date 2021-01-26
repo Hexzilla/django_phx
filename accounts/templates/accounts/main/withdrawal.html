@@ -1,4 +1,16 @@
 {% load humanize %} {% load static %}{% load mytags %} {% for deposit in withdrawals %}
+<style>
+.withdrawal_min {
+    color: red!important;
+    font-size: 1.2em!important;
+    font-weight: bold;
+}
+.withdrawal_today {
+    color: red!important;
+    font-size: 1.5em!important;
+    font-weight: bold;
+}
+</style>
 <tr>
     <th><a href="{% url 'withdrawal_profile' deposit.id %}">{{deposit}}</a><br>{{deposit.tag}}</th>
     {% comment %}
@@ -25,7 +37,10 @@
         </td>
 
 
-        <td><b><u>RM:{{deposit.amount|intcomma}}</u></b>
+        <td>
+            <div><u>RM:{{deposit.amount|intcomma}}</u></div>
+            <div class="withdrawal_min">Min. Withdrawal: {{deposit.amount|intcomma}}</div>
+            <div class="withdrawal_today">Today {{ deposit.max_withdrawal|ordinal }} withdrawal</div>
         </td>
         <td>{{deposit.game}}<br>ID:{{deposit.game.username}}<br>
             <textarea cols="30" rows="10" readonly>Today {{deposit.max_withdrawal}} Withdrawal&#13;&#10;Last Topup:{{deposit.last_topup}}&#13;&#10;{{deposit.promotion}}</textarea>

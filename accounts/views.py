@@ -23,19 +23,18 @@ from .decorators import unauthenticated_user, allowed_users, admin_only
 from .filters import *	#all filters
 from .forms import * 	#all forms
 from .models import * 	#all models
+from .actionlogs import *
 
 import requests
 import json
 import logging
 logger = logging.getLogger(__name__)
 
-
 # Create your views here.
 #!login system3
 
 def activeDate_on_all_page(request): # show activate dated
 	# import socket
-
 	hostname 		  = request.get_host()
 	timeNow_side      = datetime.now().date()
 	present           = datetime.now()
@@ -46,10 +45,10 @@ def activeDate_on_all_page(request): # show activate dated
 	active_date3	  = datetime.now() - datetime(2020, 9, 24)
 	
 	return {'active_date': active_date,
-	'active_date1': active_date1,
-	'active_date2': active_date2,
-	'active_date3': active_date3,
-	'timeNow_side':timeNow_side,"hostname":hostname}
+		'active_date1': active_date1,
+		'active_date2': active_date2,
+		'active_date3': active_date3,
+		'timeNow_side':timeNow_side,"hostname":hostname}
 
 # @unauthenticated_user
 def loginPage(request):
@@ -64,6 +63,7 @@ def loginPage(request):
 		if user is not None:
 			login(request, user)
 			request.session['positions'] = get_positions(user.id)
+			add_action_log(request, 'Login', 'Login successfully')
 			return redirect('home')
 			
 		# if int(today_now) > int(LoginAccess()):
@@ -339,7 +339,7 @@ def list_user(request):
 	context = { 'profiles': profile, 'customergame':customergame.count()}
 	return render(request, 'accounts/user/list_user.html', context)
 
-def filter_by_date_range(request, queryset):
+def deposit_filter_by_date_range(request, queryset):
 	# Filter by date range
 	start_date = request.POST.get('start_date')
 	end_date = request.POST.get('end_date')
@@ -347,21 +347,25 @@ def filter_by_date_range(request, queryset):
 		start_date = datetime.fromisoformat(start_date)
 		end_date = datetime.fromisoformat(end_date)
 		if start_date == end_date: end_date = end_date + timedelta(days=1)
-		# logger.warning("start_date: " + str(start_date))
-		# logger.warning("end_date: " + str(end_date))
 		filterSet = {'date_after': start_date, 'date_before': end_date}
 		myFilter = DepositFilter(filterSet, queryset=queryset)
 		queryset = myFilter.qs
 	return queryset
 
 def get_filter(request):
+	start_date = request.POST.get('start_date')
+	end_date = request.POST.get('end_date')
+	if start_date and end_date:
+		start_date = datetime.fromisoformat(start_date).strftime("%Y-%m-%d")
+		end_date = datetime.fromisoformat(end_date).strftime("%Y-%m-%d")
+
 	return {
 		'game': request.POST.get('game'),
 		'bank': request.POST.get('bank'),
 		'admin': request.POST.get('admin'),
 		'promotion': request.POST.get('promotion'),
 		'remark': request.POST.get('remark'),
-		'start_date': request.POST.get('start_date'),
+		'start_date': start_date,
 		'end_date': request.POST.get('end_date'),
 		'date_value': request.POST.get('date_value')
 	}
@@ -375,13 +379,13 @@ def get_select_items():
 	}
 
 @login_required(login_url='login')
-def list_deposit(request):
+def list_deposit(request):	
 	deposits  = Transaction.objects.filter(Q(tag="Deposit") | Q(tag="Free")).filter(status="Approved").filter(completed="Yes").order_by('-id')
 	myFilter  = DepositFilter(request.POST, queryset=deposits)
 	deposits  = myFilter.qs
 
 	# Filter by date range
-	deposits = filter_by_date_range(request, deposits)
+	deposits = deposit_filter_by_date_range(request, deposits)
 	
 	# Paginateion
 	paginator = Paginator(deposits, 10)
@@ -399,7 +403,7 @@ def list_withdrawal(request):
 	withdrawals = myFilter.qs
 
 	# Filter by date range
-	withdrawals = filter_by_date_range(request, withdrawals)
+	withdrawals = deposit_filter_by_date_range(request, withdrawals)
 
 	paginator = Paginator(withdrawals, 10)
 	page = request.POST.get('page')
@@ -416,7 +420,7 @@ def list_transfer(request):
 	transfers = myFilter.qs
 
 	# Filter by date range
-	transfers = filter_by_date_range(request, transfers)
+	transfers = deposit_filter_by_date_range(request, transfers)
 
 	paginator = Paginator(transfers, 10)
 	page = request.POST.get('page')
@@ -426,14 +430,6 @@ def list_transfer(request):
 	return render(request, 'accounts/transaction/list_transfer.html', context)
 
 
-
-#* List end
-
-
-
-
-
-#! NavBar
 
 @login_required(login_url='login')
 def kiosk(request):
@@ -1133,6 +1129,7 @@ def newWithdrawalLimit(request):
 		form = MaxWithdrawalForm(request.POST or None)
 		if form.is_valid():
 			form.save()
+			add_action_log_update(request, 'max withdrawal')
 	return manage_max_withdrawal(request)
 #* Withdrawal end
 
@@ -1184,6 +1181,7 @@ def createReferral(request):
 		form = AddReferralForm(request.POST or None, request.FILES or None)
 		if form.is_valid():
 			form.save()
+			add_action_log_create(request, 'referral ' + request.POST.get('name'))
 			context = {'referrals':referrals}
 			return render(request, 'accounts/manage/manage_referral.html',  context)
 
@@ -1205,6 +1203,7 @@ def editReferral(request,pk):
 			form = AddReferralForm(request.POST or None, request.FILES or None, instance=referral)
 			if form.is_valid():
 				form.save()
+				add_action_log_update(request, 'referral ' + request.POST.get('name'))
 				context = {'referrals':referrals}
 				return render(request, 'accounts/manage/manage_referral.html',  context)
 
@@ -1270,6 +1269,7 @@ def createBank(request):
 		if form.is_valid():
 			form.save()
 			context = {'banks':banks}
+			add_action_log_create(request, 'bank ' + request.POST.get('bank_name'))
 			return render(request, 'accounts/manage/manage_bank.html',  context)
 
 	context = {'form':form.as_p, 'banks':banks}
@@ -1290,6 +1290,7 @@ def editBank(request,pk):
 			form = CreateBankForm(request.POST or None, request.FILES or None, instance=bank_this)
 			if form.is_valid():
 				form.save()
+				add_action_log_update(request, 'bank ' + request.POST.get('bank_name'))
 				context = {'banks':banks}
 				return render(request, 'accounts/manage/manage_bank.html',  context)
 
@@ -1326,6 +1327,7 @@ def createPromotion(request):
 		form = CreatePromotionForm(request.POST or None)
 		if form.is_valid():
 			form.save()
+			add_action_log_create(request, 'promotion ' + request.POST.get('name'))
 			return manage_promotion(request)
 
 	context = {'form':form,}
@@ -1345,6 +1347,7 @@ def editPromotion(request,pk):
 		form = CreatePromotionForm(request.POST or None, instance=promotion)
 		if form.is_valid():
 			form.save()
+			add_action_log_update(request, 'promotion ' + request.POST.get('name'))
 			return manage_promotion(request)
 
 	user_positions = get_positions(request.user.id)
@@ -1414,6 +1417,7 @@ def createGame(request):
 		form = CreateGameForm(request.POST or None)
 		if form.is_valid():
 			form.save()
+			add_action_log_create(request, 'game ' + request.POST.get('name'))
 			return manage_game(request)
 
 	context = {'form':form}
@@ -1421,7 +1425,7 @@ def createGame(request):
 
 
 @login_required(login_url='login')
-def editGame(request,pk):
+def editGame(request, pk):
 	positions = request.session['positions']
 	if not 'game_edit' in positions:
 		return render(request, 'accounts/require_permission.html')
@@ -1431,6 +1435,7 @@ def editGame(request,pk):
 	paginator    = Paginator(game_credits, 5)
 	page         = request.GET.get('page')
 	profiles     = paginator.get_page(page)
+
 	if games.filter(id=pk).exists():
 		game_this = games.get(id=pk)
 		form = CreateGameForm2(instance=game_this)
@@ -1439,6 +1444,7 @@ def editGame(request,pk):
 			if form.is_valid():
 				form.save()
 				context      = {'games':games, 'profiles' : profiles, 'game_this': game_this}
+				add_action_log_update(request, 'game ' + request.POST.get('name'))
 				return render(request, 'accounts/manage/manage_game.html',  context)
 
 		context = {'form':form, 'games':games, 'profiles': profiles,'game_this':game_this}
@@ -1662,32 +1668,65 @@ def report_sale(request):
 	}
 	return render(request, 'accounts/report/report_sale.html',  context)
 
+def get_current_date():
+	date1 = timezone.datetime.today().strftime("%Y-%m-%d")
+	date1 = datetime.fromisoformat(date1)
+	return date1
 
 @login_required(login_url='login')
 def report_transaction(request):
-	banks              = Bank.objects.all().order_by("id")
-	transaction        = Transaction.objects.all().order_by('id')
-	today              = timezone.datetime.today()
-	timeNow            = timezone.datetime.now()
-	yesterday          = timeNow - timedelta(days=1)
-	form               = DateRangeForm()
-	date1              = timeNow.date()
-	date2              = timeNow.now()
-	transaction_d      = transaction.filter(tag="Deposit").filter(status="Approved").filter(date_created__gt = date1, date_created__lt = date2)
-	# deposits_amounts   = transaction_d.aggregate(Sum('amount'))
-	transaction_w      = transaction.filter(tag="Withdrawal").filter(status="Approved").filter(date_created__gt = date1, date_created__lt = date2)
-	# withdrawals_amount = transaction_w.aggregate(Sum('amount'))
+	banks = Bank.objects.all().order_by("id")
+	transaction = Transaction.objects.all().order_by('id')
+	transaction_d = transaction.filter(tag="Deposit").filter(status="Approved")
+	transaction_w = transaction.filter(tag="Withdrawal").filter(status="Approved")
 
-	
+	start_date = end_date = None
+	date1 = date2 = None
 	if request.method == "POST":
-		form  = DateRangeForm(request.POST or None)
 		date1 = request.POST.get("start_date")
 		date2 = request.POST.get("end_date")
-		date2 = datetime.strptime(date2 + ' 23:59:59', "%Y-%m-%d %H:%M:%S")
-		transaction_d = transaction.filter(tag="Deposit").filter(status="Approved").filter(date_created__gt = date1, date_created__lt = date2)
-		transaction_w = transaction.filter(tag="Withdrawal").filter(status="Approved").filter(date_created__gt = date1, date_created__lt = date2)
+		if date1 and date2:
+			start_date = date1 = datetime.fromisoformat(date1)
+			end_date = date2 = datetime.fromisoformat(date2)
+			if date1 == date2: date2 = date2 + timedelta(days=1)
+		
+	else:
+		select_date = request.GET.get('select_date')
+		if select_date == 'Today':
+			date1 = get_current_date()
+			date2 = date1 + timedelta(days=1)
+		elif select_date == 'Yesterday':
+			date2 = get_current_date()
+			date1 = date2 - timedelta(days=1)
+		elif select_date == 'This Week':
+			today = get_current_date()
+			date1 = today - timedelta(days=today.weekday())
+			date2 = date1 + timedelta(days=6)
+		elif select_date == 'Last Week':
+			today = get_current_date()
+			date1 = today - timedelta(days = today.weekday() + 7)
+			date2 = date1 + timedelta(days=6)
+		elif select_date == 'This Month':
+			today = get_current_date()
+			date1 = today.replace(day=1)
+			date2 = date1 + timedelta(days=32)
+			date2 = date2.replace(day=1)
+		elif select_date == 'Last Month':
+			today = get_current_date()
+			date1 = today.replace(day=1) - timedelta(days=1)
+			date1 = date1.replace(day=1)
+			date2 = date1 + timedelta(days=32)
+			date2 = date2.replace(day=1)
+			
+	logger.warning(date1)
+	logger.warning(date2)
+	logger.warning(start_date)
+	logger.warning(end_date)
+	if date1 and date2:
+		transaction_d = transaction_d.filter(date_created__gt = date1, date_created__lt = date2)
+		transaction_w = transaction_w.filter(date_created__gt = date1, date_created__lt = date2)
 
-	deposits_amounts    = []
+	deposits_amounts = []
 	withdrawals_amounts  = []
 	for i in range(banks.count()):
 		deposits_amount = transaction_d.filter(bank=i).aggregate(Sum('amount'))
@@ -1707,9 +1746,12 @@ def report_transaction(request):
 		# withdrawals_amounts[i] += str(withdrawals_amount)
 		withdrawals_amounts.append(withdrawals_amount)
 
-
+	if start_date: start_date = start_date.strftime("%Y-%m-%d")
+	if end_date: end_date = end_date.strftime("%Y-%m-%d")
+	
 	context = {'banks':banks, 'transaction_d':transaction_d, 'transaction_w':transaction_w,
 		'date1':date1,'date2':date2,'deposits_amounts':deposits_amounts,'withdrawals_amounts':withdrawals_amounts,
+		'start_date': start_date, 'end_date': end_date
 	}
 	return render(request, 'accounts/report/report_transaction.html',  context)
 
@@ -1772,6 +1814,8 @@ def assign_position(request, user_id):
 		User_Position.objects.bulk_create(items)
 		request.session['positions'] = get_positions(user_id)
 
+		add_action_log_update(request, 'positions')
+
 
 	#position_group = Positions.objects.all().order_by("id").values('group').annotate(Count("group")).order_by('group')
 	positions = Positions.objects.all().order_by("id")
@@ -1806,7 +1850,14 @@ def action_logs(request):
 	if not 'action_logs' in positions:
 		return render(request, 'accounts/require_permission.html')
 
-	context = {}
+	action_logs = ActionLogs.objects.all()
+
+	# Paginateion
+	paginator = Paginator(action_logs, 10)
+	page = request.GET.get('page')
+	profile = paginator.get_page(page)
+
+	context = {'profiles': profile}
 	return render(request, 'accounts/employee/action_logs.html',  context)
 
 
@@ -1821,6 +1872,7 @@ def manage_sms(request):
 		sms.deviceId = request.POST.get('deviceId')
 		sms.active = request.POST.get('active') == 'on'
 		sms.save()
+		add_action_log_update(request, 'sms gateway ' + sms.deviceId)
 		return redirect('manage_sms')
 
 	sms = None

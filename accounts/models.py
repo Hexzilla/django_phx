@@ -562,3 +562,16 @@ class User_Position(models.Model):
 
 	def __str__(self):
 	 return "USERPOS%06d" % self.id
+
+
+class ActionLogs(models.Model):
+	action = models.CharField(max_length=254, null=False, blank=False)
+	description = models.CharField(max_length=254, null=False, blank=False)
+	remark = models.CharField(max_length=254, null=False, blank=False)
+	date_created = models.DateTimeField(auto_now_add=True)
+	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	remote_ip = models.CharField(max_length=254, null=False, blank=False)
+	device = models.CharField(max_length=254, null=False, blank=False)
+
+	def __str__(self):
+		return "ACTION%06d" % self.id

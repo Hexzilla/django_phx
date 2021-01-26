@@ -1,0 +1,61 @@
+<form id="form_pagination" action="" method="GET">
+    <input type="hidden" id="page" name="page" value="{{ profiles.number }}" />
+</form>
+
+<nav id="std_pagination" aria-label="Pagination">
+  {% if profiles.number %}
+  <ul class="pagination">
+      <a class="page-link" href="#" value="1">First</a>
+
+      {% if profiles.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="#" value="{{profiles.previous_page_number}}">Previous</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="#" value="{{profiles.previous_page_number}}">{{profiles.previous_page_number}}</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" href="#">Previous</a>
+        </li>
+      {% endif %}
+      
+      <li class="page-item active">
+        <a class="page-link" href="#" value="{{profiles.number}}">{{profiles.number}}</a>
+      </li>
+
+      {% if profiles.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="#" value="{{profiles.next_page_number}}">{{profiles.next_page_number}}</a>
+        </li>
+        {% if profiles.number == 1 and profiles.paginator.num_pages >= 3 %}
+            <li class="page-item">
+                <a class="page-link" href="#" value="3">3</a>
+            </li>
+        {% endif %}
+        <li class="page-item">
+            <a class="page-link" href="#" value="{{profiles.next_page_number}}">Next</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" href="#">Next</a>
+        </li>
+      {% endif %}
+
+      <li class="page-item">
+          <a class="page-link" href="#" value="{{profiles.paginator.num_pages}}">Last({{profiles.paginator.num_pages}})</a>
+      </li>
+    </ul>
+    {% endif %}
+</nav>
+
+<script type="text/javascript">
+    window.onload = (event) => {
+        $("#std_pagination a").click(function() {
+            var pageNum = $(this).attr('value')
+            $("#page").val(pageNum)
+            $("#form_pagination").submit()
+            return false;
+        })
+    }
+</script>
