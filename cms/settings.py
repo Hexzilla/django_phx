@@ -53,7 +53,6 @@ INSTALLED_APPS = [
     'django_filters',
     # 'phone_field',
 
-    'django_seed',
     'livereload',
 ]
 
