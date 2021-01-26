@@ -1765,8 +1765,12 @@ def blacklist_bank(request):
 
 @login_required(login_url='login')
 def manage_employee(request):
+	positions = request.session['positions']
+	if not 'employee_view' in positions:
+		return render(request, 'accounts/require_permission.html')
+
 	users = User.objects.all().order_by("id")
-	context = {"users":users}
+	context = {"users":users, "positions": positions}
 	return render(request, 'accounts/employee/manage_employee.html',  context)
 
 
@@ -1812,6 +1816,10 @@ def manage_position(request):
 
 @login_required(login_url='login')
 def action_logs(request):
+	positions = request.session['positions']
+	if not 'action_logs' in positions:
+		return render(request, 'accounts/require_permission.html')
+
 	context = {}
 	return render(request, 'accounts/employee/action_logs.html',  context)
 

@@ -3,7 +3,9 @@
 <div class="row">
     <h3>Manage Employee</h3>
     <div class="ml-auto">
+        {% if 'employee_add' in positions %}
         <button class="btn btn-primary " type="submit ">Add New</button>
+        {% endif %}
     </div>
 
 </div>
@@ -31,7 +33,11 @@
             <td>{{profile.id}}</td>
             <td>{{profile}}</td>
             <td>{{profile.last_name}} {{profile.first_name}}</td>
-            <td> <a class="btn btn-sm btn-info" href="{% url 'assign_position' profile.id %}">Edit</a> </td>
+            {% if 'employee_edit' in positions %}
+                <td> <a class="btn btn-sm btn-info" href="{% url 'assign_position' profile.id %}">Edit</a> </td>
+            {% else %}
+                <td></td>
+            {% endif %}
             <td>{{profile.date_joined}}</td>
             {% if profile.is_active == True %}
             <td>Active</td>
