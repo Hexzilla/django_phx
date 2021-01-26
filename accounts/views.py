@@ -1833,7 +1833,9 @@ def action_logs(request):
 def manage_sms(request):
 	if request.method == "POST":
 		sms = SMSGateway()
-		sms.id = request.POST.get('id')
+		sms_id = request.POST.get('id')
+		if sms_id and sms_id != 0: 
+			sms.id = sms_id
 		sms.token = request.POST.get('token')
 		sms.deviceId = request.POST.get('deviceId')
 		sms.active = request.POST.get('active') == 'on'
