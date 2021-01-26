@@ -380,33 +380,13 @@ def list_deposit(request):
 	myFilter  = DepositFilter(request.POST, queryset=deposits)
 	deposits  = myFilter.qs
 
-	# gatewayForm = CreateSMSGatewayForm()
-	# gateway = gatewayForm.save(commit=False)
-	# gateway.name = 'test_gateway'
-	# gateway.save()
-
-	# gateway = SMSGateway.objects.get(name='test_gateway')
-	# logger.warning('gateway' + gateway.name)
-
 	# Filter by date range
 	deposits = filter_by_date_range(request, deposits)
-
-	# Print logs
-	#for e in deposits.all():
-	#	if e.date:
-	#		logger.warning("deposits: " + str(e.date))
 	
 	# Paginateion
 	paginator = Paginator(deposits, 10)
 	page      = request.POST.get('page')
 	profile   = paginator.get_page(page)
-
-	# profile.has_previous = True
-	# profile.previous_page_number = 99
-	# profile.number = 100
-	# profile.next_page_number = 0
-	# profile.has_next = False
-	# profile.paginator.num_pages = 100
 
 	context = {'profiles': profile, 'search': get_filter(request), 'data': get_select_items()}
 	return render(request, 'accounts/transaction/list_deposit.html', context)
@@ -415,7 +395,7 @@ def list_deposit(request):
 @login_required(login_url='login')
 def list_withdrawal(request):
 	withdrawals = Transaction.objects.filter(tag='Withdrawal').filter(status="Approved").filter(completed="Yes").order_by('-id')
-	myFilter = DepositFilter(request.GET, queryset=withdrawals)
+	myFilter = DepositFilter(request.POST, queryset=withdrawals)
 	withdrawals = myFilter.qs
 
 	# Filter by date range
@@ -432,7 +412,7 @@ def list_withdrawal(request):
 @login_required(login_url='login')
 def list_transfer(request):
 	transfers = Transaction.objects.filter(tag='Transfer').filter(status="Approved").filter(completed="Yes").order_by('-id')
-	myFilter = DepositFilter(request.GET, queryset=transfers)
+	myFilter = DepositFilter(request.POST, queryset=transfers)
 	transfers = myFilter.qs
 
 	# Filter by date range
@@ -1817,8 +1797,7 @@ def assign_position(request, user_id):
 
 @login_required(login_url='login')
 def manage_position(request):
-	context = {}
-	return render(request, 'accounts/employee/manage_position.html',  context)
+	return redirect('assign_position', request.user.id)
 	
 
 @login_required(login_url='login')
