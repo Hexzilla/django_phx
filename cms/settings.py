@@ -29,7 +29,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'x8=ujz!3ioo_hzuj@#tx%3jg_$5c=%(!5jao#@4h+@1o)x^5$i'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com', 'bluedjango.herokuapp.com']
 
@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     'django_filters',
     # 'phone_field',
 
-    # 'livereload',
+    'livereload',
 ]
 
 MIDDLEWARE = [
@@ -104,39 +104,39 @@ WSGI_APPLICATION = 'cms.wsgi.application'
 
 # live DB
 # DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.postgresql',
-#             'NAME': 'd9bukmdbiat1fe',
-#             'USER': 'kljlkbdphvpmrc',
-#             'PASSWORD': 'c3da0c5c79071b11d7b260070e8978084a6abc6192af013a9f2c1ca49d1a59fb',
-#             'HOST': 'ec2-52-204-232-46.compute-1.amazonaws.com',
-#             'PORT': '5432',
-#         }
-#     }
-
-# Heroku Postgresql
-DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'dahsvl30h6qp6b',
-            'USER': 'zjobtbemfgzuxz',
-            'PASSWORD': '4d6fa703d5c2897e140abedbaf303bfce2c4ea4b0027f955c5eaded3eb66b933',
-            'HOST': 'ec2-54-228-250-82.eu-west-1.compute.amazonaws.com',
-            'PORT': '5432',
-        }
-    }
-
-#Local MySQL
-# DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'django',
-#         'HOST': 'localhost', 
-#         'USER': 'django', 
-#         'PASSWORD': 'django123!!!', 
-#         'PORT': '3306',
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'd9bukmdbiat1fe',
+#         'USER': 'kljlkbdphvpmrc',
+#         'PASSWORD': 'c3da0c5c79071b11d7b260070e8978084a6abc6192af013a9f2c1ca49d1a59fb',
+#         'HOST': 'ec2-52-204-232-46.compute-1.amazonaws.com',
+#         'PORT': '5432',
 #     }
 # }
+
+# Heroku Postgresql
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'dahsvl30h6qp6b',
+#         'USER': 'zjobtbemfgzuxz',
+#         'PASSWORD': '4d6fa703d5c2897e140abedbaf303bfce2c4ea4b0027f955c5eaded3eb66b933',
+#         'HOST': 'ec2-54-228-250-82.eu-west-1.compute.amazonaws.com',
+#         'PORT': '5432',
+#     }
+# }
+
+#Local MySQL
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'django',
+        'HOST': 'localhost', 
+        'USER': 'django', 
+        'PASSWORD': 'django123!!!', 
+        'PORT': '3306',
+    }
+}
 
 # DATABASES = {
 #     'default': {
@@ -202,9 +202,9 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'staticfiles'), ]
 # EMAIL_HOST_USER = 'youremail'
 # EMAIL_HOST_PASSWORD = 'yourpassword'
 
-# MIDDLEWARE_CLASSES = (
-#     'livereload.middleware.LiveReloadScript',
-# )
+MIDDLEWARE_CLASSES = (
+    'livereload.middleware.LiveReloadScript',
+)
 
 LOGGING = {
     'version': 1,

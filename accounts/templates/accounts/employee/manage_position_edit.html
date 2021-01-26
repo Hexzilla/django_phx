@@ -64,6 +64,50 @@ input:checked + .slider:before {
 }
 </style>
 
+<br>
+<div class="row">
+    <h3>Manage Position</h3>
+    <div class="ml-auto">
+        <button class="btn btn-primary " type="submit ">Add New</button>
+    </div>
+
+</div>
+<br>
+
+
+<table class="table table-bordered mt-4 align-content-center align-items-center text-center ">
+    <thead>
+        <tr>
+            <th scope="col ">#</th>
+            <th scope="col ">Name</th>
+            <th scope="col ">Status</th>
+        </tr>
+    </thead>
+    <tbody>{% for profile in groups %}
+        <tr>
+            <td>{{profile.id}}</td>
+            <td>{{profile}}</td>
+            <td>{{profile.is_active}}</td>
+        </tr>
+        {% endfor %}
+
+        <div class="pagination ">
+            <div class="ml-auto text-right" style="font-size: 10px;">
+                <form method=" get ">
+                    Search:<br>
+                    <input type="text ">
+                </form>
+            </div>
+        </div>
+    </tbody>
+</table>
+
+<!-- Pagination Begin -->
+<div class="row flex justify-content-center">
+    {% include 'accounts/content/pagination.html' %}    
+</div> 
+<!-- Pagination End -->
+
 <form action="" method="POST">
 <div class="form-row">    
     {% csrf_token %}

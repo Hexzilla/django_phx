@@ -6,3 +6,6 @@ python manage.py migrate accounts
 
 
 pip install -r .\requirements.txt
+
+
+heroku config:set DJANGO_ALLOWED_HOSTS=.herokuapp.com,bluedjango.herokuapp.com

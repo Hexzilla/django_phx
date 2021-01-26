@@ -31,7 +31,7 @@
             <td>{{profile.id}}</td>
             <td>{{profile}}</td>
             <td>{{profile.last_name}} {{profile.first_name}}</td>
-            <td>{{profile.groups.all.0}}</td>
+            <td> <a class="btn btn-sm btn-info" href="{% url 'assign_position' profile.id %}">Edit</a> </td>
             <td>{{profile.date_joined}}</td>
             {% if profile.is_active == True %}
             <td>Active</td>

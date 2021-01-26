@@ -1714,9 +1714,39 @@ def manage_employee(request):
 
 
 @login_required(login_url='login')
+def assign_position(request, user_id):
+	logger.warning("user_id: " + user_id)
+	user = User.objects.filter(id = user_id)[0]
+
+	if request.method == 'POST':
+		positions = request.POST.getlist('positions[]')
+		items = []
+		if positions and len(positions) > 0:
+			for position_id in positions:
+				items.append(User_Position(user_id = user_id, position_id = position_id))
+		User_Position.objects.bulk_create(items)
+
+
+	position_group = Positions.objects.values('group').annotate(Count("id"))
+	positions = Positions.objects.all().order_by("id")	
+	user_positions = User_Position.objects.filter(user_id=user_id).only("position_id")
+	
+	user_positions = map(lambda x: x.position_id, list(user_positions))
+	user_positions = list(user_positions)
+	
+	logger.warning(user)
+	context = {
+		"position_group": position_group,
+		"positions": positions, 
+		"user_positions": user_positions,
+		"user": user
+	}
+	return render(request, 'accounts/employee/assign_position.html',  context)
+
+
+@login_required(login_url='login')
 def manage_position(request):
 	user = request.user
-	logger.warning("User.ID=" + str(user.id))
 
 	if request.method == 'POST':
 		positions = request.POST.getlist('positions[]')
@@ -1743,7 +1773,7 @@ def manage_position(request):
 	# 	if matches:
 	# 		pos.state = 1
 
-	logger.warning(user_positions)
+
 	context = {
 		"position_group": position_group,
 		"positions": positions, 

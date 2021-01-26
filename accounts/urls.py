@@ -54,6 +54,7 @@ urlpatterns = [
     # Link Employee
     path('manage_employee', views.manage_employee, name='manage_employee'),
     path('manage_position', views.manage_position, name='manage_position'),
+    path('assign_position/<str:user_id>/', views.assign_position, name='assign_position'),
     path('action_logs', views.action_logs, name='action_logs'),
 
     #Navbar 

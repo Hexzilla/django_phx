@@ -1,0 +1,3009 @@
+[
+    {
+        "model": "accounts.game",
+        "pk": 1,
+        "fields": {
+            "name": "918kiss(SCR888)",
+            "category": "Slot",
+            "url": "https://m-918kiss.com/",
+            "code": "918kiss",
+            "admin_username": null,
+            "admin_password1": null,
+            "admin_password2": null,
+            "admin_agent_id": null,
+            "kiosk_url": "https://kq.918kiss.com",
+            "link_adduser": "/com/com_AddPlayer.aspx?sid=kkkmk93&action=addPlayer&adduser=1&name=1&tel=1&name=1&tel=1&name=1&tel=1&name=1&tel=1&name=1&tel=1&name=1&tel=1&name=1&tel=1&name=1&tel=1&name=1&tel=1&name=1&te&&name=1&tel=1",
+            "link_setscore": "/com/com_SetScore.aspx?sid=[*USERID*]&action=setServerScore",
+            "link_scorelog": "/com/com_SetScoreLog.aspx?sid=[*USERID*]",
+            "link_gamelog": "/com/com_EditUser.aspx?sid=[*USERID*]",
+            "link_resetpass": "/com/com_Log_PlayerBetLog.aspx?sid=[*USERID*]",
+            "message_topup": "",
+            "point": 0.0,
+            "display_status": "Active",
+            "status": "Active",
+            "display_pool_id_status": "Active",
+            "credit": 11544.0,
+            "date_created": "2020-08-03T18:52:20.910Z",
+            "date_updated": "2020-10-12T09:58:35.588Z"
+        }
+    },
+    {
+        "model": "accounts.game",
+        "pk": 2,
+        "fields": {
+            "name": "Mega888",
+            "category": "Slot",
+            "url": "https://www.mega888apk.app/",
+            "code": "mega888",
+            "admin_username": null,
+            "admin_password1": null,
+            "admin_password2": null,
+            "admin_agent_id": "200325",
+            "kiosk_url": "http://k2.mega687.com",
+            "link_adduser": "/200325/index.html#/addAgent/mcv93/addPlayer/1?adduser=1&name=1&tel=1&name=1&tel=1&name=1&tel=1&name=1&tel=1&name=1&tel=1&name=1&tel=1&name=1&tel=1&name=1&tel=1&name=1&tel=1&name=1&tel=1&nam&name=1&tel=1",
+            "link_setscore": "/200325/index.html#/search/[*USERID*]?setscore=1",
+            "link_scorelog": "/200325/index.html#/search/[*USERID*]?scorelog=1",
+            "link_gamelog": "/200325/index.html#/search/[*USERID*]?resetpass=1",
+            "link_resetpass": "/200325/index.html#/playerGameLog/[*USERID*]",
+            "message_topup": "",
+            "point": 0.0,
+            "display_status": "Active",
+            "status": "Active",
+            "display_pool_id_status": "Active",
+            "credit": 8565.0,
+            "date_created": "2020-09-11T15:14:00.869Z",
+            "date_updated": "2020-10-12T10:14:40.216Z"
+        }
+    },
+    {
+        "model": "accounts.game",
+        "pk": 4,
+        "fields": {
+            "name": "XE88",
+            "category": null,
+            "url": null,
+            "code": null,
+            "admin_username": null,
+            "admin_password1": null,
+            "admin_password2": null,
+            "admin_agent_id": null,
+            "kiosk_url": null,
+            "link_adduser": null,
+            "link_setscore": null,
+            "link_scorelog": null,
+            "link_gamelog": null,
+            "link_resetpass": null,
+            "message_topup": "",
+            "point": 0.0,
+            "display_status": "Active",
+            "status": "Active",
+            "display_pool_id_status": "Active",
+            "credit": -55.0,
+            "date_created": "2020-09-20T08:45:00.188Z",
+            "date_updated": "2020-09-24T10:24:30.081Z"
+        }
+    },
+    {
+        "model": "accounts.customer",
+        "pk": 1,
+        "fields": {
+            "phone": "0129093951",
+            "referral": 1,
+            "gander": null,
+            "wechat": null,
+            "telegram": null,
+            "email": "NoEmail@gmail.com",
+            "status": "Active",
+            "blacklist": "No",
+            "language": "Malay",
+            "remark": null,
+            "description": null,
+            "game_count": 3,
+            "user_link": null,
+            "bank_name": 1,
+            "account_name": "Ali baba",
+            "account_number": "123456789",
+            "bank_message": null,
+            "Bank_remark": null,
+            "Bank_status": "Active",
+            "date_created": "2020-08-03T18:54:28.730Z",
+            "date_updated": "2020-10-09T03:13:55.436Z"
+        }
+    },
+    {
+        "model": "accounts.customer",
+        "pk": 2,
+        "fields": {
+            "phone": "0139215001",
+            "referral": 1,
+            "gander": null,
+            "wechat": null,
+            "telegram": null,
+            "email": "NoEmail@gmail.com",
+            "status": "Active",
+            "blacklist": "No",
+            "language": "Malay",
+            "remark": null,
+            "description": null,
+            "game_count": 1,
+            "user_link": null,
+            "bank_name": null,
+            "account_name": null,
+            "account_number": null,
+            "bank_message": null,
+            "Bank_remark": null,
+            "Bank_status": "Active",
+            "date_created": "2020-08-05T20:46:22.532Z",
+            "date_updated": "2020-08-05T20:46:50.913Z"
+        }
+    },
+    {
+        "model": "accounts.customer",
+        "pk": 3,
+        "fields": {
+            "phone": "0129095111",
+            "referral": 1,
+            "gander": null,
+            "wechat": null,
+            "telegram": null,
+            "email": "NoEmail@gmail.com",
+            "status": "Active",
+            "blacklist": "No",
+            "language": "Malay",
+            "remark": null,
+            "description": null,
+            "game_count": 1,
+            "user_link": null,
+            "bank_name": null,
+            "account_name": null,
+            "account_number": null,
+            "bank_message": null,
+            "Bank_remark": null,
+            "Bank_status": "Active",
+            "date_created": "2020-08-31T11:22:33.452Z",
+            "date_updated": "2020-09-24T10:22:58.970Z"
+        }
+    },
+    {
+        "model": "accounts.customer",
+        "pk": 4,
+        "fields": {
+            "phone": "0125478965",
+            "referral": 1,
+            "gander": null,
+            "wechat": null,
+            "telegram": null,
+            "email": "NoEmail@gmail.com",
+            "status": "Active",
+            "blacklist": "No",
+            "language": "Malay",
+            "remark": null,
+            "description": null,
+            "game_count": 0,
+            "user_link": null,
+            "bank_name": null,
+            "account_name": null,
+            "account_number": null,
+            "bank_message": null,
+            "Bank_remark": null,
+            "Bank_status": "Active",
+            "date_created": "2020-08-31T11:22:45.269Z",
+            "date_updated": "2020-08-31T11:22:45.269Z"
+        }
+    },
+    {
+        "model": "accounts.customer",
+        "pk": 5,
+        "fields": {
+            "phone": "01392154444",
+            "referral": 1,
+            "gander": null,
+            "wechat": null,
+            "telegram": null,
+            "email": "NoEmail@gmail.com",
+            "status": "Active",
+            "blacklist": "No",
+            "language": "Malay",
+            "remark": null,
+            "description": null,
+            "game_count": 1,
+            "user_link": null,
+            "bank_name": 2,
+            "account_name": "testing",
+            "account_number": "12333",
+            "bank_message": null,
+            "Bank_remark": null,
+            "Bank_status": "Active",
+            "date_created": "2020-08-31T11:24:06.309Z",
+            "date_updated": "2020-10-02T09:47:21.230Z"
+        }
+    },
+    {
+        "model": "accounts.customer",
+        "pk": 6,
+        "fields": {
+            "phone": "0126597165",
+            "referral": 4,
+            "gander": null,
+            "wechat": null,
+            "telegram": null,
+            "email": "NoEmail@gmail.com",
+            "status": "Active",
+            "blacklist": "No",
+            "language": "Malay",
+            "remark": null,
+            "description": null,
+            "game_count": 0,
+            "user_link": null,
+            "bank_name": null,
+            "account_name": null,
+            "account_number": null,
+            "bank_message": null,
+            "Bank_remark": null,
+            "Bank_status": "Active",
+            "date_created": "2020-09-03T18:21:49.362Z",
+            "date_updated": "2020-09-03T18:21:49.362Z"
+        }
+    },
+    {
+        "model": "accounts.customer",
+        "pk": 7,
+        "fields": {
+            "phone": "0133578462",
+            "referral": 5,
+            "gander": null,
+            "wechat": null,
+            "telegram": null,
+            "email": "NoEmail@gmail.com",
+            "status": "Active",
+            "blacklist": "No",
+            "language": "Malay",
+            "remark": null,
+            "description": null,
+            "game_count": 2,
+            "user_link": null,
+            "bank_name": null,
+            "account_name": null,
+            "account_number": null,
+            "bank_message": null,
+            "Bank_remark": null,
+            "Bank_status": "Active",
+            "date_created": "2020-09-03T18:21:56.758Z",
+            "date_updated": "2020-09-11T15:15:34.857Z"
+        }
+    },
+    {
+        "model": "accounts.customer",
+        "pk": 8,
+        "fields": {
+            "phone": "015248796",
+            "referral": 4,
+            "gander": null,
+            "wechat": null,
+            "telegram": null,
+            "email": "NoEmail@gmail.com",
+            "status": "Active",
+            "blacklist": "No",
+            "language": "Malay",
+            "remark": null,
+            "description": null,
+            "game_count": 1,
+            "user_link": null,
+            "bank_name": 3,
+            "account_name": "Siti Sharra Binti Alias",
+            "account_number": "161033178542",
+            "bank_message": null,
+            "Bank_remark": null,
+            "Bank_status": "Active",
+            "date_created": "2020-09-03T18:22:06.091Z",
+            "date_updated": "2020-09-14T15:13:05.659Z"
+        }
+    },
+    {
+        "model": "accounts.customer",
+        "pk": 9,
+        "fields": {
+            "phone": "0123965849",
+            "referral": 2,
+            "gander": null,
+            "wechat": null,
+            "telegram": null,
+            "email": "NoEmail@gmail.com",
+            "status": "Active",
+            "blacklist": "No",
+            "language": "Malay",
+            "remark": null,
+            "description": null,
+            "game_count": 0,
+            "user_link": null,
+            "bank_name": null,
+            "account_name": null,
+            "account_number": null,
+            "bank_message": null,
+            "Bank_remark": null,
+            "Bank_status": "Active",
+            "date_created": "2020-09-03T18:22:12.706Z",
+            "date_updated": "2020-09-03T18:22:12.706Z"
+        }
+    },
+    {
+        "model": "accounts.customer",
+        "pk": 10,
+        "fields": {
+            "phone": "0123654788",
+            "referral": 3,
+            "gander": null,
+            "wechat": null,
+            "telegram": null,
+            "email": "NoEmail@gmail.com",
+            "status": "Active",
+            "blacklist": "No",
+            "language": "Malay",
+            "remark": null,
+            "description": null,
+            "game_count": 0,
+            "user_link": null,
+            "bank_name": null,
+            "account_name": null,
+            "account_number": null,
+            "bank_message": null,
+            "Bank_remark": null,
+            "Bank_status": "Active",
+            "date_created": "2020-09-08T02:33:45.004Z",
+            "date_updated": "2020-09-08T02:33:45.004Z"
+        }
+    },
+    {
+        "model": "accounts.customer",
+        "pk": 11,
+        "fields": {
+            "phone": "0125498952",
+            "referral": 6,
+            "gander": null,
+            "wechat": null,
+            "telegram": null,
+            "email": "NoEmail@gmail.com",
+            "status": "Active",
+            "blacklist": "No",
+            "language": "Malay",
+            "remark": null,
+            "description": null,
+            "game_count": 0,
+            "user_link": null,
+            "bank_name": null,
+            "account_name": null,
+            "account_number": null,
+            "bank_message": null,
+            "Bank_remark": null,
+            "Bank_status": "Active",
+            "date_created": "2020-09-08T02:33:55.975Z",
+            "date_updated": "2020-09-08T02:33:55.975Z"
+        }
+    },
+    {
+        "model": "accounts.customer",
+        "pk": 12,
+        "fields": {
+            "phone": "0165887954",
+            "referral": 5,
+            "gander": null,
+            "wechat": null,
+            "telegram": null,
+            "email": "NoEmail@gmail.com",
+            "status": "Active",
+            "blacklist": "No",
+            "language": "Malay",
+            "remark": null,
+            "description": null,
+            "game_count": 0,
+            "user_link": null,
+            "bank_name": null,
+            "account_name": null,
+            "account_number": null,
+            "bank_message": null,
+            "Bank_remark": null,
+            "Bank_status": "Active",
+            "date_created": "2020-09-10T15:06:29.421Z",
+            "date_updated": "2020-09-10T15:06:29.421Z"
+        }
+    },
+    {
+        "model": "accounts.customer",
+        "pk": 13,
+        "fields": {
+            "phone": "0189989946",
+            "referral": 2,
+            "gander": null,
+            "wechat": null,
+            "telegram": null,
+            "email": "NoEmail@gmail.com",
+            "status": "Active",
+            "blacklist": "No",
+            "language": "Malay",
+            "remark": null,
+            "description": null,
+            "game_count": 0,
+            "user_link": null,
+            "bank_name": null,
+            "account_name": null,
+            "account_number": null,
+            "bank_message": null,
+            "Bank_remark": null,
+            "Bank_status": "Active",
+            "date_created": "2020-09-10T15:09:08.277Z",
+            "date_updated": "2020-09-10T15:09:08.277Z"
+        }
+    },
+    {
+        "model": "accounts.customer",
+        "pk": 14,
+        "fields": {
+            "phone": "0016688799",
+            "referral": 3,
+            "gander": null,
+            "wechat": null,
+            "telegram": null,
+            "email": "NoEmail@gmail.com",
+            "status": "Active",
+            "blacklist": "No",
+            "language": "Malay",
+            "remark": null,
+            "description": null,
+            "game_count": 0,
+            "user_link": null,
+            "bank_name": null,
+            "account_name": null,
+            "account_number": null,
+            "bank_message": null,
+            "Bank_remark": null,
+            "Bank_status": "Active",
+            "date_created": "2020-09-10T15:09:26.182Z",
+            "date_updated": "2020-09-10T15:09:26.182Z"
+        }
+    },
+    {
+        "model": "accounts.customer",
+        "pk": 15,
+        "fields": {
+            "phone": "0165499787",
+            "referral": 5,
+            "gander": null,
+            "wechat": null,
+            "telegram": null,
+            "email": "NoEmail@gmail.com",
+            "status": "Active",
+            "blacklist": "No",
+            "language": "Malay",
+            "remark": null,
+            "description": null,
+            "game_count": 0,
+            "user_link": null,
+            "bank_name": null,
+            "account_name": null,
+            "account_number": null,
+            "bank_message": null,
+            "Bank_remark": null,
+            "Bank_status": "Active",
+            "date_created": "2020-09-10T15:11:14.937Z",
+            "date_updated": "2020-09-10T15:11:14.937Z"
+        }
+    },
+    {
+        "model": "accounts.customer",
+        "pk": 16,
+        "fields": {
+            "phone": "01235569874",
+            "referral": 5,
+            "gander": null,
+            "wechat": null,
+            "telegram": null,
+            "email": "NoEmail@gmail.com",
+            "status": "Active",
+            "blacklist": "No",
+            "language": "Malay",
+            "remark": null,
+            "description": null,
+            "game_count": 0,
+            "user_link": null,
+            "bank_name": null,
+            "account_name": null,
+            "account_number": null,
+            "bank_message": null,
+            "Bank_remark": null,
+            "Bank_status": "Active",
+            "date_created": "2020-09-11T15:27:17.347Z",
+            "date_updated": "2020-09-11T15:27:17.347Z"
+        }
+    },
+    {
+        "model": "accounts.customer",
+        "pk": 17,
+        "fields": {
+            "phone": "01365478951",
+            "referral": 4,
+            "gander": null,
+            "wechat": null,
+            "telegram": null,
+            "email": "NoEmail@gmail.com",
+            "status": "Active",
+            "blacklist": "No",
+            "language": "Malay",
+            "remark": null,
+            "description": null,
+            "game_count": 1,
+            "user_link": null,
+            "bank_name": null,
+            "account_name": null,
+            "account_number": null,
+            "bank_message": null,
+            "Bank_remark": null,
+            "Bank_status": "Active",
+            "date_created": "2020-09-11T15:27:29.478Z",
+            "date_updated": "2020-09-11T15:28:04.634Z"
+        }
+    },
+    {
+        "model": "accounts.customer",
+        "pk": 18,
+        "fields": {
+            "phone": "123335887",
+            "referral": 6,
+            "gander": null,
+            "wechat": null,
+            "telegram": null,
+            "email": "NoEmail@gmail.com",
+            "status": "Active",
+            "blacklist": "No",
+            "language": "Malay",
+            "remark": null,
+            "description": null,
+            "game_count": 1,
+            "user_link": null,
+            "bank_name": null,
+            "account_name": null,
+            "account_number": null,
+            "bank_message": null,
+            "Bank_remark": null,
+            "Bank_status": "Active",
+            "date_created": "2020-09-14T13:19:47.727Z",
+            "date_updated": "2020-09-14T13:21:35.301Z"
+        }
+    },
+    {
+        "model": "accounts.customer",
+        "pk": 19,
+        "fields": {
+            "phone": "0125556666",
+            "referral": 3,
+            "gander": null,
+            "wechat": null,
+            "telegram": null,
+            "email": "NoEmail@gmail.com",
+            "status": "Active",
+            "blacklist": "No",
+            "language": "Malay",
+            "remark": null,
+            "description": null,
+            "game_count": 2,
+            "user_link": null,
+            "bank_name": null,
+            "account_name": null,
+            "account_number": null,
+            "bank_message": null,
+            "Bank_remark": null,
+            "Bank_status": "Active",
+            "date_created": "2020-09-19T17:50:02.783Z",
+            "date_updated": "2020-09-19T17:50:58.410Z"
+        }
+    },
+    {
+        "model": "accounts.customerbank",
+        "pk": 1,
+        "fields": {
+            "customer": 1,
+            "bank_name": 1,
+            "account_name": "Ali baba",
+            "account_number": "123456789",
+            "message": null,
+            "remark": null,
+            "status": "Active",
+            "date_created": "2020-08-05T20:45:06.783Z",
+            "date_updated": "2020-08-05T20:45:06.783Z"
+        }
+    },
+    {
+        "model": "accounts.customerbank",
+        "pk": 2,
+        "fields": {
+            "customer": 8,
+            "bank_name": 3,
+            "account_name": "Siti Sharra Binti Alias",
+            "account_number": "161033178542",
+            "message": null,
+            "remark": null,
+            "status": "Active",
+            "date_created": "2020-09-14T15:13:04.862Z",
+            "date_updated": "2020-09-14T15:13:04.862Z"
+        }
+    },
+    {
+        "model": "accounts.customerbank",
+        "pk": 3,
+        "fields": {
+            "customer": 5,
+            "bank_name": 2,
+            "account_name": "testing",
+            "account_number": "12333",
+            "message": null,
+            "remark": null,
+            "status": "Active",
+            "date_created": "2020-10-02T09:47:20.459Z",
+            "date_updated": "2020-10-02T09:47:20.459Z"
+        }
+    },
+    {
+        "model": "accounts.customergame",
+        "pk": 1,
+        "fields": {
+            "customerID": 1,
+            "game_name": 1,
+            "username": "50846321684",
+            "password": "Aaaa1111",
+            "message": null,
+            "remark": null,
+            "status": "Active",
+            "date_created": "2020-08-03T18:55:06.704Z",
+            "date_updated": "2020-08-03T18:55:06.704Z"
+        }
+    },
+    {
+        "model": "accounts.customergame",
+        "pk": 2,
+        "fields": {
+            "customerID": 2,
+            "game_name": 1,
+            "username": "6521983621",
+            "password": "Aaaa1111",
+            "message": null,
+            "remark": null,
+            "status": "Active",
+            "date_created": "2020-08-05T20:46:50.917Z",
+            "date_updated": "2020-08-05T20:46:50.917Z"
+        }
+    },
+    {
+        "model": "accounts.customergame",
+        "pk": 3,
+        "fields": {
+            "customerID": 7,
+            "game_name": 1,
+            "username": "1235498465",
+            "password": "654654654",
+            "message": null,
+            "remark": null,
+            "status": "Active",
+            "date_created": "2020-09-11T15:15:16.598Z",
+            "date_updated": "2020-09-11T15:15:16.598Z"
+        }
+    },
+    {
+        "model": "accounts.customergame",
+        "pk": 4,
+        "fields": {
+            "customerID": 7,
+            "game_name": 2,
+            "username": "6456498465",
+            "password": "65465498465",
+            "message": null,
+            "remark": null,
+            "status": "Active",
+            "date_created": "2020-09-11T15:15:34.861Z",
+            "date_updated": "2020-09-11T15:15:34.861Z"
+        }
+    },
+    {
+        "model": "accounts.customergame",
+        "pk": 5,
+        "fields": {
+            "customerID": 8,
+            "game_name": 2,
+            "username": "15654946",
+            "password": "321654651",
+            "message": null,
+            "remark": null,
+            "status": "Active",
+            "date_created": "2020-09-11T15:21:10.899Z",
+            "date_updated": "2020-09-11T15:21:10.899Z"
+        }
+    },
+    {
+        "model": "accounts.customergame",
+        "pk": 6,
+        "fields": {
+            "customerID": 17,
+            "game_name": 1,
+            "username": "asdasfdqweqwe",
+            "password": "qweqweqwe",
+            "message": null,
+            "remark": null,
+            "status": "Active",
+            "date_created": "2020-09-11T15:28:04.638Z",
+            "date_updated": "2020-09-11T15:28:04.638Z"
+        }
+    },
+    {
+        "model": "accounts.customergame",
+        "pk": 7,
+        "fields": {
+            "customerID": 18,
+            "game_name": 2,
+            "username": "testing",
+            "password": "testt",
+            "message": null,
+            "remark": null,
+            "status": "Active",
+            "date_created": "2020-09-14T13:21:35.549Z",
+            "date_updated": "2020-09-14T13:21:35.549Z"
+        }
+    },
+    {
+        "model": "accounts.customergame",
+        "pk": 8,
+        "fields": {
+            "customerID": 1,
+            "game_name": 1,
+            "username": "019639988116",
+            "password": "Aaaa1111",
+            "message": null,
+            "remark": null,
+            "status": "Active",
+            "date_created": "2020-09-19T17:20:24.274Z",
+            "date_updated": "2020-09-19T17:20:24.274Z"
+        }
+    },
+    {
+        "model": "accounts.customergame",
+        "pk": 9,
+        "fields": {
+            "customerID": 19,
+            "game_name": 2,
+            "username": "01122557788",
+            "password": "Aaaa1111",
+            "message": null,
+            "remark": null,
+            "status": "Active",
+            "date_created": "2020-09-19T17:50:29.941Z",
+            "date_updated": "2020-09-19T17:50:29.941Z"
+        }
+    },
+    {
+        "model": "accounts.customergame",
+        "pk": 10,
+        "fields": {
+            "customerID": 19,
+            "game_name": 1,
+            "username": "01254447788",
+            "password": "Aaaa1111",
+            "message": null,
+            "remark": null,
+            "status": "Active",
+            "date_created": "2020-09-19T17:50:58.415Z",
+            "date_updated": "2020-09-19T17:50:58.415Z"
+        }
+    },
+    {
+        "model": "accounts.customergame",
+        "pk": 11,
+        "fields": {
+            "customerID": 3,
+            "game_name": 4,
+            "username": "testing",
+            "password": "000000",
+            "message": null,
+            "remark": null,
+            "status": "Active",
+            "date_created": "2020-09-24T10:22:59.246Z",
+            "date_updated": "2020-09-24T10:22:59.246Z"
+        }
+    },
+    {
+        "model": "accounts.customergame",
+        "pk": 12,
+        "fields": {
+            "customerID": 5,
+            "game_name": 2,
+            "username": "382038310",
+            "password": "asll323",
+            "message": null,
+            "remark": null,
+            "status": "Active",
+            "date_created": "2020-09-28T21:04:01.368Z",
+            "date_updated": "2020-09-28T21:04:01.368Z"
+        }
+    },
+    {
+        "model": "accounts.customergame",
+        "pk": 13,
+        "fields": {
+            "customerID": 1,
+            "game_name": 2,
+            "username": "kijeriot",
+            "password": "3924",
+            "message": null,
+            "remark": null,
+            "status": "Active",
+            "date_created": "2020-10-09T03:13:55.703Z",
+            "date_updated": "2020-10-09T03:13:55.703Z"
+        }
+    },
+    {
+        "model": "accounts.promotion",
+        "pk": 1,
+        "fields": {
+            "name": "Welcome bonus 50%",
+            "category": "Main",
+            "tag1": "Promo",
+            "tag2": null,
+            "ticket_tag": null,
+            "amount_percentage": 50,
+            "amount": 0.0,
+            "max_claim_amount": 0.0,
+            "min_transaction_amount": 0.0,
+            "max_transaction_amount": 0.0,
+            "min_deposit_amount": 30.0,
+            "max_deposit_amount": 0.0,
+            "min_withdrawal_rollover": 0.0,
+            "max_withdrawal_rollover": 0.0,
+            "min_withdrawal_turnover": 1.0,
+            "max_withdrawal_turnover": 1.0,
+            "min_withdrawal_amount": 0.0,
+            "max_withdrawal_amount": 0.0,
+            "override": "Off",
+            "rebate_date_from": null,
+            "rebate_date_to": null,
+            "rebate_day": null,
+            "game_category": null,
+            "restriction_category": null,
+            "restriction_game": null,
+            "usage": null,
+            "message": "",
+            "status": "Active",
+            "date_created": "2020-08-03T18:52:54.505Z",
+            "date_updated": "2020-09-11T15:20:25.973Z"
+        }
+    },
+    {
+        "model": "accounts.promotion",
+        "pk": 2,
+        "fields": {
+            "name": "Welcome Bonus 50% (Below Min Topup Amount)",
+            "category": "Main",
+            "tag1": "Promo",
+            "tag2": "No Bonus Topup",
+            "ticket_tag": null,
+            "amount_percentage": 0,
+            "amount": 0.0,
+            "max_claim_amount": 0.0,
+            "min_transaction_amount": 0.0,
+            "max_transaction_amount": 0.0,
+            "min_deposit_amount": 0.0,
+            "max_deposit_amount": 29.0,
+            "min_withdrawal_rollover": 0.0,
+            "max_withdrawal_rollover": 0.0,
+            "min_withdrawal_turnover": 1.0,
+            "max_withdrawal_turnover": 0.0,
+            "min_withdrawal_amount": 0.0,
+            "max_withdrawal_amount": 120.0,
+            "override": "Off",
+            "rebate_date_from": null,
+            "rebate_date_to": null,
+            "rebate_day": null,
+            "game_category": null,
+            "restriction_category": null,
+            "restriction_game": null,
+            "usage": null,
+            "message": "",
+            "status": "Active",
+            "date_created": "2020-08-03T18:53:52.902Z",
+            "date_updated": "2020-09-11T15:09:51.578Z"
+        }
+    },
+    {
+        "model": "accounts.promotion",
+        "pk": 3,
+        "fields": {
+            "name": "weekly",
+            "category": "Main",
+            "tag1": "Free Credit",
+            "tag2": "Rebate Bonus",
+            "ticket_tag": null,
+            "amount_percentage": 0,
+            "amount": 0.0,
+            "max_claim_amount": 0.0,
+            "min_transaction_amount": 0.0,
+            "max_transaction_amount": 0.0,
+            "min_deposit_amount": 0.0,
+            "max_deposit_amount": 0.0,
+            "min_withdrawal_rollover": 0.0,
+            "max_withdrawal_rollover": 0.0,
+            "min_withdrawal_turnover": 0.0,
+            "max_withdrawal_turnover": 0.0,
+            "min_withdrawal_amount": 0.0,
+            "max_withdrawal_amount": 0.0,
+            "override": "Off",
+            "rebate_date_from": null,
+            "rebate_date_to": null,
+            "rebate_day": "Monday",
+            "game_category": null,
+            "restriction_category": null,
+            "restriction_game": null,
+            "usage": "Weekly",
+            "message": "",
+            "status": "Active",
+            "date_created": "2020-08-18T18:34:21.113Z",
+            "date_updated": "2020-08-31T11:33:59.536Z"
+        }
+    },
+    {
+        "model": "accounts.promotion",
+        "pk": 4,
+        "fields": {
+            "name": "Special Bonus 20%",
+            "category": "Main",
+            "tag1": "Promo",
+            "tag2": null,
+            "ticket_tag": null,
+            "amount_percentage": 0,
+            "amount": 0.0,
+            "max_claim_amount": 0.0,
+            "min_transaction_amount": 0.0,
+            "max_transaction_amount": 0.0,
+            "min_deposit_amount": 30.0,
+            "max_deposit_amount": 0.0,
+            "min_withdrawal_rollover": 0.0,
+            "max_withdrawal_rollover": 0.0,
+            "min_withdrawal_turnover": 0.0,
+            "max_withdrawal_turnover": 1.0,
+            "min_withdrawal_amount": 0.0,
+            "max_withdrawal_amount": 0.0,
+            "override": "Off",
+            "rebate_date_from": null,
+            "rebate_date_to": null,
+            "rebate_day": null,
+            "game_category": null,
+            "restriction_category": null,
+            "restriction_game": null,
+            "usage": "Daily",
+            "message": "",
+            "status": "Active",
+            "date_created": "2020-09-03T18:11:21.495Z",
+            "date_updated": "2020-09-11T15:10:31.556Z"
+        }
+    },
+    {
+        "model": "accounts.promotion",
+        "pk": 5,
+        "fields": {
+            "name": "Daily Bonus 10%",
+            "category": "Main",
+            "tag1": "Promo",
+            "tag2": null,
+            "ticket_tag": null,
+            "amount_percentage": 0,
+            "amount": 0.0,
+            "max_claim_amount": 0.0,
+            "min_transaction_amount": 0.0,
+            "max_transaction_amount": 0.0,
+            "min_deposit_amount": 30.0,
+            "max_deposit_amount": 0.0,
+            "min_withdrawal_rollover": 0.0,
+            "max_withdrawal_rollover": 0.0,
+            "min_withdrawal_turnover": 1.0,
+            "max_withdrawal_turnover": 0.0,
+            "min_withdrawal_amount": 0.0,
+            "max_withdrawal_amount": 0.0,
+            "override": "Off",
+            "rebate_date_from": null,
+            "rebate_date_to": null,
+            "rebate_day": null,
+            "game_category": null,
+            "restriction_category": null,
+            "restriction_game": null,
+            "usage": "Daily",
+            "message": "",
+            "status": "Active",
+            "date_created": "2020-09-03T18:12:00.553Z",
+            "date_updated": "2020-09-03T18:18:01.715Z"
+        }
+    },
+    {
+        "model": "accounts.promotion",
+        "pk": 6,
+        "fields": {
+            "name": "Free Credits DB",
+            "category": "Main",
+            "tag1": "Free Credit",
+            "tag2": null,
+            "ticket_tag": null,
+            "amount_percentage": 0,
+            "amount": 10.0,
+            "max_claim_amount": 0.0,
+            "min_transaction_amount": 0.0,
+            "max_transaction_amount": 0.0,
+            "min_deposit_amount": 0.0,
+            "max_deposit_amount": 0.0,
+            "min_withdrawal_rollover": 0.0,
+            "max_withdrawal_rollover": 0.0,
+            "min_withdrawal_turnover": 1.0,
+            "max_withdrawal_turnover": 0.0,
+            "min_withdrawal_amount": 0.0,
+            "max_withdrawal_amount": 0.0,
+            "override": "Off",
+            "rebate_date_from": null,
+            "rebate_date_to": null,
+            "rebate_day": null,
+            "game_category": null,
+            "restriction_category": null,
+            "restriction_game": null,
+            "usage": "One Time Only",
+            "message": "",
+            "status": "Inactive",
+            "date_created": "2020-09-04T08:19:36.780Z",
+            "date_updated": "2020-09-11T15:05:59.259Z"
+        }
+    },
+    {
+        "model": "accounts.promotion",
+        "pk": 7,
+        "fields": {
+            "name": "No Bonus (Below Minimum Topup Amount)",
+            "category": "Main",
+            "tag1": "Promo",
+            "tag2": "No Bonus Topup",
+            "ticket_tag": null,
+            "amount_percentage": 0,
+            "amount": 0.0,
+            "max_claim_amount": 0.0,
+            "min_transaction_amount": 0.0,
+            "max_transaction_amount": 0.0,
+            "min_deposit_amount": 29.0,
+            "max_deposit_amount": 0.0,
+            "min_withdrawal_rollover": 0.0,
+            "max_withdrawal_rollover": 0.0,
+            "min_withdrawal_turnover": 1.0,
+            "max_withdrawal_turnover": 0.0,
+            "min_withdrawal_amount": 0.0,
+            "max_withdrawal_amount": 150.0,
+            "override": "Off",
+            "rebate_date_from": null,
+            "rebate_date_to": null,
+            "rebate_day": null,
+            "game_category": null,
+            "restriction_category": null,
+            "restriction_game": null,
+            "usage": null,
+            "message": "",
+            "status": "Active",
+            "date_created": "2020-09-11T15:11:54.695Z",
+            "date_updated": "2020-09-11T15:11:54.695Z"
+        }
+    },
+    {
+        "model": "accounts.promotion",
+        "pk": 8,
+        "fields": {
+            "name": "No Bonus",
+            "category": "Main",
+            "tag1": "Promo",
+            "tag2": "No Bonus",
+            "ticket_tag": null,
+            "amount_percentage": 0,
+            "amount": 0.0,
+            "max_claim_amount": 0.0,
+            "min_transaction_amount": 0.0,
+            "max_transaction_amount": 0.0,
+            "min_deposit_amount": 30.0,
+            "max_deposit_amount": 0.0,
+            "min_withdrawal_rollover": 0.0,
+            "max_withdrawal_rollover": 0.0,
+            "min_withdrawal_turnover": 1.0,
+            "max_withdrawal_turnover": 0.0,
+            "min_withdrawal_amount": 0.0,
+            "max_withdrawal_amount": 0.0,
+            "override": "Off",
+            "rebate_date_from": null,
+            "rebate_date_to": null,
+            "rebate_day": null,
+            "game_category": null,
+            "restriction_category": null,
+            "restriction_game": null,
+            "usage": null,
+            "message": "",
+            "status": "Active",
+            "date_created": "2020-09-11T15:12:38.581Z",
+            "date_updated": "2020-09-11T15:12:38.582Z"
+        }
+    },
+    {
+        "model": "accounts.referral",
+        "pk": 1,
+        "fields": {
+            "name": "Wechat",
+            "image": "referral/wechat_ouZZtG5.png",
+            "status": "Active",
+            "total": 5,
+            "date_created": "2020-08-03T18:54:18.558Z",
+            "date_updated": "2020-09-11T07:35:35.953Z"
+        }
+    },
+    {
+        "model": "accounts.referral",
+        "pk": 2,
+        "fields": {
+            "name": "Friend",
+            "image": "referral/profile_add.png",
+            "status": "Active",
+            "total": 2,
+            "date_created": "2020-09-03T18:08:31.394Z",
+            "date_updated": "2020-09-11T07:35:16.735Z"
+        }
+    },
+    {
+        "model": "accounts.referral",
+        "pk": 3,
+        "fields": {
+            "name": "Facebook",
+            "image": "referral/facebook.png",
+            "status": "Active",
+            "total": 3,
+            "date_created": "2020-09-03T18:08:47.921Z",
+            "date_updated": "2020-09-03T18:08:47.921Z"
+        }
+    },
+    {
+        "model": "accounts.referral",
+        "pk": 4,
+        "fields": {
+            "name": "Telegram",
+            "image": "referral/telegram.png",
+            "status": "Active",
+            "total": 3,
+            "date_created": "2020-09-03T18:08:57.732Z",
+            "date_updated": "2020-09-03T18:08:57.732Z"
+        }
+    },
+    {
+        "model": "accounts.referral",
+        "pk": 5,
+        "fields": {
+            "name": "Database",
+            "image": "referral/database.png",
+            "status": "Active",
+            "total": 4,
+            "date_created": "2020-09-03T18:09:09.442Z",
+            "date_updated": "2020-09-03T18:57:11.961Z"
+        }
+    },
+    {
+        "model": "accounts.referral",
+        "pk": 6,
+        "fields": {
+            "name": "test_icon",
+            "image": "referral/profile1.png",
+            "status": "Active",
+            "total": 2,
+            "date_created": "2020-09-03T18:16:10.014Z",
+            "date_updated": "2020-09-11T07:33:55.970Z"
+        }
+    },
+    {
+        "model": "accounts.maxwithdrawal",
+        "pk": 1,
+        "fields": {
+            "limit": 3,
+            "status": "Active",
+            "date_created": "2020-08-05T12:58:10.805Z",
+            "date_updated": "2020-08-05T12:58:10.805Z"
+        }
+    },
+    {
+        "model": "accounts.bank",
+        "pk": 1,
+        "fields": {
+            "bank_name": "citibank",
+            "bank_code": "CTI",
+            "bank_username": null,
+            "bank_password": null,
+            "bank_url": null,
+            "account_name": null,
+            "account_number": null,
+            "image": "bank/citibank.png",
+            "status": "Active",
+            "status_deposit": "Active",
+            "status_withdrawal": "Active",
+            "date_created": "2020-08-03T17:49:34.542Z",
+            "date_updated": "2020-08-03T17:49:34.542Z"
+        }
+    },
+    {
+        "model": "accounts.bank",
+        "pk": 2,
+        "fields": {
+            "bank_name": "maybank",
+            "bank_code": "MBB",
+            "bank_username": null,
+            "bank_password": null,
+            "bank_url": null,
+            "account_name": null,
+            "account_number": null,
+            "image": "bank/maybank_p75vQ4A.png",
+            "status": "Active",
+            "status_deposit": "Active",
+            "status_withdrawal": "Active",
+            "date_created": "2020-08-03T18:00:52.249Z",
+            "date_updated": "2020-08-03T18:00:52.249Z"
+        }
+    },
+    {
+        "model": "accounts.bank",
+        "pk": 3,
+        "fields": {
+            "bank_name": "Public Bank",
+            "bank_code": "pbb",
+            "bank_username": null,
+            "bank_password": null,
+            "bank_url": null,
+            "account_name": null,
+            "account_number": null,
+            "image": "bank/public.png",
+            "status": "Active",
+            "status_deposit": "Active",
+            "status_withdrawal": "Active",
+            "date_created": "2020-09-03T18:15:05.137Z",
+            "date_updated": "2020-09-11T07:37:11.907Z"
+        }
+    },
+    {
+        "model": "accounts.bank",
+        "pk": 4,
+        "fields": {
+            "bank_name": "RHB BANK",
+            "bank_code": "rhb",
+            "bank_username": null,
+            "bank_password": null,
+            "bank_url": null,
+            "account_name": null,
+            "account_number": null,
+            "image": "bank/rhb.png",
+            "status": "Active",
+            "status_deposit": "Active",
+            "status_withdrawal": "Active",
+            "date_created": "2020-09-03T18:15:59.459Z",
+            "date_updated": "2020-09-11T07:37:30.880Z"
+        }
+    },
+    {
+        "model": "accounts.bank",
+        "pk": 5,
+        "fields": {
+            "bank_name": "CIMB BANK",
+            "bank_code": "cimb",
+            "bank_username": null,
+            "bank_password": null,
+            "bank_url": null,
+            "account_name": null,
+            "account_number": null,
+            "image": "bank/cimb.png",
+            "status": "Active",
+            "status_deposit": "Active",
+            "status_withdrawal": "Active",
+            "date_created": "2020-09-03T18:16:49.923Z",
+            "date_updated": "2020-09-11T07:37:47.678Z"
+        }
+    },
+    {
+        "model": "accounts.bank",
+        "pk": 6,
+        "fields": {
+            "bank_name": "UOB Bank",
+            "bank_code": "UOB Bank",
+            "bank_username": null,
+            "bank_password": null,
+            "bank_url": null,
+            "account_name": null,
+            "account_number": null,
+            "image": "bank/Husky2.jpg",
+            "status": "Active",
+            "status_deposit": "Active",
+            "status_withdrawal": "Active",
+            "date_created": "2020-09-20T08:45:28.072Z",
+            "date_updated": "2020-09-24T10:20:23.223Z"
+        }
+    },
+    {
+        "model": "accounts.bank",
+        "pk": 7,
+        "fields": {
+            "bank_name": "test",
+            "bank_code": "hus",
+            "bank_username": null,
+            "bank_password": null,
+            "bank_url": null,
+            "account_name": null,
+            "account_number": null,
+            "image": "bank/Husky2_vilwbqU.jpg",
+            "status": "Active",
+            "status_deposit": "Active",
+            "status_withdrawal": "Active",
+            "date_created": "2020-09-27T12:34:24.672Z",
+            "date_updated": "2020-09-27T12:34:24.672Z"
+        }
+    },
+    {
+        "model": "accounts.transaction",
+        "pk": 110,
+        "fields": {
+            "admin": "jack",
+            "customer": 1,
+            "game_backend": null,
+            "game": 1,
+            "game2": null,
+            "bank": 2,
+            "customer_bank": null,
+            "promotion": 8,
+            "max_withdrawal": 0,
+            "last_topup": 0.0,
+            "status": "Rejected",
+            "completed": "Yes",
+            "tag": "Deposit",
+            "remark": null,
+            "message": null,
+            "date": "2020-09-19",
+            "time": "09:15:00",
+            "amount": 70.0,
+            "amount_free": 0.0,
+            "amount_promo": 0.0,
+            "amount_tip": 0.0,
+            "amount_void": 0.0,
+            "payback": 0.0,
+            "withdrawal_limit_min": 140.0,
+            "withdrawal_limit_max": 0.0,
+            "action_approve": null,
+            "action_reject": "2020-09-19T17:21:04.737Z",
+            "action_complete": "2020-09-19T17:21:11.867Z",
+            "date_created": "2020-09-19T16:06:33.734Z",
+            "date_updated": "2020-09-19T17:14:54.011Z",
+            "recommend_username": "",
+            "recommend_phone": ""
+        }
+    },
+    {
+        "model": "accounts.transaction",
+        "pk": 111,
+        "fields": {
+            "admin": "jack",
+            "customer": 1,
+            "game_backend": null,
+            "game": 1,
+            "game2": null,
+            "bank": 5,
+            "customer_bank": null,
+            "promotion": 7,
+            "max_withdrawal": 0,
+            "last_topup": 0.0,
+            "status": "Rejected",
+            "completed": "Yes",
+            "tag": "Deposit",
+            "remark": null,
+            "message": null,
+            "date": "2020-09-19",
+            "time": "18:15:00",
+            "amount": 29.0,
+            "amount_free": 0.0,
+            "amount_promo": 0.0,
+            "amount_tip": 0.0,
+            "amount_void": 0.0,
+            "payback": 0.0,
+            "withdrawal_limit_min": 58.0,
+            "withdrawal_limit_max": 150.0,
+            "action_approve": null,
+            "action_reject": "2020-09-19T17:21:08.366Z",
+            "action_complete": "2020-09-19T17:21:13.256Z",
+            "date_created": "2020-09-19T16:25:29.164Z",
+            "date_updated": "2020-09-19T17:15:46.269Z",
+            "recommend_username": "",
+            "recommend_phone": ""
+        }
+    },
+    {
+        "model": "accounts.transaction",
+        "pk": 112,
+        "fields": {
+            "admin": "demo",
+            "customer": 1,
+            "game_backend": null,
+            "game": 1,
+            "game2": null,
+            "bank": 5,
+            "customer_bank": null,
+            "promotion": 8,
+            "max_withdrawal": 0,
+            "last_topup": 0.0,
+            "status": "Rejected",
+            "completed": "Yes",
+            "tag": "Deposit",
+            "remark": null,
+            "message": null,
+            "date": "2020-09-19",
+            "time": null,
+            "amount": 440.0,
+            "amount_free": 0.0,
+            "amount_promo": 0.0,
+            "amount_tip": 0.0,
+            "amount_void": 0.0,
+            "payback": 0.0,
+            "withdrawal_limit_min": 880.0,
+            "withdrawal_limit_max": 0.0,
+            "action_approve": null,
+            "action_reject": "2020-09-19T17:20:59.774Z",
+            "action_complete": "2020-09-19T17:21:10.162Z",
+            "date_created": "2020-09-19T16:29:25.254Z",
+            "date_updated": "2020-09-19T16:29:25.254Z",
+            "recommend_username": "",
+            "recommend_phone": ""
+        }
+    },
+    {
+        "model": "accounts.transaction",
+        "pk": 113,
+        "fields": {
+            "admin": "demo",
+            "customer": 1,
+            "game_backend": null,
+            "game": 1,
+            "game2": null,
+            "bank": 3,
+            "customer_bank": null,
+            "promotion": 8,
+            "max_withdrawal": 0,
+            "last_topup": 0.0,
+            "status": "Approved",
+            "completed": "Yes",
+            "tag": "Deposit",
+            "remark": null,
+            "message": null,
+            "date": "2020-09-20",
+            "time": "11:36:00",
+            "amount": 340.0,
+            "amount_free": 0.0,
+            "amount_promo": 0.0,
+            "amount_tip": 0.0,
+            "amount_void": 0.0,
+            "payback": 0.0,
+            "withdrawal_limit_min": 680.0,
+            "withdrawal_limit_max": 0.0,
+            "action_approve": "2020-09-19T16:40:33.925Z",
+            "action_reject": null,
+            "action_complete": "2020-09-19T16:41:07.489Z",
+            "date_created": "2020-09-19T16:36:36.510Z",
+            "date_updated": "2020-09-19T16:36:36.510Z",
+            "recommend_username": "",
+            "recommend_phone": ""
+        }
+    },
+    {
+        "model": "accounts.transaction",
+        "pk": 114,
+        "fields": {
+            "admin": "demo",
+            "customer": 1,
+            "game_backend": null,
+            "game": 1,
+            "game2": null,
+            "bank": null,
+            "customer_bank": null,
+            "promotion": 8,
+            "max_withdrawal": 1,
+            "last_topup": 340.0,
+            "status": "Rejected",
+            "completed": "Yes",
+            "tag": "Withdrawal",
+            "remark": "",
+            "message": null,
+            "date": "2020-09-20",
+            "time": null,
+            "amount": 680.0,
+            "amount_free": 0.0,
+            "amount_promo": 0.0,
+            "amount_tip": 0.0,
+            "amount_void": 0.0,
+            "payback": 0.0,
+            "withdrawal_limit_min": 0.0,
+            "withdrawal_limit_max": 0.0,
+            "action_approve": null,
+            "action_reject": "2020-09-19T17:21:19.679Z",
+            "action_complete": "2020-09-19T17:21:21.735Z",
+            "date_created": "2020-09-19T16:45:55.578Z",
+            "date_updated": "2020-09-19T16:45:55.578Z",
+            "recommend_username": "",
+            "recommend_phone": ""
+        }
+    },
+    {
+        "model": "accounts.transaction",
+        "pk": 115,
+        "fields": {
+            "admin": "jack",
+            "customer": 1,
+            "game_backend": null,
+            "game": 8,
+            "game2": null,
+            "bank": 2,
+            "customer_bank": null,
+            "promotion": 1,
+            "max_withdrawal": 0,
+            "last_topup": 0.0,
+            "status": "Approved",
+            "completed": "Yes",
+            "tag": "Deposit",
+            "remark": null,
+            "message": null,
+            "date": "2020-09-20",
+            "time": "01:22:00",
+            "amount": 50.0,
+            "amount_free": 0.0,
+            "amount_promo": 25.0,
+            "amount_tip": 0.0,
+            "amount_void": 0.0,
+            "payback": 0.0,
+            "withdrawal_limit_min": 150.0,
+            "withdrawal_limit_max": 150.0,
+            "action_approve": "2020-09-19T17:22:06.902Z",
+            "action_reject": null,
+            "action_complete": "2020-09-19T17:22:33.083Z",
+            "date_created": "2020-09-19T17:21:52.627Z",
+            "date_updated": "2020-09-19T17:21:52.627Z",
+            "recommend_username": "",
+            "recommend_phone": ""
+        }
+    },
+    {
+        "model": "accounts.transaction",
+        "pk": 116,
+        "fields": {
+            "admin": "jack",
+            "customer": 19,
+            "game_backend": null,
+            "game": 9,
+            "game2": 10,
+            "bank": null,
+            "customer_bank": null,
+            "promotion": null,
+            "max_withdrawal": 0,
+            "last_topup": 0.0,
+            "status": "Rejected",
+            "completed": "Yes",
+            "tag": "Transfer",
+            "remark": null,
+            "message": null,
+            "date": "2020-09-20",
+            "time": null,
+            "amount": 50.0,
+            "amount_free": 0.0,
+            "amount_promo": 0.0,
+            "amount_tip": 0.0,
+            "amount_void": 0.0,
+            "payback": 0.0,
+            "withdrawal_limit_min": 0.0,
+            "withdrawal_limit_max": 0.0,
+            "action_approve": "2020-09-19T18:02:29.067Z",
+            "action_reject": "2020-09-20T08:44:19.537Z",
+            "action_complete": "2020-09-20T08:44:20.922Z",
+            "date_created": "2020-09-19T17:51:13.474Z",
+            "date_updated": "2020-09-19T17:51:13.474Z",
+            "recommend_username": "",
+            "recommend_phone": ""
+        }
+    },
+    {
+        "model": "accounts.transaction",
+        "pk": 117,
+        "fields": {
+            "admin": "jack",
+            "customer": 1,
+            "game_backend": null,
+            "game": 1,
+            "game2": null,
+            "bank": null,
+            "customer_bank": null,
+            "promotion": 1,
+            "max_withdrawal": 1,
+            "last_topup": 50.0,
+            "status": "Rejected",
+            "completed": "Yes",
+            "tag": "Withdrawal",
+            "remark": "",
+            "message": null,
+            "date": "2020-09-20",
+            "time": null,
+            "amount": 150.0,
+            "amount_free": 0.0,
+            "amount_promo": 0.0,
+            "amount_tip": 0.0,
+            "amount_void": 0.0,
+            "payback": 0.0,
+            "withdrawal_limit_min": 0.0,
+            "withdrawal_limit_max": 0.0,
+            "action_approve": null,
+            "action_reject": "2020-09-21T06:52:37.186Z",
+            "action_complete": "2020-09-21T06:52:39.468Z",
+            "date_created": "2020-09-20T13:35:54.431Z",
+            "date_updated": "2020-09-20T13:35:54.431Z",
+            "recommend_username": "",
+            "recommend_phone": ""
+        }
+    },
+    {
+        "model": "accounts.transaction",
+        "pk": 118,
+        "fields": {
+            "admin": "demo",
+            "customer": 1,
+            "game_backend": null,
+            "game": 1,
+            "game2": null,
+            "bank": 6,
+            "customer_bank": null,
+            "promotion": 8,
+            "max_withdrawal": 0,
+            "last_topup": 0.0,
+            "status": "Rejected",
+            "completed": "Yes",
+            "tag": "Deposit",
+            "remark": null,
+            "message": null,
+            "date": null,
+            "time": null,
+            "amount": 990.0,
+            "amount_free": 0.0,
+            "amount_promo": 0.0,
+            "amount_tip": 0.0,
+            "amount_void": 0.0,
+            "payback": 0.0,
+            "withdrawal_limit_min": 1980.0,
+            "withdrawal_limit_max": 0.0,
+            "action_approve": null,
+            "action_reject": "2020-09-21T06:52:50.938Z",
+            "action_complete": "2020-09-21T06:52:53.522Z",
+            "date_created": "2020-09-20T18:19:20.475Z",
+            "date_updated": "2020-09-20T18:19:20.475Z",
+            "recommend_username": "",
+            "recommend_phone": ""
+        }
+    },
+    {
+        "model": "accounts.transaction",
+        "pk": 119,
+        "fields": {
+            "admin": "demo",
+            "customer": 1,
+            "game_backend": null,
+            "game": 1,
+            "game2": null,
+            "bank": 1,
+            "customer_bank": null,
+            "promotion": 8,
+            "max_withdrawal": 0,
+            "last_topup": 0.0,
+            "status": "Rejected",
+            "completed": "Yes",
+            "tag": "Deposit",
+            "remark": null,
+            "message": null,
+            "date": "2020-09-21",
+            "time": "02:22:00",
+            "amount": 40.0,
+            "amount_free": 0.0,
+            "amount_promo": 0.0,
+            "amount_tip": 0.0,
+            "amount_void": 0.0,
+            "payback": 0.0,
+            "withdrawal_limit_min": 80.0,
+            "withdrawal_limit_max": 0.0,
+            "action_approve": null,
+            "action_reject": "2020-09-21T06:52:43.621Z",
+            "action_complete": "2020-09-21T06:52:46.054Z",
+            "date_created": "2020-09-20T18:22:44.233Z",
+            "date_updated": "2020-09-20T18:22:44.233Z",
+            "recommend_username": "",
+            "recommend_phone": ""
+        }
+    },
+    {
+        "model": "accounts.transaction",
+        "pk": 120,
+        "fields": {
+            "admin": "jack",
+            "customer": 1,
+            "game_backend": null,
+            "game": 1,
+            "game2": 8,
+            "bank": null,
+            "customer_bank": null,
+            "promotion": null,
+            "max_withdrawal": 0,
+            "last_topup": 0.0,
+            "status": "Rejected",
+            "completed": "Yes",
+            "tag": "Transfer",
+            "remark": null,
+            "message": null,
+            "date": "2020-09-21",
+            "time": null,
+            "amount": 80.0,
+            "amount_free": 0.0,
+            "amount_promo": 0.0,
+            "amount_tip": 0.0,
+            "amount_void": 0.0,
+            "payback": 0.0,
+            "withdrawal_limit_min": 0.0,
+            "withdrawal_limit_max": 0.0,
+            "action_approve": null,
+            "action_reject": "2020-09-21T06:53:36.984Z",
+            "action_complete": "2020-09-21T06:53:39.569Z",
+            "date_created": "2020-09-21T06:53:21.745Z",
+            "date_updated": "2020-09-21T06:53:21.745Z",
+            "recommend_username": "",
+            "recommend_phone": ""
+        }
+    },
+    {
+        "model": "accounts.transaction",
+        "pk": 121,
+        "fields": {
+            "admin": "jack",
+            "customer": 1,
+            "game_backend": 1,
+            "game": 1,
+            "game2": null,
+            "bank": null,
+            "customer_bank": null,
+            "promotion": null,
+            "max_withdrawal": 0,
+            "last_topup": 0.0,
+            "status": "Rejected",
+            "completed": "Yes",
+            "tag": "Free",
+            "remark": null,
+            "message": null,
+            "date": null,
+            "time": null,
+            "amount": 390.0,
+            "amount_free": 390.0,
+            "amount_promo": 0.0,
+            "amount_tip": 0.0,
+            "amount_void": 0.0,
+            "payback": 0.0,
+            "withdrawal_limit_min": 0.0,
+            "withdrawal_limit_max": 0.0,
+            "action_approve": null,
+            "action_reject": "2020-09-21T06:54:41.208Z",
+            "action_complete": "2020-09-21T19:16:06.628Z",
+            "date_created": "2020-09-21T06:54:32.632Z",
+            "date_updated": "2020-09-21T06:54:32.632Z",
+            "recommend_username": "",
+            "recommend_phone": ""
+        }
+    },
+    {
+        "model": "accounts.transaction",
+        "pk": 122,
+        "fields": {
+            "admin": "demo",
+            "customer": 3,
+            "game_backend": null,
+            "game": 11,
+            "game2": null,
+            "bank": 2,
+            "customer_bank": null,
+            "promotion": 8,
+            "max_withdrawal": 0,
+            "last_topup": 0.0,
+            "status": "Approved",
+            "completed": "Yes",
+            "tag": "Deposit",
+            "remark": null,
+            "message": null,
+            "date": "2020-09-24",
+            "time": "19:23:00",
+            "amount": 55.0,
+            "amount_free": 0.0,
+            "amount_promo": 0.0,
+            "amount_tip": 0.0,
+            "amount_void": 0.0,
+            "payback": 0.0,
+            "withdrawal_limit_min": 110.0,
+            "withdrawal_limit_max": 0.0,
+            "action_approve": "2020-09-24T10:24:14.300Z",
+            "action_reject": null,
+            "action_complete": "2020-09-24T10:24:30.633Z",
+            "date_created": "2020-09-24T10:23:43.376Z",
+            "date_updated": "2020-09-24T10:23:43.376Z",
+            "recommend_username": "",
+            "recommend_phone": ""
+        }
+    },
+    {
+        "model": "accounts.transaction",
+        "pk": 123,
+        "fields": {
+            "admin": "demo",
+            "customer": 5,
+            "game_backend": null,
+            "game": 12,
+            "game2": null,
+            "bank": null,
+            "customer_bank": null,
+            "promotion": 6,
+            "max_withdrawal": 0,
+            "last_topup": 0.0,
+            "status": "Approved",
+            "completed": "Yes",
+            "tag": "Free",
+            "remark": "",
+            "message": null,
+            "date": "2020-09-29",
+            "time": null,
+            "amount": 100.0,
+            "amount_free": 0.0,
+            "amount_promo": 0.0,
+            "amount_tip": 0.0,
+            "amount_void": 0.0,
+            "payback": 0.0,
+            "withdrawal_limit_min": 0.0,
+            "withdrawal_limit_max": 0.0,
+            "action_approve": "2020-09-28T21:05:05.962Z",
+            "action_reject": null,
+            "action_complete": "2020-09-28T21:05:11.859Z",
+            "date_created": "2020-09-28T21:04:53.121Z",
+            "date_updated": "2020-09-28T21:04:53.121Z",
+            "recommend_username": "",
+            "recommend_phone": ""
+        }
+    },
+    {
+        "model": "accounts.transaction",
+        "pk": 124,
+        "fields": {
+            "admin": "demo",
+            "customer": 5,
+            "game_backend": null,
+            "game": 12,
+            "game2": null,
+            "bank": 6,
+            "customer_bank": null,
+            "promotion": 8,
+            "max_withdrawal": 0,
+            "last_topup": 0.0,
+            "status": "Approved",
+            "completed": "Yes",
+            "tag": "Deposit",
+            "remark": null,
+            "message": null,
+            "date": "2020-09-29",
+            "time": "05:05:00",
+            "amount": 80.0,
+            "amount_free": 0.0,
+            "amount_promo": 0.0,
+            "amount_tip": 0.0,
+            "amount_void": 0.0,
+            "payback": 0.0,
+            "withdrawal_limit_min": 160.0,
+            "withdrawal_limit_max": 0.0,
+            "action_approve": "2020-09-28T21:06:04.432Z",
+            "action_reject": null,
+            "action_complete": "2020-09-28T21:06:06.553Z",
+            "date_created": "2020-09-28T21:05:58.145Z",
+            "date_updated": "2020-09-28T21:05:58.145Z",
+            "recommend_username": "",
+            "recommend_phone": ""
+        }
+    },
+    {
+        "model": "accounts.transaction",
+        "pk": 125,
+        "fields": {
+            "admin": "demo",
+            "customer": 5,
+            "game_backend": null,
+            "game": 12,
+            "game2": null,
+            "bank": 2,
+            "customer_bank": null,
+            "promotion": 8,
+            "max_withdrawal": 1,
+            "last_topup": 80.0,
+            "status": "Pending",
+            "completed": "No",
+            "tag": "Withdrawal",
+            "remark": "",
+            "message": null,
+            "date": "2020-09-29",
+            "time": null,
+            "amount": 161.0,
+            "amount_free": 0.0,
+            "amount_promo": 0.0,
+            "amount_tip": 0.0,
+            "amount_void": 0.0,
+            "payback": 0.0,
+            "withdrawal_limit_min": 0.0,
+            "withdrawal_limit_max": 0.0,
+            "action_approve": null,
+            "action_reject": null,
+            "action_complete": null,
+            "date_created": "2020-09-28T21:06:39.655Z",
+            "date_updated": "2020-10-02T09:46:44.765Z",
+            "recommend_username": "",
+            "recommend_phone": ""
+        }
+    },
+    {
+        "model": "accounts.transaction",
+        "pk": 126,
+        "fields": {
+            "admin": "demo",
+            "customer": 5,
+            "game_backend": null,
+            "game": 12,
+            "game2": null,
+            "bank": null,
+            "customer_bank": null,
+            "promotion": 6,
+            "max_withdrawal": 0,
+            "last_topup": 0.0,
+            "status": "Approved",
+            "completed": "Yes",
+            "tag": "Free",
+            "remark": "",
+            "message": null,
+            "date": "2020-09-29",
+            "time": null,
+            "amount": 70.0,
+            "amount_free": 0.0,
+            "amount_promo": 0.0,
+            "amount_tip": 0.0,
+            "amount_void": 0.0,
+            "payback": 0.0,
+            "withdrawal_limit_min": 0.0,
+            "withdrawal_limit_max": 0.0,
+            "action_approve": "2020-09-29T01:05:22.063Z",
+            "action_reject": null,
+            "action_complete": "2020-09-29T01:20:30.143Z",
+            "date_created": "2020-09-29T01:05:12.407Z",
+            "date_updated": "2020-09-29T01:05:12.407Z",
+            "recommend_username": "",
+            "recommend_phone": ""
+        }
+    },
+    {
+        "model": "accounts.transaction",
+        "pk": 127,
+        "fields": {
+            "admin": "demo",
+            "customer": 5,
+            "game_backend": null,
+            "game": 12,
+            "game2": null,
+            "bank": null,
+            "customer_bank": null,
+            "promotion": null,
+            "max_withdrawal": 1,
+            "last_topup": 70.0,
+            "status": "Pending",
+            "completed": "No",
+            "tag": "Withdrawal",
+            "remark": "",
+            "message": null,
+            "date": "2020-10-02",
+            "time": null,
+            "amount": 53360.0,
+            "amount_free": 0.0,
+            "amount_promo": 0.0,
+            "amount_tip": 0.0,
+            "amount_void": 0.0,
+            "payback": 0.0,
+            "withdrawal_limit_min": 0.0,
+            "withdrawal_limit_max": 0.0,
+            "action_approve": null,
+            "action_reject": null,
+            "action_complete": null,
+            "date_created": "2020-10-02T09:46:19.624Z",
+            "date_updated": "2020-10-02T10:23:15.905Z",
+            "recommend_username": "",
+            "recommend_phone": ""
+        }
+    },
+    {
+        "model": "accounts.transaction",
+        "pk": 128,
+        "fields": {
+            "admin": "demo",
+            "customer": 5,
+            "game_backend": null,
+            "game": 12,
+            "game2": null,
+            "bank": 3,
+            "customer_bank": null,
+            "promotion": 8,
+            "max_withdrawal": 0,
+            "last_topup": 0.0,
+            "status": "Approved",
+            "completed": "No",
+            "tag": "Deposit",
+            "remark": null,
+            "message": null,
+            "date": "2020-02-05",
+            "time": "18:27:00",
+            "amount": 555550.0,
+            "amount_free": 0.0,
+            "amount_promo": 0.0,
+            "amount_tip": 0.0,
+            "amount_void": 0.0,
+            "payback": 0.0,
+            "withdrawal_limit_min": 1100.0,
+            "withdrawal_limit_max": 0.0,
+            "action_approve": "2020-10-03T10:33:22.952Z",
+            "action_reject": null,
+            "action_complete": null,
+            "date_created": "2020-10-02T10:25:23.343Z",
+            "date_updated": "2020-10-02T10:27:30.026Z",
+            "recommend_username": "",
+            "recommend_phone": ""
+        }
+    },
+    {
+        "model": "accounts.transaction",
+        "pk": 129,
+        "fields": {
+            "admin": "demo",
+            "customer": 5,
+            "game_backend": null,
+            "game": 12,
+            "game2": null,
+            "bank": null,
+            "customer_bank": null,
+            "promotion": null,
+            "max_withdrawal": 0,
+            "last_topup": 0.0,
+            "status": "Pending",
+            "completed": "No",
+            "tag": "Recommend",
+            "remark": null,
+            "message": null,
+            "date": "2020-10-05",
+            "time": null,
+            "amount": 0.0,
+            "amount_free": 0.0,
+            "amount_promo": 0.0,
+            "amount_tip": 0.0,
+            "amount_void": 0.0,
+            "payback": 0.0,
+            "withdrawal_limit_min": 0.0,
+            "withdrawal_limit_max": 0.0,
+            "action_approve": null,
+            "action_reject": null,
+            "action_complete": null,
+            "date_created": "2020-10-05T11:22:11.746Z",
+            "date_updated": "2020-10-05T11:22:11.746Z",
+            "recommend_username": "",
+            "recommend_phone": "asdji239j"
+        }
+    },
+    {
+        "model": "accounts.transaction",
+        "pk": 130,
+        "fields": {
+            "admin": "demo",
+            "customer": 5,
+            "game_backend": null,
+            "game": 12,
+            "game2": null,
+            "bank": null,
+            "customer_bank": null,
+            "promotion": null,
+            "max_withdrawal": 0,
+            "last_topup": 0.0,
+            "status": "Pending",
+            "completed": "No",
+            "tag": "Recommend",
+            "remark": null,
+            "message": null,
+            "date": "2020-10-05",
+            "time": null,
+            "amount": 0.0,
+            "amount_free": 0.0,
+            "amount_promo": 0.0,
+            "amount_tip": 0.0,
+            "amount_void": 0.0,
+            "payback": 0.0,
+            "withdrawal_limit_min": 0.0,
+            "withdrawal_limit_max": 0.0,
+            "action_approve": null,
+            "action_reject": null,
+            "action_complete": null,
+            "date_created": "2020-10-05T11:24:38.542Z",
+            "date_updated": "2020-10-05T11:24:38.542Z",
+            "recommend_username": "",
+            "recommend_phone": ""
+        }
+    },
+    {
+        "model": "accounts.transaction",
+        "pk": 131,
+        "fields": {
+            "admin": "demo",
+            "customer": 5,
+            "game_backend": null,
+            "game": 12,
+            "game2": null,
+            "bank": null,
+            "customer_bank": null,
+            "promotion": null,
+            "max_withdrawal": 0,
+            "last_topup": 0.0,
+            "status": "Pending",
+            "completed": "No",
+            "tag": "Recommend",
+            "remark": null,
+            "message": null,
+            "date": "2020-10-05",
+            "time": null,
+            "amount": 0.0,
+            "amount_free": 0.0,
+            "amount_promo": 0.0,
+            "amount_tip": 0.0,
+            "amount_void": 0.0,
+            "payback": 0.0,
+            "withdrawal_limit_min": 0.0,
+            "withdrawal_limit_max": 0.0,
+            "action_approve": null,
+            "action_reject": null,
+            "action_complete": null,
+            "date_created": "2020-10-05T11:30:05.782Z",
+            "date_updated": "2020-10-05T11:30:05.782Z",
+            "recommend_username": "",
+            "recommend_phone": ""
+        }
+    },
+    {
+        "model": "accounts.transaction",
+        "pk": 132,
+        "fields": {
+            "admin": "demo",
+            "customer": 5,
+            "game_backend": null,
+            "game": 12,
+            "game2": null,
+            "bank": null,
+            "customer_bank": null,
+            "promotion": null,
+            "max_withdrawal": 0,
+            "last_topup": 0.0,
+            "status": "Rejected",
+            "completed": "Yes",
+            "tag": "Recommend",
+            "remark": null,
+            "message": null,
+            "date": "2020-10-05",
+            "time": null,
+            "amount": 0.0,
+            "amount_free": 0.0,
+            "amount_promo": 0.0,
+            "amount_tip": 0.0,
+            "amount_void": 0.0,
+            "payback": 0.0,
+            "withdrawal_limit_min": 0.0,
+            "withdrawal_limit_max": 0.0,
+            "action_approve": null,
+            "action_reject": "2020-10-09T01:47:14.718Z",
+            "action_complete": "2020-10-09T01:48:48.693Z",
+            "date_created": "2020-10-05T12:39:40.987Z",
+            "date_updated": "2020-10-05T12:39:40.987Z",
+            "recommend_username": "",
+            "recommend_phone": "iuio3332"
+        }
+    },
+    {
+        "model": "accounts.transaction",
+        "pk": 133,
+        "fields": {
+            "admin": "demo",
+            "customer": 1,
+            "game_backend": null,
+            "game": 1,
+            "game2": null,
+            "bank": null,
+            "customer_bank": null,
+            "promotion": null,
+            "max_withdrawal": 0,
+            "last_topup": 0.0,
+            "status": "Approved",
+            "completed": "Yes",
+            "tag": "Recommend",
+            "remark": null,
+            "message": null,
+            "date": "2020-10-06",
+            "time": null,
+            "amount": 0.0,
+            "amount_free": 0.0,
+            "amount_promo": 0.0,
+            "amount_tip": 0.0,
+            "amount_void": 0.0,
+            "payback": 0.0,
+            "withdrawal_limit_min": 0.0,
+            "withdrawal_limit_max": 0.0,
+            "action_approve": "2020-10-09T01:45:45.885Z",
+            "action_reject": "2020-10-09T01:45:44.610Z",
+            "action_complete": "2020-10-09T01:48:50.384Z",
+            "date_created": "2020-10-06T04:27:52.381Z",
+            "date_updated": "2020-10-06T04:27:52.381Z",
+            "recommend_username": "",
+            "recommend_phone": "0129093951"
+        }
+    },
+    {
+        "model": "accounts.transaction",
+        "pk": 134,
+        "fields": {
+            "admin": "demo",
+            "customer": 1,
+            "game_backend": null,
+            "game": 1,
+            "game2": 13,
+            "bank": null,
+            "customer_bank": null,
+            "promotion": null,
+            "max_withdrawal": 0,
+            "last_topup": 0.0,
+            "status": "Approved",
+            "completed": "Yes",
+            "tag": "Transfer",
+            "remark": null,
+            "message": null,
+            "date": "2020-10-09",
+            "time": null,
+            "amount": 980.0,
+            "amount_free": 0.0,
+            "amount_promo": 0.0,
+            "amount_tip": 0.0,
+            "amount_void": 0.0,
+            "payback": 0.0,
+            "withdrawal_limit_min": 0.0,
+            "withdrawal_limit_max": 0.0,
+            "action_approve": "2020-10-09T03:15:39.527Z",
+            "action_reject": null,
+            "action_complete": "2020-10-09T03:31:12.047Z",
+            "date_created": "2020-10-09T03:14:38.975Z",
+            "date_updated": "2020-10-09T03:14:38.975Z",
+            "recommend_username": "",
+            "recommend_phone": ""
+        }
+    },
+    {
+        "model": "accounts.transaction",
+        "pk": 135,
+        "fields": {
+            "admin": "demo",
+            "customer": 1,
+            "game_backend": 1,
+            "game": 1,
+            "game2": null,
+            "bank": null,
+            "customer_bank": null,
+            "promotion": null,
+            "max_withdrawal": 0,
+            "last_topup": 0.0,
+            "status": "Pending",
+            "completed": "No",
+            "tag": "Free",
+            "remark": null,
+            "message": null,
+            "date": null,
+            "time": null,
+            "amount": 0.0,
+            "amount_free": 0.0,
+            "amount_promo": 0.0,
+            "amount_tip": 0.0,
+            "amount_void": 0.0,
+            "payback": 0.0,
+            "withdrawal_limit_min": 0.0,
+            "withdrawal_limit_max": 0.0,
+            "action_approve": null,
+            "action_reject": null,
+            "action_complete": null,
+            "date_created": "2020-10-12T09:58:35.857Z",
+            "date_updated": "2020-10-12T09:58:35.857Z",
+            "recommend_username": "",
+            "recommend_phone": ""
+        }
+    },
+    {
+        "model": "accounts.transaction",
+        "pk": 136,
+        "fields": {
+            "admin": "demo",
+            "customer": 5,
+            "game_backend": 2,
+            "game": 2,
+            "game2": null,
+            "bank": null,
+            "customer_bank": null,
+            "promotion": null,
+            "max_withdrawal": 0,
+            "last_topup": 0.0,
+            "status": "Pending",
+            "completed": "No",
+            "tag": "Free",
+            "remark": null,
+            "message": null,
+            "date": null,
+            "time": null,
+            "amount": 0.0,
+            "amount_free": 0.0,
+            "amount_promo": 0.0,
+            "amount_tip": 0.0,
+            "amount_void": 0.0,
+            "payback": 0.0,
+            "withdrawal_limit_min": 0.0,
+            "withdrawal_limit_max": 0.0,
+            "action_approve": null,
+            "action_reject": null,
+            "action_complete": null,
+            "date_created": "2020-10-12T10:04:37.220Z",
+            "date_updated": "2020-10-12T10:04:37.220Z",
+            "recommend_username": "",
+            "recommend_phone": ""
+        }
+    },
+    {
+        "model": "accounts.transaction",
+        "pk": 137,
+        "fields": {
+            "admin": "demo",
+            "customer": 5,
+            "game_backend": 2,
+            "game": 12,
+            "game2": null,
+            "bank": null,
+            "customer_bank": null,
+            "promotion": null,
+            "max_withdrawal": 0,
+            "last_topup": 0.0,
+            "status": "Pending",
+            "completed": "No",
+            "tag": "Free",
+            "remark": null,
+            "message": null,
+            "date": null,
+            "time": null,
+            "amount": 0.0,
+            "amount_free": 0.0,
+            "amount_promo": 0.0,
+            "amount_tip": 0.0,
+            "amount_void": 0.0,
+            "payback": 0.0,
+            "withdrawal_limit_min": 0.0,
+            "withdrawal_limit_max": 0.0,
+            "action_approve": null,
+            "action_reject": null,
+            "action_complete": null,
+            "date_created": "2020-10-12T10:14:40.474Z",
+            "date_updated": "2020-10-12T10:14:40.474Z",
+            "recommend_username": "",
+            "recommend_phone": ""
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 1,
+        "fields": {
+            "group": "dashboard",
+            "name": "Pending Deposit",
+            "codename": "pending_deposit"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 2,
+        "fields": {
+            "group": "dashboard",
+            "name": "Pending Transfer",
+            "codename": "pending_transfer"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 3,
+        "fields": {
+            "group": "dashboard",
+            "name": "Pending Withdrawal",
+            "codename": "pending_withdrawal"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 4,
+        "fields": {
+            "group": "dashboard",
+            "name": "Register",
+            "codename": "dashboard_register"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 5,
+        "fields": {
+            "group": "dashboard",
+            "name": "Search",
+            "codename": "dashboard_search"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 6,
+        "fields": {
+            "group": "transaction",
+            "name": "Deposit (Add)",
+            "codename": "deposit_add"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 7,
+        "fields": {
+            "group": "transaction",
+            "name": "Deposit (Approve)",
+            "codename": "deposit_approve"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 8,
+        "fields": {
+            "group": "transaction",
+            "name": "Deposit (Complete)",
+            "codename": "deposit_complete"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 9,
+        "fields": {
+            "group": "transaction",
+            "name": "Deposit (Edit)",
+            "codename": "deposit_edit"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 10,
+        "fields": {
+            "group": "transaction",
+            "name": "Deposit (Reject)",
+            "codename": "deposit_reject"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 11,
+        "fields": {
+            "group": "transaction",
+            "name": "Deposit (View)",
+            "codename": "deposit_view"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 12,
+        "fields": {
+            "group": "transaction",
+            "name": "Rebate Bonus/Ticket (Add)",
+            "codename": "ticket_add"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 13,
+        "fields": {
+            "group": "transaction",
+            "name": "Transfer (Add)",
+            "codename": "transfer_add"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 14,
+        "fields": {
+            "group": "transaction",
+            "name": "Transfer (Approve)",
+            "codename": "transfer_approve"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 15,
+        "fields": {
+            "group": "transaction",
+            "name": "Transfer (Complete)",
+            "codename": "transfer_complete"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 16,
+        "fields": {
+            "group": "transaction",
+            "name": "Transfer (Edit)",
+            "codename": "transfer_edit"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 17,
+        "fields": {
+            "group": "transaction",
+            "name": "Transfer (Reject)",
+            "codename": "transfer_reject"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 18,
+        "fields": {
+            "group": "transaction",
+            "name": "Transfer (View)",
+            "codename": "transfer_view"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 19,
+        "fields": {
+            "group": "transaction",
+            "name": "Withdrawal (Add)",
+            "codename": "withdrawal_add"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 20,
+        "fields": {
+            "group": "transaction",
+            "name": "Withdrawal (Approve)",
+            "codename": "withdrawal_approve"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 21,
+        "fields": {
+            "group": "transaction",
+            "name": "Withdrawal (Complete)",
+            "codename": "withdrawal_complete"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 22,
+        "fields": {
+            "group": "transaction",
+            "name": "Withdrawal (Edit)",
+            "codename": "withdrawal_edit"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 23,
+        "fields": {
+            "group": "transaction",
+            "name": "Withdrawal (Reject)",
+            "codename": "withdrawal_reject"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 24,
+        "fields": {
+            "group": "transaction",
+            "name": "Withdrawal (View)",
+            "codename": "withdrawal_view"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 25,
+        "fields": {
+            "group": "user",
+            "name": "Bank Black List (Add)",
+            "codename": "bank_black_list_add"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 26,
+        "fields": {
+            "group": "user",
+            "name": "Bank Black List (Edit)",
+            "codename": "bank_black_list_edit"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 27,
+        "fields": {
+            "group": "user",
+            "name": "Bank Black List (View)",
+            "codename": "bank_black_list_view"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 28,
+        "fields": {
+            "group": "user",
+            "name": "User (Summary View)",
+            "codename": "user_summary_vew"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 29,
+        "fields": {
+            "group": "user",
+            "name": "User (View)",
+            "codename": "user_vew"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 30,
+        "fields": {
+            "group": "user",
+            "name": "User Bank (Add)",
+            "codename": "user_bank_add"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 31,
+        "fields": {
+            "group": "user",
+            "name": "User Bank (Edit)",
+            "codename": "user_bank_edit"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 32,
+        "fields": {
+            "group": "user",
+            "name": "User Follow Ups",
+            "codename": "user_follow_ups"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 33,
+        "fields": {
+            "group": "user",
+            "name": "User Game (Add)",
+            "codename": "user_game_add"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 34,
+        "fields": {
+            "group": "user",
+            "name": "User Game (Edit)",
+            "codename": "user_game_edit"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 35,
+        "fields": {
+            "group": "user",
+            "name": "User Profile (Edit)",
+            "codename": "user_profile_edit"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 36,
+        "fields": {
+            "group": "user",
+            "name": "User Profile (View)",
+            "codename": "user_profile_view"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 37,
+        "fields": {
+            "group": "user",
+            "name": "User Tell (Add)",
+            "codename": "user_tell_add"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 38,
+        "fields": {
+            "group": "user",
+            "name": "User Tell (View)",
+            "codename": "user_tell_view"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 39,
+        "fields": {
+            "group": "game",
+            "name": "Game (Add)",
+            "codename": "game_add"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 40,
+        "fields": {
+            "group": "game",
+            "name": "Game (Edit)",
+            "codename": "game_edit"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 41,
+        "fields": {
+            "group": "game",
+            "name": "Game (View)",
+            "codename": "game_view"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 42,
+        "fields": {
+            "group": "game",
+            "name": "Game Credit (Add)",
+            "codename": "game_credit_add"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 43,
+        "fields": {
+            "group": "game",
+            "name": "Game Credit (View)",
+            "codename": "game_credit_view"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 44,
+        "fields": {
+            "group": "game",
+            "name": "Generate Pool ID",
+            "codename": "generate_pool_id"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 45,
+        "fields": {
+            "group": "promotion",
+            "name": "Promotion (Add)",
+            "codename": "promotion_add"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 46,
+        "fields": {
+            "group": "promotion",
+            "name": "Promotion (Edit)",
+            "codename": "promotion_edit"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 47,
+        "fields": {
+            "group": "promotion",
+            "name": "Promotion (View)",
+            "codename": "promotion_view"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 48,
+        "fields": {
+            "group": "bank",
+            "name": "Bank (Add)",
+            "codename": "bank_add"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 49,
+        "fields": {
+            "group": "bank",
+            "name": "Bank (Edit)",
+            "codename": "bank_edit"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 50,
+        "fields": {
+            "group": "bank",
+            "name": "Bank (View)",
+            "codename": "bank_view"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 51,
+        "fields": {
+            "group": "setting",
+            "name": "Sms Settings",
+            "codename": "sms_settings"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 52,
+        "fields": {
+            "group": "setting",
+            "name": "Max Withdrawal Count (Edit)",
+            "codename": "max_withdrawal_count_edit"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 53,
+        "fields": {
+            "group": "setting",
+            "name": "Success Message (Edit)",
+            "codename": "success_message_edit"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 54,
+        "fields": {
+            "group": "setting",
+            "name": "Success Message (View)",
+            "codename": "success_message_view"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 55,
+        "fields": {
+            "group": "referral",
+            "name": "Referral (Add)",
+            "codename": "referral_add"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 56,
+        "fields": {
+            "group": "referral",
+            "name": "Referral (Edit)",
+            "codename": "referral_edit"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 57,
+        "fields": {
+            "group": "referral",
+            "name": "Referral (View)",
+            "codename": "referral_view"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 58,
+        "fields": {
+            "group": "report",
+            "name": "Active User Report (View)",
+            "codename": "active_user_report_view"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 59,
+        "fields": {
+            "group": "report",
+            "name": "Sales Report (Full View)",
+            "codename": "sales_report_full_view"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 60,
+        "fields": {
+            "group": "report",
+            "name": "Sales Report (Summary View)",
+            "codename": "sales_report_summary_view"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 61,
+        "fields": {
+            "group": "report",
+            "name": "Sales Report (View)",
+            "codename": "sales_report_view"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 62,
+        "fields": {
+            "group": "report",
+            "name": "Transaction Report (View)",
+            "codename": "transaction_report_view"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 63,
+        "fields": {
+            "group": "employee",
+            "name": "Action Logs",
+            "codename": "action_logs"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 64,
+        "fields": {
+            "group": "employee",
+            "name": "Employee (Add)",
+            "codename": "employee_add"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 65,
+        "fields": {
+            "group": "employee",
+            "name": "Employee (Edit)",
+            "codename": "employee_edit"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 66,
+        "fields": {
+            "group": "employee",
+            "name": "Employee (View)",
+            "codename": "employee_view"
+        }
+    },
+    {
+        "model": "accounts.positions",
+        "pk": 67,
+        "fields": {
+            "group": "employee",
+            "name": "Position",
+            "codename": "position"
+        }
+    }
+]
