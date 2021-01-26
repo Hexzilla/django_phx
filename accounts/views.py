@@ -1791,7 +1791,7 @@ def assign_position(request, user_id):
 		request.session['positions'] = get_positions(user_id)
 
 
-	position_group = Positions.objects.values('group').annotate(Count("id"))
+	position_group = Positions.objects.values('group').annotate(Count("id")).order_by('id')
 	positions = Positions.objects.all().order_by("id")	
 
 	user_positions = User_Position.objects.filter(user_id=user_id).only("position_id")
