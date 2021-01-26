@@ -76,12 +76,12 @@ input:checked + .slider:before {
   </div>
   <div class="clearfix"></div>
   <div class="row">
-      {% for g in position_group %}
+      {% for group in position_group %}
       <div class="col-md-3">
           <div style="background-color: lightgrey;font-weight: bold;" class="py-2 mb-2">
-              &nbsp;<span style="text-transform:uppercase">{{ g.group }}</span>
+              &nbsp;<span style="text-transform:uppercase">{{ group }}</span>
           </div>
-          {% for pos in positions %}  {% if pos.group == g.group %}
+          {% for pos in positions %}  {% if pos.group == group %}
           <div class="row">
               <div class="col-md-8">{{ pos.name }}</div>
               <div class="col-md-4">

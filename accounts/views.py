@@ -1791,9 +1791,13 @@ def assign_position(request, user_id):
 		request.session['positions'] = get_positions(user_id)
 
 
-	position_group = Positions.objects.values('group').annotate(Count("group")).order_by()
-	logger.warning(position_group)
-	positions = Positions.objects.all().order_by("id")	
+	#position_group = Positions.objects.all().order_by("id").values('group').annotate(Count("group")).order_by('group')
+	positions = Positions.objects.all().order_by("id")
+	
+	position_group = []
+	for it in positions:
+		if not it.group in position_group:
+			position_group.append(it.group)
 
 	user_positions = User_Position.objects.filter(user_id=user_id).only("position_id")
 	user_positions = map(lambda x: x.position_id, list(user_positions))
