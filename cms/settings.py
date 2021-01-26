@@ -29,7 +29,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'x8=ujz!3ioo_hzuj@#tx%3jg_$5c=%(!5jao#@4h+@1o)x^5$i'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1',]
 
@@ -115,16 +115,29 @@ WSGI_APPLICATION = 'cms.wsgi.application'
 #         }
 #     }
 
+# Heroku Postgresql
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django',
-        'HOST': 'localhost', 
-        'USER': 'django', 
-        'PASSWORD': 'django123!!!', 
-        'PORT': '3306',
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'dahsvl30h6qp6b',
+            'USER': 'zjobtbemfgzuxz',
+            'PASSWORD': '4d6fa703d5c2897e140abedbaf303bfce2c4ea4b0027f955c5eaded3eb66b933',
+            'HOST': 'ec2-54-228-250-82.eu-west-1.compute.amazonaws.com',
+            'PORT': '5432',
+        }
     }
-}
+
+#Local MySQL
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'django',
+#         'HOST': 'localhost', 
+#         'USER': 'django', 
+#         'PASSWORD': 'django123!!!', 
+#         'PORT': '3306',
+#     }
+# }
 
 # DATABASES = {
 #     'default': {
