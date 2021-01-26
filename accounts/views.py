@@ -12,7 +12,6 @@ from django.core.paginator import Paginator
 from django.db.models import Q, F, Sum, Count
 from django.db.models.functions import Replace
 from django.contrib.auth.models import User
-from django_seed import Seed
 
 import dateutil.parser
 from datetime import datetime, date, timedelta, time
@@ -49,33 +48,6 @@ def activeDate_on_all_page(request): # show activate dated
 	'active_date2': active_date2,
 	'active_date3': active_date3,
 	'timeNow_side':timeNow_side,"hostname":hostname}
-
-
-def my_seed():
-	seeder = Seed.seeder()
-	seeder.add_entity(User, 1, {
-    	'password': 'pbkdf2_sha256$216000$1lDomaqSXvj0$NPZhtIvW9lURvIiKwcNvvG9KU/uCyRtwhC8DswJccNA=',
-    	'is_superuser': 1,
-		'username': 'jack',
-		'is_staff': 1,
-		'is_active': 1,
-		'date_joined': '2021-01-21',
-	})
-	seeder.execute()
-
-	# dashboard_positions = ['Pending Deposit', 'Pending Transfer', 'Pending Withdrawal', 'Register', 'Search']
-	# for position in dashboard_positions:
-	# 	seeder = Seed.seeder()
-	# 	logger.warning('-------------------------', position)
-	# 	seeder.add_entity(Positions, 1, {
-	# 		'group': 'dashboard',
-	# 		'name': position,
-	# 	})
-	# 	seeder.execute()
-	pass
-
-
-
 
 # @unauthenticated_user
 def loginPage(request):
