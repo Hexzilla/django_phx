@@ -545,5 +545,18 @@ class SMSGateway(models.Model):
 	 return self.name
 
 
+class Positions(models.Model):
+	group = models.CharField(max_length=254, null=False, blank=False)
+	name = models.CharField(max_length=254, null=False, blank=False)
+	codename = models.CharField(max_length=254, null=False, blank=False, unique=True)
+
+	def __str__(self):
+	 return self.codename
 
 
+class User_Position(models.Model):
+	user  = models.ForeignKey(User, on_delete=models.CASCADE)
+	position = models.ForeignKey(Positions, on_delete=models.CASCADE)
+
+	def __str__(self):
+	 return "USERPOS%06d" % self.id

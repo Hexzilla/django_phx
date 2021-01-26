@@ -91,7 +91,7 @@ class DepositEditForm(ModelForm):
 		self.fields['promotion'].queryset = Promotion.objects.filter(tag1="Promo")
 
 def LoginAccess():
-	return "20210125"
+	return "20210126"
 	
 
 class DepositFreeForm(ModelForm):

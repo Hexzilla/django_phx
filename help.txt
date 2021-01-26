@@ -1,0 +1,8 @@
+python manage.py livereload
+python manage.py runserver
+
+python manage.py makemigrations accounts
+python manage.py migrate accounts
+
+
+pip install -r .\requirements.txt

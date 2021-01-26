@@ -11,6 +11,8 @@ from django.template.loader import render_to_string
 from django.core.paginator import Paginator
 from django.db.models import Q, F, Sum, Count
 from django.db.models.functions import Replace
+from django.contrib.auth.models import User
+from django_seed import Seed
 
 import dateutil.parser
 from datetime import datetime, date, timedelta, time
@@ -49,6 +51,32 @@ def activeDate_on_all_page(request): # show activate dated
 	'timeNow_side':timeNow_side,"hostname":hostname}
 
 
+def my_seed():
+	seeder = Seed.seeder()
+	seeder.add_entity(User, 1, {
+    	'password': 'pbkdf2_sha256$216000$1lDomaqSXvj0$NPZhtIvW9lURvIiKwcNvvG9KU/uCyRtwhC8DswJccNA=',
+    	'is_superuser': 1,
+		'username': 'jack',
+		'is_staff': 1,
+		'is_active': 1,
+		'date_joined': '2021-01-21',
+	})
+	seeder.execute()
+
+	# dashboard_positions = ['Pending Deposit', 'Pending Transfer', 'Pending Withdrawal', 'Register', 'Search']
+	# for position in dashboard_positions:
+	# 	seeder = Seed.seeder()
+	# 	logger.warning('-------------------------', position)
+	# 	seeder.add_entity(Positions, 1, {
+	# 		'group': 'dashboard',
+	# 		'name': position,
+	# 	})
+	# 	seeder.execute()
+	pass
+
+
+
+
 # @unauthenticated_user
 def loginPage(request):
 	today_now = timezone.datetime.now().strftime("%Y%m%d")
@@ -59,13 +87,17 @@ def loginPage(request):
 		password = request.POST.get('password')
 		user = authenticate(request, username=username, password=password)
 
-		if int(today_now) > int(LoginAccess()):
-			messages.info(request, 'Username OR password is incorrect')
-		elif user is not None:
+		if user is not None:
 			login(request, user)
 			return redirect('home')
-		else:
-			messages.info(request, 'Username OR password is incorrect')
+			
+		# if int(today_now) > int(LoginAccess()):
+		# 	messages.info(request, 'Username OR password is incorrect')
+		# elif user is not None:
+		# 	login(request, user)
+		# 	return redirect('home')
+		# else:
+		# 	messages.info(request, 'Username OR password is incorrect')
 
 	context = {}
 	return render(request, 'accounts/login/login.html', context)
@@ -1711,8 +1743,40 @@ def manage_employee(request):
 
 @login_required(login_url='login')
 def manage_position(request):
-	groups = Group.objects.all().order_by("id")
-	context = {"groups":groups}
+	user = request.user
+	logger.warning("User.ID=" + str(user.id))
+
+	if request.method == 'POST':
+		positions = request.POST.getlist('positions[]')
+
+		items = []
+		if positions and len(positions) > 0:
+			for position_id in positions:
+				items.append(User_Position(user_id=user.id, position_id=position_id))
+
+		User_Position.objects.bulk_create(items)
+
+	position_group = Positions.objects.values('group').annotate(Count("id"))
+	positions = Positions.objects.all().order_by("id")	
+	user_positions = User_Position.objects.filter(user_id=user.id).only("position_id")
+	
+	user_positions = map(lambda x: x.position_id, list(user_positions))
+	user_positions = list(user_positions)
+	
+	# positions = list(positions)
+	# for pos in positions:
+	# 	logger.warning(pos.id)
+	# 	matches = any(x for x in user_positions if pos.id == x.position_id)
+	# 	logger.warning(matches)
+	# 	if matches:
+	# 		pos.state = 1
+
+	logger.warning(user_positions)
+	context = {
+		"position_group": position_group,
+		"positions": positions, 
+		"user_positions": user_positions
+	}
 	return render(request, 'accounts/employee/manage_position.html',  context)
 	
 

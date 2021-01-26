@@ -31,7 +31,7 @@ SECRET_KEY = 'x8=ujz!3ioo_hzuj@#tx%3jg_$5c=%(!5jao#@4h+@1o)x^5$i'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','bluedjango.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1',]
 
 
 # Application definition
@@ -53,6 +53,8 @@ INSTALLED_APPS = [
     'django_filters',
     # 'phone_field',
 
+    'django_seed',
+    'livereload',
 ]
 
 MIDDLEWARE = [
@@ -91,6 +93,10 @@ TEMPLATES = [
     },
 ]
 
+FIXTURE_DIRS = [
+    'fixtures'
+]
+
 WSGI_APPLICATION = 'cms.wsgi.application'
 
 
@@ -98,16 +104,27 @@ WSGI_APPLICATION = 'cms.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 # live DB
+# DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.postgresql',
+#             'NAME': 'd9bukmdbiat1fe',
+#             'USER': 'kljlkbdphvpmrc',
+#             'PASSWORD': 'c3da0c5c79071b11d7b260070e8978084a6abc6192af013a9f2c1ca49d1a59fb',
+#             'HOST': 'ec2-52-204-232-46.compute-1.amazonaws.com',
+#             'PORT': '5432',
+#         }
+#     }
+
 DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'd9bukmdbiat1fe',
-            'USER': 'kljlkbdphvpmrc',
-            'PASSWORD': 'c3da0c5c79071b11d7b260070e8978084a6abc6192af013a9f2c1ca49d1a59fb',
-            'HOST': 'ec2-52-204-232-46.compute-1.amazonaws.com',
-            'PORT': '5432',
-        }
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'django',
+        'HOST': 'localhost', 
+        'USER': 'django', 
+        'PASSWORD': 'django123!!!', 
+        'PORT': '3306',
     }
+}
 
 # DATABASES = {
 #     'default': {
@@ -172,3 +189,28 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'staticfiles'), ]
 # EMAIL_USE_TLS = True
 # EMAIL_HOST_USER = 'youremail'
 # EMAIL_HOST_PASSWORD = 'yourpassword'
+
+MIDDLEWARE_CLASSES = (
+    'livereload.middleware.LiveReloadScript',
+)
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'WARNING',
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+            'propagate': False,
+        },
+    },
+}

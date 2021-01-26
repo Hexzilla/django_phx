@@ -1,0 +1,539 @@
+[
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "dashboard",
+            "name": "Pending Deposit",
+            "codename": "pending_deposit"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "dashboard",
+            "name": "Pending Transfer",
+            "codename": "pending_transfer"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "dashboard",
+            "name": "Pending Withdrawal",
+            "codename": "pending_withdrawal"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "dashboard",
+            "name": "Register",
+            "codename": "dashboard_register"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "dashboard",
+            "name": "Search",
+            "codename": "dashboard_search"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "transaction",
+            "name": "Deposit (Add)",
+            "codename": "deposit_add"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "transaction",
+            "name": "Deposit (Approve)",
+            "codename": "deposit_approve"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "transaction",
+            "name": "Deposit (Complete)",
+            "codename": "deposit_complete"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "transaction",
+            "name": "Deposit (Edit)",
+            "codename": "deposit_edit"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "transaction",
+            "name": "Deposit (Reject)",
+            "codename": "deposit_reject"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "transaction",
+            "name": "Deposit (View)",
+            "codename": "deposit_view"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "transaction",
+            "name": "Rebate Bonus/Ticket (Add)",
+            "codename": "ticket_add"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "transaction",
+            "name": "Transfer (Add)",
+            "codename": "transfer_add"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "transaction",
+            "name": "Transfer (Approve)",
+            "codename": "transfer_approve"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "transaction",
+            "name": "Transfer (Complete)",
+            "codename": "transfer_complete"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "transaction",
+            "name": "Transfer (Edit)",
+            "codename": "transfer_edit"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "transaction",
+            "name": "Transfer (Reject)",
+            "codename": "transfer_reject"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "transaction",
+            "name": "Transfer (View)",
+            "codename": "transfer_view"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "transaction",
+            "name": "Withdrawal (Add)",
+            "codename": "withdrawal_add"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "transaction",
+            "name": "Withdrawal (Approve)",
+            "codename": "withdrawal_approve"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "transaction",
+            "name": "Withdrawal (Complete)",
+            "codename": "withdrawal_complete"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "transaction",
+            "name": "Withdrawal (Edit)",
+            "codename": "withdrawal_edit"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "transaction",
+            "name": "Withdrawal (Reject)",
+            "codename": "withdrawal_reject"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "transaction",
+            "name": "Withdrawal (View)",
+            "codename": "withdrawal_view"
+        }
+    },
+
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "user",
+            "name": "Bank Black List (Add)",
+            "codename": "bank_black_list_add"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "user",
+            "name": "Bank Black List (Edit)",
+            "codename": "bank_black_list_edit"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "user",
+            "name": "Bank Black List (View)",
+            "codename": "bank_black_list_view"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "user",
+            "name": "User (Summary View)",
+            "codename": "user_summary_vew"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "user",
+            "name": "User (View)",
+            "codename": "user_vew"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "user",
+            "name": "User Bank (Add)",
+            "codename": "user_bank_add"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "user",
+            "name": "User Bank (Edit)",
+            "codename": "user_bank_edit"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "user",
+            "name": "User Follow Ups",
+            "codename": "user_follow_ups"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "user",
+            "name": "User Game (Add)",
+            "codename": "user_game_add"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "user",
+            "name": "User Game (Edit)",
+            "codename": "user_game_edit"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "user",
+            "name": "User Profile (Edit)",
+            "codename": "user_profile_edit"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "user",
+            "name": "User Profile (View)",
+            "codename": "user_profile_view"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "user",
+            "name": "User Tell (Add)",
+            "codename": "user_tell_add"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "user",
+            "name": "User Tell (View)",
+            "codename": "user_tell_view"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "game",
+            "name": "Game (Add)",
+            "codename": "game_add"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "game",
+            "name": "Game (Edit)",
+            "codename": "game_edit"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "game",
+            "name": "Game (View)",
+            "codename": "game_view"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "game",
+            "name": "Game Credit (Add)",
+            "codename": "game_credit_add"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "game",
+            "name": "Game Credit (View)",
+            "codename": "game_credit_view"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "game",
+            "name": "Generate Pool ID",
+            "codename": "generate_pool_id"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "promotion",
+            "name": "Promotion (Add)",
+            "codename": "promotion_add"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "promotion",
+            "name": "Promotion (Edit)",
+            "codename": "promotion_edit"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "promotion",
+            "name": "Promotion (View)",
+            "codename": "promotion_view"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "bank",
+            "name": "Bank (Add)",
+            "codename": "bank_add"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "bank",
+            "name": "Bank (Edit)",
+            "codename": "bank_edit"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "bank",
+            "name": "Bank (View)",
+            "codename": "bank_view"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "setting",
+            "name": "Sms Settings",
+            "codename": "sms_settings"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "setting",
+            "name": "Max Withdrawal Count (Edit)",
+            "codename": "max_withdrawal_count_edit"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "setting",
+            "name": "Success Message (Edit)",
+            "codename": "success_message_edit"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "setting",
+            "name": "Success Message (View)",
+            "codename": "success_message_view"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "referral",
+            "name": "Referral (Add)",
+            "codename": "referral_add"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "referral",
+            "name": "Referral (Edit)",
+            "codename": "referral_edit"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "referral",
+            "name": "Referral (View)",
+            "codename": "referral_view"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "report",
+            "name": "Active User Report (View)",
+            "codename": "active_user_report_view"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "report",
+            "name": "Sales Report (Full View)",
+            "codename": "sales_report_full_view"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "report",
+            "name": "Sales Report (Summary View)",
+            "codename": "sales_report_summary_view"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "report",
+            "name": "Sales Report (View)",
+            "codename": "sales_report_view"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "report",
+            "name": "Transaction Report (View)",
+            "codename": "transaction_report_view"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "employee",
+            "name": "Action Logs",
+            "codename": "action_logs"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "employee",
+            "name": "Employee (Add)",
+            "codename": "employee_add"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "employee",
+            "name": "Employee (Edit)",
+            "codename": "employee_edit"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "employee",
+            "name": "Employee (View)",
+            "codename": "employee_view"
+        }
+    },
+    {
+        "model": "accounts.Positions",
+        "fields": {
+            "group": "employee",
+            "name": "Position",
+            "codename": "position"
+        }
+    }
+]
