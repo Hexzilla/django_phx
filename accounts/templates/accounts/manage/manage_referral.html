@@ -24,7 +24,11 @@
         <tr>
             <th scope="row ">{{forloop.counter}}</th>
             <td><img src="{% static 'images/' %}{{referral.image}}" style="width: 50px; height: 50px;"></td>
-            <td><a href="{% url 'edit_referral' referral.id %}">{{referral}}</a></td>
+            {% if 'promotion_edit' in positions %}
+                <td><a href="{% url 'edit_referral' referral.id %}">{{referral}}</a></td>
+            {% else %}
+                <td>{{referral}}</td>
+            {% endif %}
             <!-- <td>{{referral.id}}</td> -->
             <td>{{referral.status}}</td> {% endfor %}
 

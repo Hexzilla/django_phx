@@ -203,6 +203,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'staticfiles'), ]
 # EMAIL_HOST_PASSWORD = 'yourpassword'
 
 MIDDLEWARE_CLASSES = (
+    'accounts.middleware.UserPositionMiddleware',
     'livereload.middleware.LiveReloadScript',
 )
 

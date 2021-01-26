@@ -3,14 +3,13 @@
 <div class="row">
     <h3>Manage Game</h3>
     <div class="ml-auto">
+        {% if 'game_add' in positions %}
         <a class="btn btn-sm btn-primary " href="{% url 'add_game' %}">Add New</a>
+        {% endif %}
     </div>
 
 </div>
 <br>
-
-
-
 
 <table class="table table-bordered mt-4 align-content-center align-items-center text-center ">
     <thead>
@@ -26,7 +25,11 @@
         <tr>
             <th scope="row ">{{forloop.counter}}</th>
             <td>{{game.category}}</td>
-            <td><a href="{% url 'edit_game' game.id %}">{{game.name}}</a></td>
+            {% if 'game_edit' in positions %}
+                <td><a href="{% url 'edit_game' game.id %}">{{game.name}}</a></td>
+            {% else %}
+                <td>{{game.name}}</td>
+            {% endif %}
             <td>{{game.status}}</td>
 
 

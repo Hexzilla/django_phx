@@ -61,6 +61,7 @@ def loginPage(request):
 
 		if user is not None:
 			login(request, user)
+			request.session['positions'] = get_positions(user.id)
 			return redirect('home')
 			
 		# if int(today_now) > int(LoginAccess()):
@@ -82,7 +83,11 @@ def logoutUser(request):
 #* login end
 
 
-
+def get_positions(user_id):
+	user_positions = User_Position.objects.filter(user_id=user_id).only("position__codename")
+	user_positions = map(lambda x: x.position.codename, list(user_positions))
+	user_positions = list(user_positions)
+	return user_positions
 
 
 #! Main Dashboard
@@ -1176,13 +1181,21 @@ def referral_on_all_pages(request):
 
 @login_required(login_url='login')
 def manage_referral(request):
-	referrals 	= Referral.objects.all().order_by("id") 
-	context = {'referrals':referrals}
+	positions = request.session['positions']
+	if not 'referral_view' in positions:
+		return render(request, 'accounts/require_permission.html')
+
+	referrals = Referral.objects.all().order_by("id") 
+	context = {'referrals':referrals, "positions": positions}
 	return render(request, 'accounts/manage/manage_referral.html',  context)
 
 
 @login_required(login_url='login')
 def createReferral(request):
+	positions = request.session['positions']
+	if not 'referral_add' in positions:
+		return render(request, 'accounts/require_permission.html')
+
 	form 		= AddReferralForm()
 	referrals 	= Referral.objects.all().order_by("id")
 	if request.method == "POST":
@@ -1198,6 +1211,10 @@ def createReferral(request):
 
 @login_required(login_url='login')
 def editReferral(request,pk):
+	positions = request.session['positions']
+	if not 'referral_edit' in positions:
+		return render(request, 'accounts/require_permission.html')
+
 	referrals 	= Referral.objects.all().order_by("id")
 	if referrals.filter(id=pk).exists():
 		referral = referrals.get(id=pk)
@@ -1249,13 +1266,21 @@ def bank_on_all_pages(request):
 
 @login_required(login_url='login')
 def manage_bank(request):
-	banks 	= Bank.objects.all().order_by("id")
-	context = {'banks':banks}
+	positions = request.session['positions']
+	if not 'bank_view' in positions:
+		return render(request, 'accounts/require_permission.html')
+
+	banks = Bank.objects.all().order_by("id")
+	context = {'banks':banks, "positions": positions}
 	return render(request, 'accounts/manage/manage_bank.html',  context)
 
 
 @login_required(login_url='login')
 def createBank(request):
+	positions = request.session['positions']
+	if not 'bank_add' in positions:
+		return render(request, 'accounts/require_permission.html')
+
 	form 	= CreateBankForm()
 	banks 	= Bank.objects.all().order_by("id")
 	if request.method == "POST":
@@ -1271,6 +1296,10 @@ def createBank(request):
 
 @login_required(login_url='login')
 def editBank(request,pk):
+	positions = request.session['positions']
+	if not 'bank_edit' in positions:
+		return render(request, 'accounts/require_permission.html')
+
 	banks 	= Bank.objects.all().order_by("id")
 	if banks.filter(id=pk).exists():
 		bank_this = banks.get(id=pk)
@@ -1295,13 +1324,21 @@ def editBank(request,pk):
 # Promotion
 @login_required(login_url='login')
 def manage_promotion(request):
-	promotions = Promotion.objects.all().order_by("id")
-	context    = {'promotions':promotions}
+	positions = request.session['positions']
+	if not 'promotion_view' in positions:
+		return render(request, 'accounts/require_permission.html')
+
+	promotions = Promotion.objects.all().order_by("id")	
+	context    = {'promotions':promotions, "positions": positions}
 	return render(request, 'accounts/manage/manage_promotion.html',  context)
 
 
 @login_required(login_url='login')
 def createPromotion(request):
+	positions = request.session['positions']
+	if not 'promotion_add' in positions:
+		return render(request, 'accounts/require_permission.html')
+
 	form       = CreatePromotionForm()
 	if request.method == "POST":
 		form = CreatePromotionForm(request.POST or None)
@@ -1315,16 +1352,21 @@ def createPromotion(request):
 
 @login_required(login_url='login')
 def editPromotion(request,pk):
+	positions = request.session['positions']
+	if not 'promotion_edit' in positions:
+		return render(request, 'accounts/require_permission.html')
+
 	promotion = Promotion.objects.get(id=pk)
 	form       = CreatePromotionForm(instance=promotion)
-
+	
 	if request.method == "POST":
 		form = CreatePromotionForm(request.POST or None, instance=promotion)
 		if form.is_valid():
 			form.save()
 			return manage_promotion(request)
 
-	context = {'form':form, 'promotion':promotion}
+	user_positions = get_positions(request.user.id)
+	context = {'form':form, 'promotion':promotion, "user_positions": user_positions}
 	return render(request, 'accounts/forms/form_promotion_profile.html',  context)
 
 
@@ -1370,14 +1412,22 @@ def game_on_all_pages(request):
 
 @login_required(login_url='login')
 def manage_game(request):
-	games 	= Game.objects.all().order_by("id")
-	context = {'games':games}
+	positions = request.session['positions']
+	if not 'game_view' in positions:
+		return render(request, 'accounts/require_permission.html')
+
+	games = Game.objects.all().order_by("id")
+	context = {'games': games, 'positions': positions}
 	return render(request, 'accounts/manage/manage_game.html',  context)
 
 
 @login_required(login_url='login')
 def createGame(request):
-	form 	= CreateGameForm()
+	positions = request.session['positions']
+	if not 'game_add' in positions:
+		return render(request, 'accounts/require_permission.html')
+
+	form = CreateGameForm()
 	if request.method == "POST":
 		form = CreateGameForm(request.POST or None)
 		if form.is_valid():
@@ -1390,6 +1440,10 @@ def createGame(request):
 
 @login_required(login_url='login')
 def editGame(request,pk):
+	positions = request.session['positions']
+	if not 'game_edit' in positions:
+		return render(request, 'accounts/require_permission.html')
+
 	games        = Game.objects.all().order_by("id")
 	game_credits = Transaction.objects.filter(game_backend=pk).order_by("-id")
 	paginator    = Paginator(game_credits, 5)
@@ -1702,7 +1756,10 @@ def list_weekly(request):
 
 @login_required(login_url='login')
 def blacklist_bank(request):
-	context = {}
+	user = request.user
+	user_positions = get_positions(user.id)
+	context = {"user_positions": user_positions}
+	logger.warning(user_positions)
 	return render(request, 'accounts/user/blacklist_bank.html',  context)
 
 
@@ -1724,13 +1781,16 @@ def assign_position(request, user_id):
 		if positions and len(positions) > 0:
 			for position_id in positions:
 				items.append(User_Position(user_id = user_id, position_id = position_id))
+		
+		User_Position.objects.filter(user_id = user_id).delete()
 		User_Position.objects.bulk_create(items)
+		request.session['positions'] = get_positions(user_id)
 
 
 	position_group = Positions.objects.values('group').annotate(Count("id"))
 	positions = Positions.objects.all().order_by("id")	
+
 	user_positions = User_Position.objects.filter(user_id=user_id).only("position_id")
-	
 	user_positions = map(lambda x: x.position_id, list(user_positions))
 	user_positions = list(user_positions)
 	
@@ -1746,39 +1806,7 @@ def assign_position(request, user_id):
 
 @login_required(login_url='login')
 def manage_position(request):
-	user = request.user
-
-	if request.method == 'POST':
-		positions = request.POST.getlist('positions[]')
-
-		items = []
-		if positions and len(positions) > 0:
-			for position_id in positions:
-				items.append(User_Position(user_id=user.id, position_id=position_id))
-
-		User_Position.objects.bulk_create(items)
-
-	position_group = Positions.objects.values('group').annotate(Count("id"))
-	positions = Positions.objects.all().order_by("id")	
-	user_positions = User_Position.objects.filter(user_id=user.id).only("position_id")
-	
-	user_positions = map(lambda x: x.position_id, list(user_positions))
-	user_positions = list(user_positions)
-	
-	# positions = list(positions)
-	# for pos in positions:
-	# 	logger.warning(pos.id)
-	# 	matches = any(x for x in user_positions if pos.id == x.position_id)
-	# 	logger.warning(matches)
-	# 	if matches:
-	# 		pos.state = 1
-
-
-	context = {
-		"position_group": position_group,
-		"positions": positions, 
-		"user_positions": user_positions
-	}
+	context = {}
 	return render(request, 'accounts/employee/manage_position.html',  context)
 	
 

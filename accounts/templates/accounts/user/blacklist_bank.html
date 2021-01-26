@@ -3,7 +3,9 @@
 <div class="row">
     <h3>Blacklist Banks</h3>
     <div class="ml-auto">
+        {% if 'bank_black_list_add' in user_positions %}
         <button class="btn btn-primary " type="submit ">Add New</button>
+        {% endif %}
     </div>
 
 </div>

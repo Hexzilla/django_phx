@@ -3,7 +3,9 @@
 <div class="row">
     <h3>Manage Promotion</h3>
     <div class="ml-auto">
+        {% if 'promotion_add' in positions %}
         <a class="btn btn-sm btn-primary " href="{% url 'add_promotion' %}">Add New</a>
+        {% endif %}
     </div>
 
 </div>
@@ -28,7 +30,11 @@
             <th scope="row ">{{forloop.counter}}</th>
             <td>{{promotion.tag1}}</td>
             <td>{{promotion.tag2}}</td>
-            <td><a href="{% url 'edit_promotion' promotion.id %}">{{promotion.name}}</a></td>
+            {% if 'promotion_edit' in positions %}
+                <td><a href="{% url 'edit_promotion' promotion.id %}">{{promotion.name}}</a></td>
+            {% else %}
+                <td>{{promotion.name}}</td>
+            {% endif %}
             <td>{{promotion.status}}</td>
             {% endfor %}
     </tbody>
