@@ -4,6 +4,7 @@ python manage.py runserver
 python manage.py makemigrations accounts
 python manage.py migrate accounts
 
+python manage.py loaddata user.json
 
 pip install -r .\requirements.txt
 

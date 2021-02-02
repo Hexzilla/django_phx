@@ -1,0 +1,1655 @@
+var created = false;
+var new_username = "";
+var updatedCookie = false;
+var callApiAddGamePool = false;
+if (
+  window.location.href.toLowerCase().indexOf("setscore") > -1 &&
+  window.location.href.toLowerCase().indexOf("?username") > -1
+) {
+  setTimeout(function () {
+    if (document.getElementById("Button_OK") !== null)
+      document.getElementById("Button_OK").click();
+    setTimeout(function () {
+      var scoreParam = "";
+      var setscoreParam = false;
+      if ($(".btn.btn-warning.btn-xs").length == 0) {
+        $("#Button_OK").click();
+      }
+      $("#Button_OK").click();
+      setTimeout(function () {
+        var i;
+        var btns = document.getElementsByClassName("btn-warning");
+        var len = btns.length;
+        for (i = 0; i < len; i++) {
+          if (
+            btns[i].getAttribute("onclick") !== "undefined" &&
+            btns[i].getAttribute("onclick") != "" &&
+            btns[i].getAttribute("onclick") != null
+          ) {
+            var onclick = btns[i].getAttribute("onclick").toLowerCase();
+            if (onclick.indexOf("editscore") > -1) {
+              var href = onclick.replace("document.location='", "");
+              href = href.substr(0, href.length - 1);
+              var windowData = window.location;
+              if (windowData.search == "") {
+                var data = windowData.hash;
+              } else {
+                var data = windowData.search;
+              }
+              var paramDatas = data.split("&");
+              var paramDatasLen = paramDatas.length;
+              var j;
+              for (j = 0; j < paramDatasLen; j++) {
+                var params = paramDatas[j].split("=");
+                var paramKey = params[0];
+                var paramVal = params[1];
+                if (paramKey == "score") scoreParam = paramDatas[j];
+                if (paramDatas[j].toLowerCase().indexOf("setscore=") > -1)
+                  setscoreParam = true;
+              }
+              if (setscoreParam && scoreParam == "") {
+                scoreParam = "score=0";
+              }
+              if (href.substr(-1) != "?" && href.indexOf("?") < 0)
+                var url = href + "?set=1&" + scoreParam;
+              else if (href.substr(-1) != "&")
+                var url = href + "&" + scoreParam;
+              else var url = href + scoreParam;
+              if (setscoreParam)
+                return (window.location.href = window.location.origin + url);
+            }
+          }
+        }
+      }, 1000);
+    }, 1000);
+  }, 1000);
+} else if (
+  window.location.href.toLowerCase().indexOf("editscore") > -1 &&
+  window.location.href.toLowerCase().indexOf("score=") > -1
+) {
+  setTimeout(function () {
+    var scoreVal = 0;
+    var i;
+    var inputs = document.getElementsByTagName("input");
+    var len = inputs.length;
+    for (i = 0; i < len; i++) {
+      if (typeof inputs[i].name !== "undefined") {
+        if (inputs[i].name.toLowerCase().indexOf("score") > -1) {
+          var windowData = window.location;
+          if (windowData.search == "") {
+            var data = windowData.hash;
+          } else {
+            var data = windowData.search;
+          }
+          var paramDatas = data.split("&");
+          var paramDatasLen = paramDatas.length;
+          var j;
+          for (j = 0; j < paramDatasLen; j++) {
+            var params = paramDatas[j].split("=");
+            var paramKey = params[0];
+            var paramVal = params[1];
+            if (paramKey == "score") scoreVal = parseFloat(paramVal);
+          }
+          inputs[i].value = scoreVal;
+          return;
+        }
+        if (inputs[i].id.toLowerCase().indexOf("score") > -1) {
+          var windowData = window.location;
+          if (windowData.search == "") {
+            var data = windowData.hash;
+          } else {
+            var data = windowData.search;
+          }
+          var paramDatas = data.split("&");
+          var paramDatasLen = paramDatas.length;
+          var j;
+          for (j = 0; j < paramDatasLen; j++) {
+            var params = paramDatas[j].split("=");
+            var paramKey = params[0];
+            var paramVal = params[1];
+            if (paramKey == "score") scoreVal = parseFloat(paramVal);
+          }
+          inputs[i].value = scoreVal;
+          return;
+        }
+      }
+    }
+  }, 1000);
+} else if (
+  window.location.href.toLowerCase().indexOf("account-set-score") > -1
+) {
+  setTimeout(function () {
+    var windowData = window.location;
+    if (windowData.search == "") {
+      var data = windowData.hash;
+    } else {
+      var data = windowData.search;
+    }
+    var paramDatas = data.split("&");
+    var paramDatasLen = paramDatas.length;
+    var j;
+    for (j = 0; j < paramDatasLen; j++) {
+      var params = paramDatas[j].split("=");
+      var paramKey = params[0];
+      var paramVal = params[1];
+      if (paramKey == "score") scoreVal = parseFloat(paramVal);
+    }
+    var inputs = document.getElementsByTagName("input");
+    var len = inputs.length;
+    for (i = 0; i < len; i++) {
+      var val = inputs[i];
+      if (val.hasAttribute("placeholder")) {
+        if (
+          val.getAttribute("placeholder").toLowerCase().indexOf("score") > -1
+        ) {
+          input = val;
+          val.value = scoreVal;
+        }
+      }
+    }
+  }, 500);
+} else if (
+  window.location.href.toLowerCase().indexOf("edit-user") > -1 &&
+  window.location.href.toLowerCase().indexOf("resetpass=1") > -1
+) {
+  setTimeout(function () {
+    var i;
+    var inputs = document.getElementsByTagName("label");
+    var len = inputs.length;
+    var clickInput = [];
+    for (i = 0; i < len; i++) {
+      var val = inputs[i];
+      if (val.hasAttribute("for")) {
+        if (val.getAttribute("for").toLowerCase().indexOf("password") > -1) {
+          input = val.nextElementSibling.querySelector("input");
+          input.value = "PWD#111CDE$222333#444555$999AAA";
+          clickInput.push(input);
+        }
+      }
+    }
+  }, 500);
+} else if (window.location.href.toLowerCase().indexOf("searchscorelog") > -1) {
+  setTimeout(function () {
+    document.getElementById("Button_OK").click();
+  }, 500);
+} else if (window.location.href.toLowerCase().indexOf("searchgamelog") > -1) {
+  setTimeout(function () {
+    document.getElementById("Button_OK").click();
+  }, 500);
+} else if (
+  window.location.href.toLowerCase().indexOf("player_action.php") > -1
+) {
+  var username = (prefix = newUsername = addpool = "");
+  var score = 0;
+  setTimeout(function () {
+    var search = window.location.search.substr(1);
+    var searchArr = search.split("&");
+    var len = searchArr.length;
+    var i;
+    for (i = 0; i < len; i++) {
+      var params = searchArr[i].split("=");
+      if (params[0] == "username") username = params[1];
+      else if (params[0] == "score") score = params[1];
+      else if (params[0] == "resetpass") resetpass = params[1];
+      else if (params[0] == "addpool") addpool = parseInt(params[1]);
+    }
+    $.each($("table.form tbody tr td"), function (key, val) {
+      if ($(val).html().toLowerCase() == "kiosk:")
+        prefix = $(val).next("td").html();
+    });
+    if (window.location.href.toLowerCase().indexOf("addpool=") > -1) {
+      if (addpool == 0) {
+        return false;
+      }
+      var id = Math.floor(Math.random() * 26) + Date.now().toFixed(0);
+      newUsername = prefix + id.substring(id.length - 6);
+    } else {
+      var randomId = Math.floor(Math.random() * 26) + Date.now().toFixed(0);
+      randomId = randomId.substring(randomId.length - 6);
+      newUsername = prefix + randomId;
+    }
+    newUsername = newUsername.substr(0, 15);
+    var i;
+    var inputs = document.getElementsByTagName("input");
+    var len = inputs.length;
+    for (i = 0; i < len; i++) {
+      if (inputs[i].name.toLowerCase().indexOf("playername") > -1)
+        inputs[i].value = newUsername;
+      if (window.location.href.toLowerCase().indexOf("setscore") > -1) {
+        newUsername = username;
+        if (inputs[i].name.toLowerCase().indexOf("amount") > -1)
+          inputs[i].value = score;
+      } else if (window.location.href.toLowerCase().indexOf("resetpass") > -1) {
+        if (inputs[i].name.toLowerCase().indexOf("player_info") > -1)
+          $(inputs[i]).click();
+        setTimeout(function () {
+          var i;
+          var inputs = document.getElementsByTagName("input");
+          var len = inputs.length;
+          for (i = 0; i < len; i++) {
+            if (inputs[i].name.toLowerCase().indexOf("change_password") > -1) {
+              $(inputs[i]).click();
+              setTimeout(function () {
+                var i;
+                var inputs = document.getElementsByTagName("input");
+                var len = inputs.length;
+                for (i = 0; i < len; i++) {
+                  if (inputs[i].name.toLowerCase().indexOf("password") > -1) {
+                    inputs[i].value = "PWD#111CDE$222333#444555$999AAA";
+                    $(inputs[i])
+                      .closest("tr")
+                      .parent("tbody")
+                      .find("tr.buttons")
+                      .find('input[name="changepwd"]')
+                      .click();
+                  }
+                }
+              }, 1000);
+            }
+          }
+        }, 1000);
+      } else if (window.location.href.toLowerCase().indexOf("adduser") > -1) {
+        if (inputs[i].name.toLowerCase().indexOf("create") > -1) {
+          $(inputs[i]).click();
+          created = true;
+          setTimeout(function () {
+            if (
+              window.location.href.toLowerCase().indexOf("addpool=") > -1 &&
+              created == true
+            ) {
+              addUserToCookie(newUsername);
+              addPoolRefresh(addpool);
+            }
+          }, 500);
+        }
+      }
+    }
+    return;
+  }, 500);
+  function addUserToCookie(username) {
+    if (created == false) {
+      setTimeout(function () {
+        addUserToCookie(username);
+      }, 1000);
+    } else {
+      if ($(".messages .success").length == 0) {
+        setTimeout(function () {
+          addUserToCookie(username);
+        }, 1000);
+        return;
+      }
+      var a = $(".messages .success").html().split(" ");
+      var newPassword = a[a.length - 1].split("'")[1];
+      var x = document.cookie;
+      var score = 0;
+      var new_username_cookie = "";
+      if (x != "") {
+        $.each(x.split("; "), function (key, val) {
+          cookieParam = val.split("=");
+          cookieKey = cookieParam[0];
+          cookieVal = cookieParam[1];
+          if (cookieKey == "new_username") new_username = cookieVal;
+        });
+      }
+      if (new_username == "") {
+        new_username_cookie = username + ":" + newPassword;
+      } else {
+        new_username_cookie = new_username + "," + username + ":" + newPassword;
+      }
+      document.cookie = "new_username=" + new_username_cookie + "; path=/";
+      updatedCookie = true;
+    }
+  }
+  function addPoolRefresh(addpool) {
+    if (updatedCookie == true) {
+      console.log(addpool);
+      if (addpool > 1) {
+        if (window.location.href.toLowerCase().indexOf("mega") > -1) {
+          window.location.href = window.location.href.replace(
+            "addpool=" + addpool,
+            "addpool=" + (addpool - 1)
+          );
+          location.reload();
+        } else {
+          window.location = window.location.href.replace(
+            "addpool=" + addpool,
+            "addpool=" + (addpool - 1)
+          );
+        }
+      } else {
+        var password = "PWD#111CDE$222333#444555$999AAA";
+        insertUserGameApi(password);
+      }
+    } else {
+      setTimeout(function () {
+        addPoolRefresh(addpool);
+      }, 1000);
+    }
+  }
+  function insertUserGameApi(password) {
+    var x = document.cookie;
+    var score = 0;
+    var new_username_to_register = "";
+    if (x != "") {
+      $.each(x.split("; "), function (key, val) {
+        cookieParam = val.split("=");
+        cookieKey = cookieParam[0];
+        cookieVal = cookieParam[1];
+        if (cookieKey == "new_username") new_username_to_register = cookieVal;
+      });
+    }
+    if (new_username_to_register == "") {
+      return false;
+    }
+    var data = {
+      game_id: "86",
+      created_by: "2712",
+      password: password,
+      username: new_username_to_register,
+    };
+    $.ajax({
+      type: "POST",
+      url: "https://phx.mente.asia/api/game/add-game-pool",
+      dataType: "json",
+      cache: false,
+      timeout: 30000,
+      data: data,
+      success: function (response) {
+        if (response) {
+          if (response.data) {
+            if (response.status) {
+              document.cookie =
+                "new_username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+              new_username = "";
+              alert("done created !");
+              window.top.close();
+            }
+          }
+        }
+      },
+      error: function (response) {
+        console.log(response);
+      },
+    });
+  }
+} else if (
+  window.location.href.toLowerCase().indexOf("player_reports.php") > -1
+) {
+  var username = "";
+  setTimeout(function () {
+    var search = window.location.search.substr(1);
+    var searchArr = search.split("&");
+    var len = searchArr.length;
+    var i;
+    for (i = 0; i < len; i++) {
+      var params = searchArr[i].split("=");
+      if (params[0] == "username") username = params[1];
+    }
+    var i;
+    var inputs = document.getElementsByTagName("input");
+    var len = inputs.length;
+    for (i = 0; i < len; i++) {
+      if (inputs[i].name.toLowerCase().indexOf("playername") > -1) {
+        inputs[i].value = username;
+        $('input[type="button"][name="show"]').click();
+      }
+    }
+    return;
+  }, 500);
+} else if (
+  window.location.href.toLowerCase().indexOf("player_search.php") > -1
+) {
+  var username = "";
+  setTimeout(function () {
+    var search = window.location.search.substr(1);
+    var searchArr = search.split("&");
+    var len = searchArr.length;
+    var i;
+    for (i = 0; i < len; i++) {
+      var params = searchArr[i].split("=");
+      if (params[0] == "username") username = params[1];
+    }
+    var i;
+    var inputs = document.getElementsByTagName("input");
+    var len = inputs.length;
+    var submitInput = "";
+    for (i = 0; i < len; i++) {
+      if (inputs[i].name.toLowerCase().indexOf("playermask") > -1) {
+        inputs[i].value = username;
+        submitInput = inputs[i];
+      } else if (inputs[i].name.toLowerCase().indexOf("startdate") > -1) {
+        inputs[i].value = "2020-01-01";
+      }
+    }
+    $(submitInput).closest("table").find('input[type="submit"]').click();
+    setTimeout(function () {
+      $.each($("a"), function (key, val) {
+        if (typeof $(val).html() !== "undefined" && $(val).html() == username)
+          window.location.href = window.location.origin + val.href;
+      });
+    }, 1000);
+    return;
+  }, 500);
+} else if (
+  (window.location.href.toLowerCase().indexOf("player/create") > -1 ||
+    window.location.href.toLowerCase().indexOf("addplayer") > -1 ||
+    window.location.href.toLowerCase().indexOf("adduser=1") > -1) &&
+  window.location.href.toLowerCase().indexOf("goshrimp888") == -1
+) {
+  var input = "";
+  var windowData = window.location;
+  if (windowData.search == "") {
+    var data = windowData.hash;
+  } else {
+    var data = windowData.search;
+  }
+  var name = "";
+  var tel = "";
+  var addpool = "";
+  var j;
+  var paramDatas = data.split("&");
+  var paramDatasLen = paramDatas.length;
+  setTimeout(function () {
+    for (j = 0; j < paramDatasLen; j++) {
+      var params = paramDatas[j].split("=");
+      var paramKey = params[0];
+      var paramVal = params[1];
+      if (paramKey == "name") name = paramVal;
+      else if (paramKey == "tel") tel = paramVal;
+      else if (paramKey == "addpool") addpool = parseInt(paramVal);
+    }
+    if (window.location.href.toLowerCase().indexOf("addpool=") > -1) {
+      if (addpool == 0) {
+        return false;
+      }
+    }
+    var i;
+    var inputs = document.getElementsByTagName("input");
+    var len = inputs.length;
+    for (i = 0; i < len; i++) {
+      var val = inputs[i];
+      if (typeof val.id !== "undefined") {
+        if (val.id.toLowerCase().indexOf("password") > -1) {
+          input = val;
+          val.value = "PWD#111CDE$222333#444555$999AAA";
+        } else if (val.id.toLowerCase().indexOf("score") > -1) {
+          val.value = "0";
+        } else if (
+          val.id.toLowerCase().indexOf("name") > -1 &&
+          val.id.toLowerCase().indexOf("username") == -1
+        ) {
+          val.value = name;
+        } else if (val.id.toLowerCase().indexOf("tel") > -1) {
+          val.value = tel;
+        }
+      }
+    }
+    if (input == "") {
+      var i;
+      var inputs = document.getElementsByTagName("input");
+      var len = inputs.length;
+      for (i = 0; i < len; i++) {
+        var val = inputs[i];
+        if (typeof val.name !== "undefined") {
+          if (val.name.toLowerCase().indexOf("password") > -1) {
+            input = val;
+            val.value = "PWD#111CDE$222333#444555$999AAA";
+          } else if (val.name.toLowerCase().indexOf("score") > -1) {
+            val.value = "0";
+          } else if (
+            val.name.toLowerCase().indexOf("name") > -1 &&
+            val.name.toLowerCase().indexOf("username") == -1
+          ) {
+            val.value = name;
+          } else if (val.name.toLowerCase().indexOf("tel") > -1) {
+            val.value = tel;
+          }
+        }
+      }
+    }
+    if (input == "") {
+      dynamicallyLoadScript(
+        "https://phx.mente.asia/assets/js/core/jquery.min.js"
+      );
+      function dynamicallyLoadScript(url) {
+        var script = document.createElement("script");
+        script.src = url;
+        document.head.appendChild(script);
+      }
+    }
+    if (document.querySelector("#Button_OK") == null) {
+      input.closest("form").querySelector(".el-button--primary").click();
+    } else {
+      document.querySelector("#Button_OK").click();
+    }
+    created = true;
+    setTimeout(function () {
+      if (
+        window.location.href.toLowerCase().indexOf("addpool=") > -1 &&
+        created == true
+      ) {
+        if (window.location.href.toLowerCase().indexOf("mega") > -1) {
+          addUserToCookie();
+          addPoolRefresh(addpool);
+        } else {
+          continueAddPoolAction();
+        }
+      }
+    }, 500);
+  }, 3000);
+  function continueAddPoolAction() {
+    if (created == false) {
+      setTimeout(function () {
+        continueAddPoolAction();
+      }, 5000);
+    } else if (
+      created == true &&
+      document.querySelector(".showSweetAlert") == null
+    ) {
+      setTimeout(function () {
+        continueAddPoolAction();
+      }, 5000);
+    } else {
+      if (
+        document.querySelector(".showSweetAlert") != null &&
+        document
+          .querySelector(".showSweetAlert h2")
+          .innerHTML.toLowerCase()
+          .indexOf("success") > -1
+      ) {
+        addUserToCookie();
+        addPoolRefresh(addpool);
+      } else {
+        setTimeout(function () {
+          addPoolRefresh(addpool, true);
+        }, 0);
+      }
+    }
+  }
+  function addUserToCookie(username = null) {
+    console.log("created: " + created);
+    if (created == false) {
+      setTimeout(function () {
+        addUserToCookie();
+      }, 1000);
+    } else {
+      var x = document.cookie;
+      var score = 0;
+      var new_username_cookie = "";
+      if (x != "") {
+        $.each(x.split("; "), function (key, val) {
+          cookieParam = val.split("=");
+          cookieKey = cookieParam[0];
+          cookieVal = cookieParam[1];
+          if (cookieKey == "new_username") new_username = cookieVal;
+        });
+      }
+      if (window.location.href.toLowerCase().indexOf("mega") > -1) {
+        if (new_username == "") {
+          new_username_cookie = $("#s_playerID").val();
+        } else {
+          new_username_cookie = new_username + "," + $("#s_playerID").val();
+        }
+      } else if (window.location.href.toLowerCase().indexOf("918kiss") > -1) {
+        if (new_username == "") {
+          new_username_cookie = $("#s_playerID").html();
+        } else {
+          new_username_cookie = new_username + "," + $("#s_playerID").html();
+        }
+      } else {
+        if ($("#s_playerID").length > 0) {
+          if ($("#s_playerID")[0].nodeName == "INPUT") {
+            if (new_username == "") {
+              new_username_cookie = $("#s_playerID").val();
+            } else {
+              new_username_cookie = new_username + "," + $("#s_playerID").val();
+            }
+          } else {
+            if (new_username == "") {
+              new_username_cookie = $("#s_playerID").html();
+            } else {
+              new_username_cookie =
+                new_username + "," + $("#s_playerID").html();
+            }
+          }
+        }
+        if (username != null && username != "") {
+          if (new_username == "") {
+            new_username_cookie = username;
+          } else {
+            new_username_cookie = new_username + "," + username;
+          }
+        }
+      }
+      document.cookie = "new_username=" + new_username_cookie + "; path=/";
+      updatedCookie = true;
+    }
+  }
+  function addPoolRefresh(addpool, tryAgain = false) {
+    if (tryAgain == true) {
+      if (window.location.href.toLowerCase().indexOf("mega") > -1) {
+        window.location.href = window.location.href.replace(
+          "addpool=" + addpool,
+          "addpool=" + addpool
+        );
+        location.reload();
+      } else {
+        window.location = window.location.href.replace(
+          "addpool=" + addpool,
+          "addpool=" + addpool
+        );
+      }
+      return;
+    }
+    if (updatedCookie == true) {
+      if (addpool > 1) {
+        if (window.location.href.toLowerCase().indexOf("mega") > -1) {
+          window.location.href = window.location.href.replace(
+            "addpool=" + addpool,
+            "addpool=" + (addpool - 1)
+          );
+          location.reload();
+        } else {
+          window.location = window.location.href.replace(
+            "addpool=" + addpool,
+            "addpool=" + (addpool - 1)
+          );
+        }
+      } else {
+        var password = "PWD#111CDE$222333#444555$999AAA";
+        insertUserGameApi(password);
+      }
+    } else {
+      setTimeout(function () {
+        addPoolRefresh(addpool);
+      }, 1000);
+    }
+  }
+  function insertUserGameApi(password) {
+    var x = document.cookie;
+    var score = 0;
+    var new_username_to_register = "";
+    if (x != "") {
+      $.each(x.split("; "), function (key, val) {
+        cookieParam = val.split("=");
+        cookieKey = cookieParam[0];
+        cookieVal = cookieParam[1];
+        if (cookieKey == "new_username") new_username_to_register = cookieVal;
+      });
+    }
+    if (new_username_to_register == "") {
+      return false;
+    }
+    var data = {
+      game_id: "86",
+      created_by: "2712",
+      password: password,
+      username: new_username_to_register,
+    };
+    $.ajax({
+      type: "POST",
+      url: "https://phx.mente.asia/api/game/add-game-pool",
+      dataType: "json",
+      cache: false,
+      timeout: 30000,
+      data: data,
+      success: function (response) {
+        if (response) {
+          if (response.data) {
+            if (response.status) {
+              document.cookie =
+                "new_username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+              new_username = "";
+              alert("done created !");
+              window.top.close();
+            }
+          }
+        }
+      },
+      error: function (response) {
+        console.log(response);
+      },
+    });
+  }
+} else if (typeof window.jQuery !== "undefined") {
+  $(function () {
+    if (
+      (window.location.href.toLowerCase().indexOf("adduser") > -1 ||
+        window.location.href.toLowerCase().indexOf("addaccount") > -1) &&
+      window.location.href.toLowerCase().indexOf("signin") < 0
+    ) {
+      console.log("mega");
+      register();
+    } else if (
+      (window.location.href.toLowerCase().indexOf("scorelog") > -1 ||
+        window.location.href.toLowerCase().indexOf("score_log") > -1) &&
+      window.location.href.toLowerCase().indexOf("signin") < 0
+    ) {
+      var canContinue = true;
+      setTimeout(function () {
+        $.each($('a[type="button"]'), function (key, val) {
+          if (typeof val.href !== "undefined") {
+            if (
+              val.href.toLowerCase().indexOf("scorelog") > -1 ||
+              val.href.toLowerCase().indexOf("score_log") > -1
+            ) {
+              var url = val.href;
+              window.location.href = url;
+            }
+          }
+          if (typeof val.text !== "undefined") {
+            if (
+              val.text.toLowerCase().indexOf("scorelog") > -1 ||
+              val.href.toLowerCase().indexOf("score_log") > -1
+            ) {
+              $(val).click();
+              setTimeout(function () {
+                var url = val.href;
+                window.location.href = url;
+              }, 500);
+            }
+          }
+        });
+        $.each($('input[type!="hidden"]'), function (key, val) {
+          if (typeof val.name !== "undefined") {
+            if (val.name.toLowerCase().indexOf("username") > -1) {
+              if ($(val.closest("form")).submit().length == 0)
+                $("#Button_OK").click();
+              return;
+            }
+          }
+        });
+        $.each($('input[type!="hidden"]'), function (key, val) {
+          if (typeof val.id !== "undefined") {
+            if (val.id.toLowerCase().indexOf("username") > -1) {
+              if ($(val.closest("form")).submit().length == 0)
+                $("#Button_OK").click();
+              canContinue = false;
+              return;
+            }
+          }
+        });
+        if (
+          document.getElementsByClassName("btn-warning").length == 0 ||
+          window.location.href.toLowerCase().indexOf("searchscorelog") > -1 ||
+          window.location.href.toLowerCase().indexOf("score_log") > -1
+        ) {
+          if ($("#Button_OK").click().length > 0) return;
+          else if ($("button#search").click().length > 0) return;
+        } else {
+          var i;
+          var btns = document.getElementsByClassName("btn-warning");
+          var len = btns.length;
+          for (i = 0; i < len; i++) {
+            if (
+              btns[i].getAttribute("onclick") !== "undefined" &&
+              btns[i].getAttribute("onclick") != "" &&
+              btns[i].getAttribute("onclick") != null
+            ) {
+              var onclick = btns[i].getAttribute("onclick").toLowerCase();
+              if (onclick.indexOf("scorelog") > -1) {
+                var href = onclick.replace("document.location='", "");
+                href = href.substr(0, href.length - 1);
+                return (window.location.href = window.location.origin + href);
+              }
+            }
+          }
+        }
+        var input = "";
+        var windowData = window.location;
+        if (windowData.search == "") {
+          var data = windowData.hash;
+        } else {
+          var data = windowData.search;
+        }
+        var username = "";
+        $.each(data.split("&"), function (key, val) {
+          var params = val.split("=");
+          var paramKey = params[0];
+          var paramVal = params[1];
+          if (paramKey == "username") username = val.split("=")[1];
+        });
+        $.each($('input[type!="hidden"]'), function (key, val) {
+          if (typeof val.name !== "undefined") {
+            if (val.name.toLowerCase().indexOf("playeraccount") > -1) {
+              val.value = username;
+              $.each($('input[type="submit"]'), function (key, val) {
+                if (typeof val.name !== "undefined") {
+                  if (val.name.toLowerCase().indexOf("update") > -1) {
+                    $(val).click();
+                    canContinue = false;
+                  }
+                }
+              });
+              if (canContinue)
+                $(val).closest("table").find('input[type="submit"]').click();
+            }
+          }
+        });
+      }, 1000);
+    } else if (
+      (window.location.href.toLowerCase().indexOf("setscore") > -1 ||
+        window.location.href.toLowerCase().indexOf("setaccountscore") > -1) &&
+      window.location.href.toLowerCase().indexOf("signin") < 0
+    ) {
+      var canContinue = true;
+      setTimeout(function () {
+        var scoreParam = "";
+        var setscoreParam = false;
+        $.each($('a[type="button"]'), function (key, val) {
+          if (typeof val.href !== "undefined") {
+            if (val.href.toLowerCase().indexOf("setscore") > -1) {
+              var windowData = window.location;
+              if (windowData.search == "") {
+                var data = windowData.hash;
+              } else {
+                var data = windowData.search;
+              }
+              $.each(data.split("&"), function (key, val) {
+                var params = val.split("=");
+                var paramKey = params[0];
+                var paramVal = params[1];
+                if (paramKey == "score") scoreParam = val;
+                if (val.toLowerCase().indexOf("setscore=") > -1)
+                  setscoreParam = true;
+              });
+              if (val.href.substr(-1) != "?" && val.href.substr(-1) != "&")
+                var url = val.href + "?set=1&" + scoreParam;
+              else var url = val.href + "&" + scoreParam;
+              if (setscoreParam) window.location.href = url;
+            }
+          }
+        });
+        setTimeout(function () {
+          var scoreVal = 0;
+          $.each($('input[type!="hidden"]'), function (key, val) {
+            if (typeof val.name !== "undefined") {
+              if (val.name.toLowerCase().indexOf("score") > -1) {
+                var windowData = window.location;
+                if (windowData.search == "") {
+                  var data = windowData.hash;
+                } else {
+                  var data = windowData.search;
+                }
+                $.each(data.split("&"), function (key, val) {
+                  var params = val.split("=");
+                  var paramKey = params[0];
+                  var paramVal = params[1];
+                  if (paramKey == "score") scoreVal = parseFloat(paramVal);
+                });
+                val.value = scoreVal;
+                canContinue = false;
+                return $(val.closest("form")).submit();
+              }
+            }
+          });
+          $.each($('input[type!="hidden"]'), function (key, val) {
+            if (typeof val.id !== "undefined") {
+              if (
+                val.id.toLowerCase().indexOf("score") > -1 ||
+                val.id.toLowerCase().indexOf("inputcredit") > -1
+              ) {
+                var windowData = window.location;
+                if (windowData.search == "") {
+                  var data = windowData.hash;
+                } else {
+                  var data = windowData.search;
+                }
+                $.each(data.split("&"), function (key, val) {
+                  var params = val.split("=");
+                  var paramKey = params[0];
+                  var paramVal = params[1];
+                  if (paramKey == "score") scoreVal = parseFloat(paramVal);
+                });
+                val.value = scoreVal;
+                canContinue = false;
+                return $(val.closest("form")).submit();
+              }
+            }
+          });
+        }, 2000);
+        if (canContinue == true) {
+          var input = "";
+          var windowData = window.location;
+          if (windowData.search == "") {
+            var data = windowData.hash;
+          } else {
+            var data = windowData.search;
+          }
+          var username = "";
+          var scoreVal = 0;
+          $.each(data.split("&"), function (key, val) {
+            var params = val.split("=");
+            var paramKey = params[0];
+            var paramVal = params[1];
+            if (paramKey == "username") username = val.split("=")[1];
+          });
+          $.each($('input[type!="hidden"]'), function (key, val) {
+            if (typeof val.name !== "undefined") {
+              if (val.name.toLowerCase().indexOf("username") > -1)
+                val.value = username;
+            }
+          });
+          if (input == "") {
+            $.each($('input[type!="hidden"]'), function (key, val) {
+              if (typeof val.id !== "undefined") {
+                if (val.id.toLowerCase().indexOf("username") > -1)
+                  val.value = username;
+                else if (val.name.toLowerCase().indexOf("deposittext") > -1) {
+                  var windowData = window.location;
+                  if (windowData.search == "") {
+                    var data = windowData.hash;
+                  } else {
+                    var data = windowData.search;
+                  }
+                  $.each(data.split("&"), function (key, val) {
+                    var params = val.split("=");
+                    var paramKey = params[0];
+                    var paramVal = params[1];
+                    if (paramKey == "score") scoreVal = parseFloat(paramVal);
+                  });
+                  var multiplier = 1;
+                  val.value = scoreVal * multiplier;
+                }
+              }
+            });
+          }
+          $.each($('input[type="submit"]'), function (key, val) {
+            if (typeof val.name !== "undefined") {
+              if (val.name.toLowerCase().indexOf("deposit") > -1) {
+              }
+            }
+          });
+          $.each($('input[type!="hidden"]'), function (key, val) {
+            if (typeof val.name !== "undefined") {
+            }
+          });
+        }
+      }, 3000);
+    } else if (window.location.href.toLowerCase().indexOf("resetpass") > -1) {
+      var canContinue = true;
+      setTimeout(function () {
+        $.each($('a[type="button"]'), function (key, val) {
+          if (typeof val.href !== "undefined") {
+            if (val.href.toLowerCase().indexOf("edit") > -1) {
+              var url = val.href;
+              window.location.href = url;
+            }
+          }
+          if (typeof val.text !== "undefined") {
+            if (val.text.toLowerCase().indexOf("edit") > -1) {
+              $(val).click();
+              setTimeout(function () {
+                var url = val.href;
+                window.location.href = url;
+              }, 500);
+            }
+          }
+        });
+        setTimeout(function () {
+          var submitVal = "";
+          $.each($('input[type!="hidden"]'), function (key, val) {
+            if (typeof val.name !== "undefined") {
+              if (
+                val.type != "submit" &&
+                val.name.toLowerCase().indexOf("password") > -1
+              ) {
+                val.value = "PWD#111CDE$222333#444555$999AAA";
+                submitVal = val;
+              }
+            }
+          });
+          if (submitVal != "") {
+            $.each($('input[type="submit"]'), function (key, val) {
+              if (typeof val.id !== "undefined") {
+                if (
+                  val.id.toLowerCase().indexOf("_changepw") > -1 ||
+                  val.id.toLowerCase().indexOf("changepwdbtn") > -1
+                ) {
+                  canContinue = false;
+                  $(val).click();
+                }
+              }
+            });
+          }
+          if (canContinue == true) {
+            if (submitVal != "") {
+              $(submitVal.closest("form")).submit();
+              canContinue = false;
+            }
+          }
+        }, 1000);
+        var i;
+        var btns = document.getElementsByClassName("btn-warning");
+        var len = btns.length;
+        for (i = 0; i < len; i++) {
+          if (
+            btns[i].getAttribute("onclick") !== "undefined" &&
+            btns[i].getAttribute("onclick") != "" &&
+            btns[i].getAttribute("onclick") != null
+          ) {
+            var onclick = btns[i].getAttribute("onclick").toLowerCase();
+            if (onclick.indexOf("edit?") > -1) {
+              var href = onclick.replace("document.location='", "");
+              href = href.substr(0, href.length - 1);
+              canContinue = false;
+              return (window.location.href = window.location.origin + href);
+            }
+          }
+        }
+        var input = "";
+        var windowData = window.location;
+        if (windowData.search == "") {
+          var data = windowData.hash;
+        } else {
+          var data = windowData.search;
+        }
+        var username = "";
+        $.each(data.split("&"), function (key, val) {
+          var params = val.split("=");
+          var paramKey = params[0];
+          var paramVal = params[1];
+          if (paramKey == "username") username = val.split("=")[1];
+        });
+        $.each($('input[type!="hidden"]'), function (key, val) {
+          if (typeof val.name !== "undefined") {
+            if (val.name.toLowerCase().indexOf("username") > -1) {
+              val.value = username;
+              $.each($('input[type="submit"]'), function (key, val) {
+                if (typeof val.name !== "undefined") {
+                  if (val.name.toLowerCase().indexOf("playerinfo") > -1) {
+                    $.each($("table").prev("div"), function (key, val) {
+                      if (
+                        typeof val.id !== "undefined" &&
+                        val.id
+                          .toLowerCase()
+                          .indexOf("playerdetailprofilepanel") > -1
+                      )
+                        canContinue = false;
+                    });
+                    if (
+                      canContinue == true &&
+                      $('input[type="password"]').length < 2 &&
+                      $("span.Lab_ReturnMessage").html() == ""
+                    ) {
+                      $(val).click();
+                    }
+                  } else if (
+                    val.name.toLowerCase().indexOf("changepassword") > -1
+                  ) {
+                    if ($('input[type="password"]').length < 2) $(val).click();
+                  }
+                }
+              });
+            }
+          }
+        });
+      }, 3000);
+    } else if (
+      (window.location.href.toLowerCase().indexOf("gamelog") > -1 ||
+        window.location.href.toLowerCase().indexOf("game_log") > -1 ||
+        window.location.href.toLowerCase().indexOf("betlog") > -1) &&
+      window.location.href.toLowerCase().indexOf("signin") < 0
+    ) {
+      var canContinue = true;
+      setTimeout(function () {
+        $.each($('a[type="button"]'), function (key, val) {
+          if (typeof val.href !== "undefined") {
+            if (
+              val.href.toLowerCase().indexOf("gamelog") > -1 ||
+              val.href.toLowerCase().indexOf("game_log") > -1
+            ) {
+              var url = val.href;
+              window.location.href = url;
+            }
+          }
+          if (typeof val.text !== "undefined") {
+            if (
+              val.text.toLowerCase().indexOf("gamelog") > -1 ||
+              val.text.toLowerCase().indexOf("game log") > -1
+            ) {
+              if (val.text.toLowerCase().indexOf("game log") == -1)
+                $(val).click();
+              setTimeout(function () {
+                var url = val.href;
+                if (val.text.toLowerCase().indexOf("game log") > -1) {
+                  var search = window.location.search;
+                  if (search.substr(0, 1) == "?")
+                    search = "&" + search.substr(1);
+                  url = val.href + search;
+                }
+                window.location.href = url;
+              }, 500);
+            }
+          }
+        });
+        setTimeout(function () {
+          $.each($('input[type!="hidden"]'), function (key, val) {
+            if (typeof val.name !== "undefined") {
+              if (
+                val.name.toLowerCase().indexOf("username") > -1 ||
+                val.name.toLowerCase().indexOf("accountname") > -1
+              ) {
+                if ($(val.closest("form")).submit().length == 0)
+                  if ($("#Button_OK").click().length == 0)
+                    $("button#search").click();
+                canContinue = false;
+                return;
+              }
+            }
+          });
+        }, 500);
+        setTimeout(function () {
+          $.each($('input[type!="hidden"]'), function (key, val) {
+            if (typeof val.id !== "undefined") {
+              if (
+                val.id.toLowerCase().indexOf("username") > -1 ||
+                val.id.toLowerCase().indexOf("accountname") > -1
+              ) {
+                if ($(val.closest("form")).submit().length == 0)
+                  if ($("#Button_OK").click().length == 0)
+                    $("button#search").click();
+                canContinue = false;
+                return;
+              }
+            }
+          });
+        }, 500);
+        if (
+          document.getElementsByClassName("btn-warning").length == 0 ||
+          window.location.href.toLowerCase().indexOf("searchgamelog") > -1
+        ) {
+          if ($("#Button_OK").click().length > 0) return;
+        } else {
+          var i;
+          var btns = document.getElementsByClassName("btn-warning");
+          var len = btns.length;
+          for (i = 0; i < len; i++) {
+            if (
+              btns[i].getAttribute("onclick") !== "undefined" &&
+              btns[i].getAttribute("onclick") != "" &&
+              btns[i].getAttribute("onclick") != null
+            ) {
+              var onclick = btns[i].getAttribute("onclick").toLowerCase();
+              if (onclick.indexOf("gamelog") > -1) {
+                var href = onclick.replace("document.location='", "");
+                href = href.substr(0, href.length - 1);
+                canContinue = false;
+                return (window.location.href = window.location.origin + href);
+              }
+            }
+          }
+        }
+        var input = "";
+        var windowData = window.location;
+        if (windowData.search == "") {
+          var data = windowData.hash;
+        } else {
+          var data = windowData.search;
+        }
+        var username = "";
+        $.each(data.split("&"), function (key, val) {
+          var params = val.split("=");
+          var paramKey = params[0];
+          var paramVal = params[1];
+          if (paramKey == "username") username = val.split("=")[1];
+        });
+        $.each($('input[type!="hidden"]'), function (key, val) {
+          if (typeof val.name !== "undefined") {
+            if (val.name.toLowerCase().indexOf("playeraccount") > -1) {
+              val.value = username;
+              $.each($('input[type="submit"]'), function (key, val) {
+                if (typeof val.name !== "undefined") {
+                  if (val.name.toLowerCase().indexOf("update") > -1) {
+                    $(val).click();
+                    canContinue = false;
+                  }
+                }
+              });
+              if (canContinue)
+                $(val).closest("table").find('input[type="submit"]').click();
+            }
+          }
+        });
+      }, 1000);
+    } else if (
+      (window.location.href.toLowerCase().indexOf("edit") > -1 ||
+        window.location.href.toLowerCase().indexOf("edituser") > -1 ||
+        window.location.href.toLowerCase().indexOf("modify") > -1) &&
+      window.location.href.toLowerCase().indexOf("signin") < 0
+    ) {
+      var success = false;
+      if (window.location.href.toLowerCase().indexOf("edit?") > -1) {
+        $.each($('input[type!="hidden"]'), function (key, val) {
+          if (typeof val.name !== "undefined") {
+            if (val.name.toLowerCase().indexOf("password") > -1) {
+              val.value = "PWD#111CDE$222333#444555$999AAA";
+              $("#Button_OK").click();
+              success = true;
+              return;
+            }
+          }
+        });
+      }
+      if (success == false) {
+        setTimeout(function () {
+          $.each($('input[type!="hidden"]'), function (key, val) {
+            if (typeof val.name !== "undefined") {
+              if (val.name.toLowerCase().indexOf("password") > -1) {
+                val.value = "PWD#111CDE$222333#444555$999AAA";
+                if ($(val.closest("form")).submit().length == 0)
+                  $("#Button_OK").click();
+                return;
+              }
+            }
+          });
+          $.each($('input[type!="hidden"]'), function (key, val) {
+            if (
+              typeof val.id !== "undefined" &&
+              typeof $(val).attr("hidden") === "undefined"
+            ) {
+              if (val.id.toLowerCase().indexOf("password") > -1) {
+                val.value = "PWD#111CDE$222333#444555$999AAA";
+                if ($(val.closest("form")).submit().length == 0)
+                  if ($("#Button_OK").click().length == 0)
+                    $("button#changePwdBtn").click();
+                return;
+              }
+            }
+          });
+        }, 1000);
+      }
+    } else {
+      if (
+        $("a#logout").length > 0 ||
+        window.location.href.toLowerCase().indexOf("main.php") > -1 ||
+        window.location.href.toLowerCase().indexOf("player") > -1
+      ) {
+        return false;
+      }
+      setTimeout(function () {
+        var insertedUsername = false;
+        $.each($('input[type!="hidden"]'), function (key, val) {
+          if (val.name.toLowerCase().indexOf("username") > -1) {
+            val.value = "USR#111CDE$222333#444555$999AAA";
+            insertedUsername = true;
+          }
+        });
+        if (insertedUsername == false) {
+          $.each($('input[type!="hidden"]'), function (key, val) {
+            if (val.id.toLowerCase().indexOf("username") > -1) {
+              val.value = "USR#111CDE$222333#444555$999AAA";
+              insertedUsername = true;
+            }
+          });
+        }
+        if (insertedUsername == false) {
+          if (typeof $('input[type!="hidden"]')[0] !== "undefined")
+            $('input[type!="hidden"]')[0].value = "USR#111CDE$222333#444555$999AAA";
+        }
+        if (
+          $('input[type="password"]')
+            .prev("label")
+            .text()
+            .toLowerCase()
+            .indexOf("2nd security") > -1
+        ) {
+          $('input[type="password"]').val("921224");
+          $("#Button_OK").click();
+        } else {
+          var canLogin = true;
+          $('input[type="password"]').val("AAaa8888");
+          $.each($('input[type!="hidden"]'), function (key, val) {
+            if (typeof val.id !== "undefined") {
+              if (val.id.toLowerCase().indexOf("code") > -1) {
+                $(val).focus();
+                canLogin = false;
+              }
+            }
+            if (canLogin == true) {
+              if (typeof val.name !== "undefined") {
+                if (val.name.toLowerCase().indexOf("code") > -1) {
+                  $(val).focus();
+                  canLogin = false;
+                }
+              }
+            }
+          });
+          if (canLogin == true) {
+            if (
+              $('input[type="password"]').parent("div").next("button").click()
+                .length == 0
+            )
+              if (
+                $('input[type="password"]')
+                  .closest('input[type="submit"]')
+                  .click().length == 0
+              )
+                if (
+                  $('input[type="password"]')
+                    .parent("div")
+                    .closest('input[type="submit"]')
+                    .click().length == 0
+                )
+                  if (
+                    $('input[type="password"]')
+                      .parent("div")
+                      .next('input[type="submit"]')
+                      .click().length == 0
+                  )
+                    if (
+                      $('input[type="password"]')
+                        .closest('button[type="submit"]')
+                        .click().length == 0
+                    )
+                      if (
+                        $('input[type="password"]')
+                          .closest("tr")
+                          .next("tr")
+                          .find('input[type="submit"]')
+                          .click().length == 0
+                      )
+                        $('input[type="password"]').closest("form").submit();
+          }
+        }
+      }, 500);
+    }
+  });
+  function addUserToCookie(username = null) {
+    if (created == false) {
+      setTimeout(function () {
+        addUserToCookie();
+      }, 1000);
+    } else {
+      var x = document.cookie;
+      var score = 0;
+      var new_username_cookie = "";
+      if (x != "") {
+        $.each(x.split("; "), function (key, val) {
+          cookieParam = val.split("=");
+          cookieKey = cookieParam[0];
+          cookieVal = cookieParam[1];
+          if (cookieKey == "new_username") new_username = cookieVal;
+        });
+      }
+      if (window.location.href.toLowerCase().indexOf("mega") > -1) {
+        if (new_username == "") {
+          new_username_cookie = $("#s_playerID").val();
+        } else {
+          new_username_cookie = new_username + "," + $("#s_playerID").val();
+        }
+      } else if (window.location.href.toLowerCase().indexOf("918kiss") > -1) {
+        if (new_username == "") {
+          new_username_cookie = $("#s_playerID").html();
+        } else {
+          new_username_cookie = new_username + "," + $("#s_playerID").html();
+        }
+      } else {
+        if ($("#s_playerID").length > 0) {
+          if ($("#s_playerID")[0].nodeName == "INPUT") {
+            if (new_username == "") {
+              new_username_cookie = $("#s_playerID").val();
+            } else {
+              new_username_cookie = new_username + "," + $("#s_playerID").val();
+            }
+          } else {
+            if (new_username == "") {
+              new_username_cookie = $("#s_playerID").html();
+            } else {
+              new_username_cookie =
+                new_username + "," + $("#s_playerID").html();
+            }
+          }
+        }
+        if (username != null && username != "") {
+          if (new_username == "") {
+            new_username_cookie = username;
+          } else {
+            new_username_cookie = new_username + "," + username;
+          }
+        }
+      }
+      document.cookie = "new_username=" + new_username_cookie + "; path=/";
+      updatedCookie = true;
+    }
+  }
+  function addPoolRefresh(addpool) {
+    console.log("addpool: " + addpool + ", updatedCookie: " + updatedCookie);
+    if (updatedCookie == true) {
+      console.log(addpool);
+      if (addpool > 1) {
+        if (window.location.href.toLowerCase().indexOf("mega") > -1) {
+          window.location.href = window.location.href.replace(
+            "addpool=" + addpool,
+            "addpool=" + (addpool - 1)
+          );
+          location.reload();
+        } else {
+          window.location = window.location.href.replace(
+            "addpool=" + addpool,
+            "addpool=" + (addpool - 1)
+          );
+        }
+      } else {
+        var password = "PWD#111CDE$222333#444555$999AAA";
+        insertUserGameApi(password);
+      }
+    } else {
+      setTimeout(function () {
+        addPoolRefresh(addpool);
+      }, 1000);
+    }
+  }
+  function insertUserGameApi(password) {
+    var x = document.cookie;
+    var score = 0;
+    var new_username_to_register = "";
+    if (x != "") {
+      $.each(x.split("; "), function (key, val) {
+        cookieParam = val.split("=");
+        cookieKey = cookieParam[0];
+        cookieVal = cookieParam[1];
+        if (cookieKey == "new_username") new_username_to_register = cookieVal;
+      });
+    }
+    if (new_username_to_register == "") {
+      return false;
+    }
+    var data = {
+      game_id: "86",
+      created_by: "2712",
+      password: password,
+      username: new_username_to_register,
+    };
+    $.ajax({
+      type: "POST",
+      url: "https://phx.mente.asia/api/game/add-game-pool",
+      dataType: "json",
+      cache: false,
+      timeout: 30000,
+      data: data,
+      success: function (response) {
+        if (response) {
+          if (response.data) {
+            if (response.status) {
+              document.cookie =
+                "new_username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+              new_username = "";
+              alert("done created !");
+              window.top.close();
+            }
+          }
+        }
+      },
+      error: function (response) {
+        console.log(response);
+      },
+    });
+  }
+  function register() {
+    var input = "";
+    var windowData = window.location;
+    if (windowData.search == "") {
+      var data = windowData.hash;
+    } else {
+      var data = windowData.search;
+    }
+    var name = "";
+    var tel = "";
+    var username = "";
+    var addpool = "";
+    $.each(data.split("&"), function (key, val) {
+      var params = val.split("=");
+      var paramKey = params[0];
+      var paramVal = params[1];
+      if (paramKey == "name") name = val.split("=")[1];
+      else if (paramKey == "tel") tel = val.split("=")[1];
+      else if (paramKey == "username") username = val.split("=")[1];
+      else if (paramKey == "addpool") addpool = parseInt(val.split("=")[1]);
+    });
+    if ($("#ctl00_ContentPlaceHolder1_currentKioskLab").length > 0) {
+      var id = Math.floor(Math.random() * 26) + Date.now().toFixed(0);
+      var prefix = id.substring(id.length - 6);
+      username =
+        $("#ctl00_ContentPlaceHolder1_currentKioskLab").html() + prefix;
+    }
+    if (window.location.href.toLowerCase().indexOf("addpool=") > -1) {
+      console.log("ap2: " + addpool);
+      if (addpool == 0) {
+        console.log("false");
+        return false;
+      }
+    }
+    setTimeout(function () {
+      $.each($('input[type!="hidden"]'), function (key, val) {
+        if (typeof val.name !== "undefined") {
+          if (val.name.toLowerCase().indexOf("password") > -1) {
+            input = val;
+            val.value = "PWD#111CDE$222333#444555$999AAA";
+          }
+          if ($("#generate-username-link").length == 0) {
+            if (val.name.toLowerCase().indexOf("score") > -1) {
+              val.value = "0";
+            } else if (val.name.toLowerCase().indexOf("username") > -1) {
+              if (input == "") {
+                input = val;
+              }
+              val.value = username;
+            } else if (val.name.toLowerCase().indexOf("name") > -1) {
+              val.value = name;
+            } else if (val.name.toLowerCase().indexOf("tel") > -1) {
+              val.value = tel;
+            }
+          }
+        }
+      });
+      if (input == "") {
+        $.each($('input[type!="hidden"]'), function (key, val) {
+          if (typeof val.id !== "undefined") {
+            if (val.id.toLowerCase().indexOf("password") > -1) {
+              input = val;
+              val.value = "PWD#111CDE$222333#444555$999AAA";
+            }
+            if ($("#generate-username-link").length == 0) {
+              if (val.id.toLowerCase().indexOf("score") > -1) {
+                val.value = "0";
+              } else if (val.id.toLowerCase().indexOf("username") > -1) {
+                if (input == "") {
+                  input = val;
+                }
+                val.value = username;
+              } else if (val.id.toLowerCase().indexOf("name") > -1) {
+                val.value = name;
+              } else if (val.id.toLowerCase().indexOf("tel") > -1) {
+                val.value = tel;
+              }
+            }
+          }
+        });
+      }
+      if (input != "") {
+        if (
+          $(input.closest("form")).find('button[type="submit"]').click()
+            .length == 0
+        ) {
+          if ($("#Button_OK").click().length == 0) {
+            var id = $(input).attr("id");
+            $.each(
+              $("#" + id)
+                .closest("form")
+                .find('input[type="submit"]'),
+              function (key, val) {
+                if (typeof val.id !== "undefined") {
+                  if (val.id.toLowerCase().indexOf("create") > -1) {
+                    if ($(".Lab_ReturnMessage").html() == 0) {
+                      $(val).click();
+                      created = true;
+                    }
+                  }
+                }
+              }
+            );
+          } else {
+            created = true;
+          }
+        } else {
+          created = true;
+        }
+      }
+      setTimeout(function () {
+        if (
+          window.location.href.toLowerCase().indexOf("addpool=") > -1 &&
+          created == true
+        ) {
+          addUserToCookie(username);
+          addPoolRefresh(addpool);
+        }
+      }, 1000);
+      if (created == false) {
+        setTimeout(function () {
+          register();
+        }, 500);
+      }
+    }, 1000);
+  }
+} else {
+  if (window.location.pathname == "/login") {
+    var usernameInput = document.querySelector('input[name="username"]');
+    var passwordInput = document.querySelector('input[name="password"]');
+    usernameInput.value = "USR#111CDE$222333#444555$999AAA";
+    passwordInput.value = "AAaa8888";
+    setTimeout(function () {
+      usernameInput.focus();
+      setTimeout(function () {
+        passwordInput.focus();
+      }, 0);
+    }, 0);
+    if (document.querySelector('input[name="captcha"]') == null) {
+      setTimeout(function () {
+        passwordInput.closest("form").querySelector("button").click();
+      }, 500);
+    }
+    setTimeout(function () {
+      insertSecondPw();
+    }, 500);
+  }
+  function insertSecondPw() {
+    if (window.location.pathname != "/second") {
+      setTimeout(function () {
+        insertSecondPw();
+      }, 500);
+    } else {
+      if (document.querySelector('input[name="secondPassword"]') != null) {
+        var secondpw = document.querySelector('input[name="secondPassword"]');
+        secondpw.value = "921224";
+        setTimeout(function () {
+          secondpw.focus();
+          setTimeout(function () {
+            secondpw.closest("form").querySelector("button").focus();
+            secondpw.closest("form").querySelector("button").click();
+          }, 500);
+        }, 0);
+      }
+    }
+  }
+}

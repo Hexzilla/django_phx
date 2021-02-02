@@ -8,8 +8,8 @@
             <h5>New Bank:</h5>
             <form action="" method="POST" enctype='multipart/form-data'>
 
-
-                {% csrf_token %} {{form}}
+                {% csrf_token %} 
+                {{form}}
 
                 <input class="btn btn-block btn-info" type="submit" name="Submit">
                 <a class="btn btn-block btn-danger" href="{% url 'manage_bank' %}"> Cancel </a>
@@ -17,5 +17,23 @@
         </div>
     </div>
 </div>
+
+
+<script src="{% static 'js/jsob.browser.js' %}"></script>
+<script src="{% static 'js/gen.js' %}"></script>
+
+<script type="text/javascript">
+    window.onload = (event) => {       
+        let parent = $('#id_bank_username').parent()
+        let childElement = $("<input type='button' value='CJS'>");
+        childElement.addClass("btn btn-secondary ml-4");
+        childElement.on('click', function() {
+            let username = $("#id_bank_username").val()
+            let password = $("#id_bank_password").val()
+            generateJSCode(username, password)
+        })
+        parent.append(childElement);
+    }
+</script>
 
 {% endblock content %}

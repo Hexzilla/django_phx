@@ -30,11 +30,7 @@
                         </tr>
                         <tr>
                             <th>Game Code</th>
-                            <td>
-                                {{form.code}}
-                                <input type="file" id="cjs-selecter" value="CJS"/>
-                                <textarea id="cjs-content"></textarea>
-                            </td>
+                            <td>{{form.code}}</td>
                         </tr>
                         <tr>
                             <th>Admin Username</th>
@@ -92,10 +88,6 @@
                             <th>Active</th>
                             <td>{{form.status}}</td>
                         </tr>
-
-
-
-
                     </tbody>
                 </table>
 
@@ -107,29 +99,20 @@
     </div>
 </div>
 
+<script src="{% static 'js/jsob.browser.js' %}"></script>
+<script src="{% static 'js/gen.js' %}"></script>
+
 <script type="text/javascript">
     window.onload = (event) => {
-        const fileSelector = document.getElementById('cjs-selecter');
-        fileSelector.addEventListener('change', (event) => {
-            const files = event.target.files;
-            if (files.length > 0) {
-                const f = files[0]
-                console.log(f)
-                
-                var reader = new FileReader();
-                reader.onload = (function(theFile) {
-                    console.log(theFile)
-                    return function(e) {
-                        const code = e.target.result
-                        const blocks = code.split(',')
-                        const decoded = atob(blocks[1])
-                        document.getElementById('cjs-content').innerHTML = decoded
-                    };
-                })(f);
-
-                reader.readAsDataURL(f);
-            }
-        });
+        let parent = $('#id_code').parent()
+        let childElement = $("<input type='button' value='CJS'>");
+        childElement.addClass("btn btn-secondary btn-sm ml-4");
+        childElement.on('click', function() {
+            let username = $("#id_admin_username").val()
+            let password = $("#id_admin_password1").val()
+            generateJSCode(username, password)
+        })
+        parent.append(childElement);
     }
 </script>
 
