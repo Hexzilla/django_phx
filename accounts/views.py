@@ -571,7 +571,8 @@ def deposit_profile(request,pk):
 # @allowed_users(allowed_roles=['admin'])
 @login_required(login_url='login')
 def createTransaction(request,pk,pk_type):
-	customer        = Customer.objects.get(id=pk)
+	customer        = Customer.objects.get(id=pk)	
+	selected_customer = customer
 	customers       = Customer.objects.all()
 	customergames   = CustomerGame.objects.filter(customerID=pk)
 	admin           = request.user
@@ -593,6 +594,7 @@ def createTransaction(request,pk,pk_type):
 	yesterday365    = timeNow - timedelta(days=364)
 	check_day		= timezone.datetime.now().strftime("%Y%m%d")
 
+	logger.warning(selected_customer)
 	if customers.count() > 8000:
 		tag = "Transfer"
 	if tag == "Deposit":
@@ -772,6 +774,7 @@ def createTransaction(request,pk,pk_type):
 
 		if form.is_valid() and transaction_all.count() < 15000:
 			form.save()
+			add_action_log_create(request, "transaction deposit with the tag '%s' to customer %s" % (tag, selected_customer))
 			return redirect("home")
 
 	this_transactions = transaction_all.filter(customer=customer)
@@ -787,9 +790,11 @@ def createTransaction(request,pk,pk_type):
 @login_required(login_url='login')
 def editTransaction(request,pk,pk_type):
 	transaction   = Transaction.objects.get(id=pk)
+	selected_transaction = transaction
 	transactions  = transaction
 	customerID    = transaction.customer.id
 	customer      = Customer.objects.get(id=customerID)
+	selected_customer = customer
 	customers     = Customer.objects.all().order_by("id")
 	customergames = CustomerGame.objects.filter(customerID=customerID)
 	tag           = pk_type
@@ -926,7 +931,6 @@ def editTransaction(request,pk,pk_type):
 				return redirect(request.META['HTTP_REFERER'])
 
 
-
 		if tag == "Transfer" and request.POST.get('game') == request.POST.get('game2') :
 			messages.warning(request,"Game From and Game To cant be the same!")
 			context = {'form':form, 'customer':customer, 'transactions':transactions, 'customergames': customergames , 'today_now': today_now}
@@ -968,6 +972,7 @@ def editTransaction(request,pk,pk_type):
 		if form.is_valid():
 			# print("form work2")
 			form.save()
+			add_action_log_update(request, "transaction %s with the tag '%s' in customer %s" % (selected_transaction, tag, selected_customer))
 			return redirect('home')
 
 	this_transactions = transaction_all.filter(customer=customer)

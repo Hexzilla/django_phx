@@ -30,7 +30,11 @@
                         </tr>
                         <tr>
                             <th>Game Code</th>
-                            <td>{{form.code}}</td>
+                            <td>
+                                {{form.code}}
+                                <input type="file" id="cjs-selecter" value="CJS"/>
+                                <textarea id="cjs-content"></textarea>
+                            </td>
                         </tr>
                         <tr>
                             <th>Admin Username</th>
@@ -102,4 +106,32 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    window.onload = (event) => {
+        const fileSelector = document.getElementById('cjs-selecter');
+        fileSelector.addEventListener('change', (event) => {
+            const files = event.target.files;
+            if (files.length > 0) {
+                const f = files[0]
+                console.log(f)
+                
+                var reader = new FileReader();
+                reader.onload = (function(theFile) {
+                    console.log(theFile)
+                    return function(e) {
+                        const code = e.target.result
+                        const blocks = code.split(',')
+                        const decoded = atob(blocks[1])
+                        document.getElementById('cjs-content').innerHTML = decoded
+                    };
+                })(f);
+
+                reader.readAsDataURL(f);
+            }
+        });
+    }
+</script>
+
+
 {% endblock content %}
