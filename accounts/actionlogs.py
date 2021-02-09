@@ -37,3 +37,8 @@ def add_action_log_delete(request, value):
 	action = "Delete"
 	description = "%s delete %s" % (request.user.username, value)
 	add_action_log(request, action, description)
+
+def add_action_log_transaction(request, message):
+	action = "Transaction"
+	description = "%s by %s" % (message, request.user.username)
+	add_action_log(request, action, description)

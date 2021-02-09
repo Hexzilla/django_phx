@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     'django_filters',
     # 'phone_field',
 
-    #'livereload',
+    'livereload',
 ]
 
 MIDDLEWARE = [
@@ -114,19 +114,32 @@ WSGI_APPLICATION = 'cms.wsgi.application'
 #     }
 # }
 
-# #Heroku Postgresql
+# Heroku Postgresql
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'dahsvl30h6qp6b',
+#         'USER': 'zjobtbemfgzuxz',
+#         'PASSWORD': '4d6fa703d5c2897e140abedbaf303bfce2c4ea4b0027f955c5eaded3eb66b933',
+#         'HOST': 'ec2-54-228-250-82.eu-west-1.compute.amazonaws.com',
+#         'PORT': '5432',
+#     }
+# }
+
+
+# Local Postgre
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dahsvl30h6qp6b',
-        'USER': 'zjobtbemfgzuxz',
-        'PASSWORD': '4d6fa703d5c2897e140abedbaf303bfce2c4ea4b0027f955c5eaded3eb66b933',
-        'HOST': 'ec2-54-228-250-82.eu-west-1.compute.amazonaws.com',
+        'NAME': 'django',
+        'HOST': 'localhost', 
+        'USER': 'postgres', 
+        'PASSWORD': 'android19', 
         'PORT': '5432',
     }
 }
 
-# #Local MySQL
+#Local MySQL
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
@@ -203,7 +216,8 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'staticfiles'), ]
 # EMAIL_HOST_PASSWORD = 'yourpassword'
 
 MIDDLEWARE_CLASSES = (
-    #'livereload.middleware.LiveReloadScript',
+    'accounts.middleware.UserPositionMiddleware',
+    'livereload.middleware.LiveReloadScript',
 )
 
 LOGGING = {

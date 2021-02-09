@@ -994,9 +994,13 @@ def transactionStatus(request,pk,status):
 			Transaction.objects.filter(pk=pk).update(action_approve=timezone.now())
 		elif status == "Rejected":
 			Transaction.objects.filter(pk=pk).update(action_reject=timezone.now())
-		messages.success(request,"This Transaction status is updated to "+status)
+		message = "This Transaction status is updated to " + status
+		messages.success(request, message)
+		add_action_log_transaction(request, message)
 	else:
-		messages.warning(request,"This Transaction is completed YES, please change it to No to edit!")
+		message = "This Transaction is completed YES, please change it to No to edit!"
+		messages.warning(request, message)
+		add_action_log_transaction(request, message)
 		return redirect(request.META['HTTP_REFERER'])
 
 	# return redirect(request.META['HTTP_REFERER'])
@@ -1037,7 +1041,9 @@ def depositconfirm(request,pk):
 def depositconfirmAfter(request,pk,completed):
 	this_transaction = Transaction.objects.get(id=pk)
 	if not this_transaction.game:
-		messages.warning(request,"This Transaction Have No Selected Game (Error-No-Game)")
+		message = "This Transaction Have No Selected Game (Error-No-Game)"
+		messages.warning(request, message)
+		add_action_log_transaction(request, message)
 		return redirect(request.META['HTTP_REFERER'])
 	deduct_game = Game.objects.get(id=this_transaction.game.game_name.id)
 	deposit_deduct_amount = this_transaction.amount + this_transaction.amount_free + this_transaction.amount_promo + this_transaction.amount_tip + this_transaction.amount_void + this_transaction.payback
@@ -1084,7 +1090,9 @@ def depositconfirmAfter(request,pk,completed):
 			deduct_game2.save()
 	Transaction.objects.filter(id=pk).update(completed=completed)
 	Transaction.objects.filter(id=pk).update(action_complete=timezone.now())
-	messages.warning(request,"This Transaction is now completed "+ completed)
+	message = "This Transaction is now completed "+ completed
+	messages.warning(request, message)
+	add_action_log_transaction(request, message)
 	if completed == "No":
 		return redirect(request.META['HTTP_REFERER'])
 	return redirect("home")
@@ -1723,10 +1731,6 @@ def report_transaction(request):
 			date2 = date1 + timedelta(days=32)
 			date2 = date2.replace(day=1)
 			
-	logger.warning(date1)
-	logger.warning(date2)
-	logger.warning(start_date)
-	logger.warning(end_date)
 	if date1 and date2:
 		transaction_d = transaction_d.filter(date_created__gt = date1, date_created__lt = date2)
 		transaction_w = transaction_w.filter(date_created__gt = date1, date_created__lt = date2)
@@ -1890,9 +1894,9 @@ def manage_sms(request):
 
 
 def list_sms(request):
-	offset = request.GET.get('offset')
-	if not offset: offset = 0
-	offset = int(offset)
+	page = request.GET.get('page')
+	if not page: page = 1
+	page = int(page)
 
 	gateway = SMSGateway.objects.all()
 	if gateway and len(gateway) > 0 and gateway[0].active == 1:
@@ -1918,7 +1922,7 @@ def list_sms(request):
 			}
 		],
 		"limit": 10,
-		"offset": offset
+		"offset": (page - 1) * 10
 	}
 	headers = {
 		'Content-Type': 'application/json',
@@ -1934,13 +1938,7 @@ def list_sms(request):
 		results = data['results']
 		count = data['count']
 
-	prev = next = None
-	if offset >= 10:
-		prev = offset - 10
-	if offset + 10 < count:
-		next = offset + 10
-
-	context = {'results': results, 'prev': prev, 'next': next}
+	context = {'results': results, 'size': count, 'page': page}
 	return render(request, 'accounts/manage/list_sms.html',  context)
 
 
