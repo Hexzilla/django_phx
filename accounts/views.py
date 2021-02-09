@@ -355,9 +355,8 @@ def deposit_filter_by_date_range(request, queryset):
 def get_filter(request):
 	start_date = request.POST.get('start_date')
 	end_date = request.POST.get('end_date')
-	if start_date and end_date:
-		start_date = datetime.fromisoformat(start_date).strftime("%Y-%m-%d")
-		end_date = datetime.fromisoformat(end_date).strftime("%Y-%m-%d")
+	if start_date: start_date = datetime.fromisoformat(start_date).strftime("%Y-%m-%d")
+	if end_date: end_date = datetime.fromisoformat(end_date).strftime("%Y-%m-%d")
 
 	return {
 		'game': request.POST.get('game'),
@@ -368,6 +367,35 @@ def get_filter(request):
 		'start_date': start_date,
 		'end_date': request.POST.get('end_date'),
 		'date_value': request.POST.get('date_value')
+	}
+
+def get_post_date(request):
+	date1 = request.POST.get('start_date')
+	date2 = request.POST.get('end_date')
+	date3 = request.POST.get('date_value')
+	if date1: 
+		date1 = datetime.fromisoformat(date1)
+	else: 
+		date1 = timezone.datetime.now().date()
+
+	if date2: 
+		date2 = datetime.fromisoformat(date2)
+	else: 
+		date2 = timezone.datetime.today().now()
+
+	if date1 == date2: 
+		date2 = date2 + timedelta(days=1)
+
+	if date3: 
+		date3 = datetime.fromisoformat(date3)
+	else:
+		date3 = date1 - timedelta(days=1)
+		date3 = timezone.datetime.now() - timedelta(1)
+
+	return {
+		'date1': date1, 
+		'date2': date2, 
+		'date3': date3.strftime("%Y-%m-%d")
 	}
 
 def get_select_items():
@@ -1548,56 +1576,25 @@ def creditGameticket(request,pk):
 #! Report
 @login_required(login_url='login')
 def report_sale(request):
-	referrals              = Referral.objects.all().order_by("id")
-	# customer_ref           = Customer.objects.all()
-	transactions           = Transaction.objects.all().exclude(tag="Add_Credit").exclude(tag="Deduct_Credit").order_by('-id')
-	paginator              = Paginator(transactions, 10)
-	page                   = request.GET.get('page')
-	profiles               = paginator.get_page(page)
-	today                  = timezone.datetime.today()
-	timeNow                = timezone.datetime.now()
-	yesterday              = timeNow - timedelta(days=1)
-# yesterday2             = yesterday - timedelta(days=1)
-	form                   = DateRangeForm()
-	date1                  = timeNow.date()
-	date2                  = today.now()
-	date3                  = date1 - timedelta(days=1)
-	date3 				   = timezone.datetime.now() - timedelta(1)
-	date3 				   = timezone.datetime.strftime(date3, '%Y-%m-%d')
+	postDate = get_post_date(request)
+	date1 = postDate['date1']
+	date2 = postDate['date2']
+	date3 = postDate['date3']
 
+	form                   = DateRangeForm()
+	referrals              = Referral.objects.all().order_by("id")
 	customer_ref           = Customer.objects.filter(date_created__gt = date1, date_created__lt = date2)
 	todays_customer_report = Customer.objects.filter(date_created__gt = date1, date_created__lt = date2).count()
-	transactions           = transactions.filter(date_created__gt = date1, date_created__lt = date2).filter(status="Approved")
+	transactions           = Transaction.objects.all().exclude(tag="Add_Credit").exclude(tag="Deduct_Credit").order_by('-id')
+	transactions           = transactions.filter(status="Approved")
+	transactions           = deposit_filter_by_date_range(request, queryset=transactions)
 	todays_deposit_report  = transactions.filter(customer__date_created__gt = date1, customer__date_created__lt = date2).filter(date_created__gt = date1, date_created__lt = date2).filter(tag="Deposit").order_by('customer').distinct('customer').count()
 	transactions_ref       = transactions.filter(customer__date_created__gt = date1, customer__date_created__lt = date2).filter(tag="Deposit").order_by('customer').distinct('customer')
 	new_user_transactions  = transactions.filter(customer__date_created__gt = date1, customer__date_created__lt = date2).filter(tag="Deposit").order_by('customer').distinct('customer')
 	old_user_transactions  = transactions.filter(customer__date_created__lt = date3).filter(tag="Deposit").order_by('customer').distinct('customer')
 	gameAll                = Game.objects.all().count()
 	game_list              = {}
-	
-	
-	if request.method == "POST" :
-	   form                   = DateRangeForm(request.POST or None)
-	   date1                  = request.POST.get("start_date")
-	   date2                  = request.POST.get("end_date")
-	   date2                  = datetime.strptime(date2 + ' 23:59:59', "%Y-%m-%d %H:%M:%S")
-	   date3                  = datetime.strptime(date1 + ' 00:00:00', "%Y-%m-%d %H:%M:%S")
-	   date4                  = date3 - timedelta(days=1)
-	   customer_ref           = Customer.objects.filter(date_created__gt = date1, date_created__lt = date2)
-	   todays_customer_report = Customer.objects.filter(date_created__gt = date1, date_created__lt = date2).count()
-	   transactions           = Transaction.objects.all().exclude(tag="Add_Credit").exclude(tag="Deduct_Credit").order_by('-id')
-	   transactions           = transactions.filter(date_created__gt = date1, date_created__lt = date2).filter(status="Approved")
-	   todays_deposit_report  = transactions.filter(tag="Deposit").filter(customer__date_created__gt = date1, customer__date_created__lt = date2).filter(date_created__gt = F('customer__date_created'), date_created__lt = F('customer__date_created') + timedelta(1)).order_by('customer').distinct('customer').count()
-	   transactions_ref       = transactions.filter(tag="Deposit").filter(customer__date_created__gt = date1, customer__date_created__lt = date2).filter(date_created__gt = F('customer__date_created'), date_created__lt = F('customer__date_created') + timedelta(1)).order_by('customer').distinct('customer')
-	   old_user_transactions  = transactions.filter(customer__date_created__lt = date3).filter(tag="Deposit").order_by('customer').distinct('customer')
-
-	   #    todays_deposit_report_trs    = transactions.filter(tag="Deposit").filter(customer__date_created__gt = date1, customer__date_created__lt = date2).filter(date_created__gt = F('customer__date_created'), date_created__lt = F('customer__date_created') + timedelta(1))
-	   paginator              = Paginator(transactions, 10)
-	   page                   = request.GET.get('page')
-	   profiles               = paginator.get_page(page)
-		
-
-
+			
 	deposits              = transactions.filter(tag="Deposit")
 	deposits_amount       = transactions.filter(tag="Deposit").aggregate(Sum('amount'))
 	deposits_amount_promo = transactions.filter(tag="Deposit").aggregate(Sum('amount_promo'))
@@ -1664,20 +1661,21 @@ def report_sale(request):
 		else:
 			gg+=1
 			gameAll += 1
-	# print(game_list)
 	
-	# game            = transactions.filter(game=)	
-
-	# match_queryset.filter(start__gte=d.date(), start__lt=d.date()+timedelta(days=1))
+	paginator = Paginator(transactions, 10)
+	page = request.POST.get('page')
+	if page is None: page = 1
+	profiles = paginator.get_page(page)
 	
-	context = {'referrals':referrals, 'form':form, 'timeNow': timeNow, 'yesterday': yesterday, "transactions": transactions,
-	"deposits": deposits,"withdrawals": withdrawals,"transfers": transfers,
-	"deposits_amount": deposits_amount,"withdrawals": withdrawals,'withdrawals_amount':withdrawals_amount,
-	"deposit_free_amount": deposit_free_amount,"deposit_free": deposit_free,
-	"game_list": game_list,"profiles": profiles,'deposits_amount_promo':deposits_amount_promo,
-	'new_user_transactions':new_user_transactions,'old_user_transactions':old_user_transactions,
-	'customer_ref':customer_ref,'transactions_ref':transactions_ref,'todays_deposit_report':todays_deposit_report,
-	'gross_total':gross_total,"date1":date1,"date2":date2,'todays_customer_report':todays_customer_report,
+	context = {'referrals':referrals, "transactions": transactions,
+		"deposits": deposits,"withdrawals": withdrawals,"transfers": transfers,
+		"deposits_amount": deposits_amount,"withdrawals": withdrawals,'withdrawals_amount':withdrawals_amount,
+		"deposit_free_amount": deposit_free_amount,"deposit_free": deposit_free,
+		"game_list": game_list,"profiles": profiles,'deposits_amount_promo':deposits_amount_promo,
+		'new_user_transactions':new_user_transactions,'old_user_transactions':old_user_transactions,
+		'customer_ref':customer_ref,'transactions_ref':transactions_ref,'todays_deposit_report':todays_deposit_report,
+		'gross_total':gross_total,'todays_customer_report':todays_customer_report, 
+		'data': get_select_items(), 'search': get_filter(request),
 	}
 	return render(request, 'accounts/report/report_sale.html',  context)
 
